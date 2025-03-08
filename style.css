@@ -1,377 +1,202 @@
-/* Base styles and reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacky Liu | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Jacky Liu | Portfolio</h1>
+                <p class="tagline">Designer & Creative Developer</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-:root {
-  --primary-color: #1db954;
-  --secondary-color: #b3f5c6;
-  --dark-bg: #121212;
-  --darker-bg: #0a0a0a;
-  --card-bg: #1e1e1e;
-  --text-color: #ffffff;
-  --text-secondary: #b3b3b3;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
-}
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Exploring the intersection of code and creativity</h2>
+                <p>Interactive graphics & game design</p>
+            </div>
+            <div id="p5-container"></div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to my portfolio! I'm a designer and programmer with a passion for graphics programming and interactive experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            
+            <div class="project-card featured">
+                <div class="project-info">
+                    <h3>p5.js Flower - Procedural Graphics</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 2 Weeks (Graphics Programming Course)</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>This project explores procedural graphics generation using mathematical principles. The flower is generated in 3D using trigonometric functions and parametric equations.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p>I developed this interactive flower visualization applying various mathematical concepts including:</p>
+                        <ul class="project-skills">
+                            <li><strong>Polar Coordinates:</strong> Used to generate the petal formations.</li>
+                            <li><strong>Power Functions:</strong> Modify petal sharpness and curvature.</li>
+                            <li><strong>Exponential Decay:</strong> Shapes the stem and gradual cone-like structure.</li>
+                            <li><strong>Bump Mapping:</strong> Adds texture variations to the petal edges.</li>
+                            <li><strong>Orbit Control:</strong> Allows interactive rotation and zooming in WEBGL mode.</li>
+                        </ul>
+                        <p>The flower dynamically updates using p5.js, demonstrating mathematical visualization techniques.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <h4>Demonstration</h4>
+                        <p>The interactive visualization above shows the flower in action. You can click on it to toggle auto-rotation or manually control the camera by clicking and dragging.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Cult Conspiracy</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 2 Days (Game Jam)</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> Created cutscene artwork and programmed animated backgrounds.</p>
+                        <p>I designed and implemented key visual elements that establish the game's eerie atmosphere, including hand-drawn cutscenes that advance the narrative and programmed animated backgrounds that respond to in-game events, enhancing the immersive experience.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <h4>Play the Game</h4>
+                        <div class="project-links">
+                            <a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank" class="btn">Play Cult Conspiracy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Heist Havoc</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 12 Weeks</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> Designed animated intro and coded UI for displaying object values.</p>
+                        <p>I created the animated introduction sequence that sets the tone for the game, and developed a sophisticated UI system that dynamically displays important object values to the player. This includes interactive elements that reveal information about security systems, valuable items, and guard patterns as players approach them.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <h4>Play the Game</h4>
+                        <div class="project-links">
+                            <a href="https://homiedomo.itch.io/heist-havoc" target="_blank" class="btn">Play Heist Havoc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Red Goes Fasta!</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 6 Weeks</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A 2D racing game inspired by Warhammer Orks. Players race against the fastest Orks in high-speed tracks.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> Handled all audio design, including engine sounds, drifting, and crash effects.</p>
+                        <p>I created a complete audio package for the game that enhances the chaotic Ork racing experience. This included creating custom engine sounds that vary based on vehicle type and speed, implementing 3D audio positioning for spatial awareness during races, and designing impact effects that communicate the weight and intensity of collisions.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <h4>Play the Game</h4>
+                        <div class="project-links">
+                            <a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank" class="btn">Play Red Goes Fasta!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>I'm always open to discussing new projects and opportunities.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:jackyliu432@gmail.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span>jackyliu432@gmail.com</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">🎨</span>
+                    <span>ArtStation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Contact: jackyliu432@gmail.com | <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
+        </div>
+    </footer>
 
-body {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background-color: var(--dark-bg);
-  color: var(--text-color);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
-/* Typography */
-h1, h2, h3, h4 {
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md);
-}
-
-h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 2rem;
-  position: relative;
-  display: inline-block;
-  margin-bottom: var(--spacing-xl);
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary-color);
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-}
-
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-a:hover {
-  color: var(--secondary-color);
-}
-
-ul {
-  list-style: none;
-}
-
-/* Header styles */
-header {
-  background-color: rgba(10, 10, 10, 0.95);
-  padding: var(--spacing-md) 0;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-content h1 {
-  margin-bottom: 0;
-}
-
-.tagline {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  margin-bottom: 0;
-}
-
-nav ul {
-  display: flex;
-}
-
-nav ul li {
-  margin-left: var(--spacing-lg);
-}
-
-nav ul li a {
-  color: var(--text-color);
-  font-weight: 500;
-  position: relative;
-}
-
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: var(--primary-color);
-  transition: var(--transition);
-}
-
-nav ul li a:hover::after {
-  width: 100%;
-}
-
-/* Hero section */
-#hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--darker-bg);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-}
-
-.hero-content h2 {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.hero-content p {
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-lg);
-  color: var(--text-secondary);
-}
-
-#p5-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.8;
-}
-
-canvas {
-  display: block;
-  margin: 0 auto;
-  border: none !important;
-}
-
-/* About section */
-#about {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--dark-bg);
-}
-
-.about-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
-}
-
-.about-text {
-  flex: 1;
-  min-width: 300px;
-}
-
-/* Projects section */
-#projects {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--darker-bg);
-}
-
-.project-card {
-  background-color: var(--card-bg);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  margin-bottom: var(--spacing-xl);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-}
-
-.project-card.featured {
-  border-left: 4px solid var(--primary-color);
-}
-
-.project-info {
-  padding: var(--spacing-lg);
-}
-
-.project-meta {
-  color: var(--primary-color);
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.project-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-}
-
-.project-skills li {
-  background-color: rgba(29, 185, 84, 0.1);
-  color: var(--primary-color);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.project-links {
-  margin-top: var(--spacing-md);
-}
-
-.btn {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: #000;
-  font-weight: 600;
-  padding: 8px 20px;
-  border-radius: 30px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.btn:hover {
-  background-color: var(--secondary-color);
-  color: #000;
-  transform: translateY(-2px);
-}
-
-/* Contact section */
-#contact {
-  padding: var(--spacing-xl) 0;
-  background-color: var(--dark-bg);
-  text-align: center;
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-xl);
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  background-color: var(--card-bg);
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-}
-
-.contact-item:hover {
-  transform: translateY(-3px);
-  background-color: rgba(29, 185, 84, 0.1);
-}
-
-.contact-icon {
-  font-size: 1.5rem;
-  margin-right: var(--spacing-md);
-}
-
-/* Footer */
-footer {
-  padding: var(--spacing-lg) 0;
-  background-color: var(--darker-bg);
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-/* Media queries */
-@media screen and (max-width: 768px) {
-  header .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  nav {
-    width: 100%;
-    margin-top: var(--spacing-md);
-  }
-  
-  nav ul {
-    justify-content: space-between;
-  }
-  
-  nav ul li {
-    margin-left: 0;
-  }
-  
-  .hero-content h2 {
-    font-size: 2.2rem;
-  }
-  
-  #hero {
-    padding-top: 100px;
-    height: auto;
-    min-height: 100vh;
-  }
-  
-  #p5-container {
-    position: relative;
-    height: 350px;
-    margin-top: var(--spacing-lg);
-  }
-}
-
-@media screen and (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.7rem;
-  }
-  
-  .hero-content h2 {
-    font-size: 1.8rem;
-  }
-  
-  .contact-links {
-    flex-direction: column;
-  }
-}
+    <script src="sketch.js"></script>
+</body>
+</html>
