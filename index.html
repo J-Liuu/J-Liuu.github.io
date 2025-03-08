@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacky Liu | 3D Portfolio</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="p5.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #121212; color: #fff; text-align: center; }
         header { background: #1e1e1e; padding: 20px; font-size: 28px; font-weight: bold; }
@@ -38,7 +40,6 @@
     
     <section>
         <h2>Game Projects</h2>
-        
         <div class="game-section">
             <h3>Cult Conspiracy</h3>
             <p><strong>Duration:</strong> 2 Days (Game Jam)</p>
@@ -46,7 +47,6 @@
             <p><strong>Role:</strong> Created the main cutscene artwork and programmed the animated moving backgrounds for the game’s introduction title screen.</p>
             <p><a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank">Play Cult Conspiracy</a></p>
         </div>
-        
         <div class="game-section">
             <h3>Heist Havoc</h3>
             <p><strong>Duration:</strong> 12 Weeks</p>
@@ -54,7 +54,6 @@
             <p><strong>Role:</strong> Designed and implemented the animated intro sequence. Developed the UI system that ensures item values dynamically face the camera for better readability.</p>
             <p><a href="https://homiedomo.itch.io/heist-havoc" target="_blank">Play Heist Havoc</a></p>
         </div>
-        
         <div class="game-section">
             <h3>Red Goes Fasta!</h3>
             <p><strong>Duration:</strong> 6 Weeks</p>
@@ -66,20 +65,7 @@
     
     <section>
         <h2>p5.js Flower</h2>
-        <script>
-            function setup() {
-                createCanvas(400, 400);
-                background(220);
-            }
-            function draw() {
-                translate(width / 2, height / 2);
-                for (let i = 0; i < 10; i++) {
-                    rotate(TWO_PI / 10);
-                    fill(255, 0, 0, 150);
-                    ellipse(0, 30, 50, 100);
-                }
-            }
-        </script>
+        <script src="sketch.js"></script>
     </section>
     
     <footer>
