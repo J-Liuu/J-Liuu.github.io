@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacky Liu | 3D Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; text-align: center; }
+        header { background: #333; color: white; padding: 20px; font-size: 24px; }
+        section { padding: 20px; }
+        .gallery img { width: 200px; margin: 10px; border-radius: 10px; }
+        canvas { display: block; margin: auto; }
+    </style>
+</head>
+<body>
+    <header>Jacky Liu | 3D Model Design Portfolio</header>
+    
+    <section>
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio! I'm a 3D model design student passionate about digital art and interactive experiences.</p>
+    </section>
+    
+    <section>
+        <h2>3D Model Gallery</h2>
+        <div class="gallery">
+            <img src="your-3d-model-1.jpg" alt="3D Model 1">
+            <img src="your-3d-model-2.jpg" alt="3D Model 2">
+            <img src="your-3d-model-3.jpg" alt="3D Model 3">
+        </div>
+    </section>
+    
+    <section>
+        <h2>p5.js Flower</h2>
+        <script>
+            function setup() {
+                createCanvas(400, 400);
+                background(220);
+            }
+            function draw() {
+                translate(width / 2, height / 2);
+                for (let i = 0; i < 10; i++) {
+                    rotate(TWO_PI / 10);
+                    fill(255, 0, 0, 150);
+                    ellipse(0, 30, 50, 100);
+                }
+            }
+        </script>
+    </section>
+    
+    <section>
+        <h2>Contact</h2>
+        <p>Email: your-email@example.com</p>
+        <p>Social: <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
+    </section>
+</body>
+</html>
