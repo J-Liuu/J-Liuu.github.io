@@ -1,30 +1,211 @@
-<!-- Add class names to each project card for targeted styling -->
-<div class="project-card cult-conspiracy">
-    <div class="project-image">
-        <img src="https://img.itch.zone/aW1nLzE4MzQzMTgwLnBuZw==/original/JGFcFN.png" alt="Cult Conspiracy - Game Screenshot">
-    </div>
-    <div class="project-info">
-        <h3>Cult Conspiracy</h3>
-        <!-- Content continues... -->
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacky Liu | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Jacky Liu | Portfolio</h1>
+                <p class="tagline">Designer & Creative Developer</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="project-card heist-havoc">
-    <div class="project-image">
-        <img src="https://img.itch.zone/aW1nLzE1NDcwNDk2LnBuZw==/original/mYrs0s.png" alt="Heist Havoc - Game Screenshot">
-    </div>
-    <div class="project-info">
-        <h3>Heist Havoc</h3>
-        <!-- Content continues... -->
-    </div>
-</div>
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Exploring the intersection of code and creativity</h2>
+                <p>Interactive graphics & game design</p>
+            </div>
+            <div id="p5-container"></div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to my portfolio! I'm a designer and programmer with a passion for graphics programming and interactive experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            
+            <div class="project-card featured">
+                <div class="project-info">
+                    <h3>p5.js Flower - Procedural Graphics</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 2 Weeks (Graphics Programming Course)</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>This project explores procedural graphics generation using mathematical principles. The flower is generated in 3D using trigonometric functions and parametric equations.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p>I developed this interactive flower visualization applying various mathematical concepts including:</p>
+                        <ul class="project-skills">
+                            <li><strong>Polar Coordinates:</strong> Used to generate the petal formations.</li>
+                            <li><strong>Power Functions:</strong> Modify petal sharpness and curvature.</li>
+                            <li><strong>Exponential Decay:</strong> Shapes the stem and gradual cone-like structure.</li>
+                            <li><strong>Bump Mapping:</strong> Adds texture variations to the petal edges.</li>
+                            <li><strong>Orbit Control:</strong> Allows interactive rotation and zooming in WEBGL mode.</li>
+                        </ul>
+                        <p>The flower dynamically updates using p5.js, demonstrating mathematical visualization techniques.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <h4>Demonstration</h4>
+                        <p>The interactive visualization above shows the flower in action. You can click on it to toggle auto-rotation or manually control the camera by clicking and dragging.</p>
+                        <div class="project-links">
+                            <a href="https://editor.p5js.org/jackyliu432/sketches/OWZIvngLd" target="_blank" class="btn">View Full p5.js Sketch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card cult-conspiracy">
+                <div class="project-image">
+                    <img src="https://img.itch.zone/aW1nLzE4MzQzMTgwLnBuZw==/original/JGFcFN.png" alt="Cult Conspiracy - Game Screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>Cult Conspiracy</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 2 Days (Game Jam)</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> Main Artist and Art Programmer </p>
+                        <p>I designed and implemented key visual elements that establish the game's eerie atmosphere, including hand-drawn cutscenes that advance the narrative and programmed animated background at the games introduction, enhancing the immersive experience.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <div class="project-links">
+                            <a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank" class="btn">Play Cult Conspiracy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card heist-havoc">
+                <div class="project-image">
+                    <img src="https://img.itch.zone/aW1nLzE1NDcwNDk2LnBuZw==/original/mYrs0s.png" alt="Heist Havoc - Game Screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>Heist Havoc</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 12 Weeks</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> UX/UI + 3D - Designed animated intro and coded UI for displaying object values.</p>
+                        <p>I created the animated introduction sequence that sets the tone for the game, and developed a sophisticated UI system that dynamically displays important object values to the player. This includes interactive elements that reveal information about security systems, valuable items, and guard patterns as players approach them.</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <div class="project-links">
+                            <a href="https://homiedomo.itch.io/heist-havoc" target="_blank" class="btn">Play Heist Havoc</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card red-goes-fasta">
+                <div class="project-image">
+                    <img src="https://img.itch.zone/aW1nLzE1MzkzMDMyLnBuZw==/original/LlWsxf.png" alt="Red Goes Fasta! - Game Screenshot">
+                </div>
+                <div class="project-info">
+                    <h3>Red Goes Fasta!</h3>
+                    <p class="project-meta"><strong>Duration:</strong> 6 Weeks</p>
+                    
+                    <!-- 1. Overview -->
+                    <div class="project-section">
+                        <h4>Overview</h4>
+                        <p>A 2D racing game inspired by Warhammer Orks. Players race against the fastest Orks in high-speed tracks.</p>
+                    </div>
+                    
+                    <!-- 2. Evidence of Role -->
+                    <div class="project-section">
+                        <h4>My Contribution</h4>
+                        <p><strong>Role:</strong> Audio Design</p>
+                        <p>I curated an audio package for the game that enhances the chaotic Ork racing experience. This included custom engine sounds that vary based on vehicle type and speed and designing impact effects that communicate the weight and intensity of collisions. Wrote out the entirety of the WH40k Orks voicelines for our voiceactor and implemented them into the games event system</p>
+                    </div>
+                    
+                    <!-- 3. General Evidence -->
+                    <div class="project-section">
+                        <div class="project-links">
+                            <a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank" class="btn">Play Red Goes Fasta!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>I'm always open to discussing new projects and opportunities.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:jackyliu432@gmail.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span>jackyliu432@gmail.com</span>
+                </a>
+                <a href="https://www.linkedin.com/in/jacky-liu-3a021b179/" class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">🎨</span>
+                    <span>ArtStation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Contact: jackyliu432@gmail.com | <a href="https://www.linkedin.com/in/jacky-liu-3a021b179/">LinkedIn</a></p>
+        </div>
+    </footer>
 
-<div class="project-card red-goes-fasta">
-    <div class="project-image">
-        <img src="https://img.itch.zone/aW1nLzE1MzkzMDMyLnBuZw==/original/LlWsxf.png" alt="Red Goes Fasta! - Game Screenshot">
-    </div>
-    <div class="project-info">
-        <h3>Red Goes Fasta!</h3>
-        <!-- Content continues... -->
-    </div>
-</div>
+    <script src="sketch.js"></script>
+</body>
+</html>
