@@ -1,58 +1,113 @@
-let x = 40;
+let canvasSize = 850;
+let p5Canvas;
+let autoRotate = true;
+let autoRotateSpeed = 0.2;
+let rotX = 80;
+let rotY = 0;
 
 function setup() {
-    let canvas = createCanvas(850, 850, WEBGL);
-    canvas.parent('p5-container'); // Attach canvas to the correct div
+    // Create the canvas with responsive sizing
+    const containerWidth = document.getElementById('p5-container').offsetWidth;
+    const containerHeight = document.getElementById('p5-container').offsetHeight;
+    
+    // Determine the canvas size based on the container
+    canvasSize = Math.min(containerWidth, containerHeight);
+    
+    p5Canvas = createCanvas(canvasSize, canvasSize, WEBGL);
+    p5Canvas.parent('p5-container');
+    
+    // Set up the visual style
     colorMode(HSB, 360, 100, 100);
     angleMode(DEGREES);
     stroke(71, 26, 92);
-    strokeWeight(4);
+    strokeWeight(2);
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', windowResized);
 }
 
+function windowResized() {
+    // Update canvas size when window is resized
+    const containerWidth = document.getElementById('p5-container').offsetWidth;
+    const containerHeight = document.getElementById('p5-container').offsetHeight;
+    
+    canvasSize = Math.min(containerWidth, containerHeight);
+    resizeCanvas(canvasSize, canvasSize);
+}
 
 function draw() {
-
-  background(75, 79, 51);
-  //in WEBGL mode i can use mouse to move around camera
-  orbitControl(4,4);
-
-  //Rotates Camera
-  rotateX(80);
-
-  beginShape(POINTS);
-  for(theta = 0; theta < 60; theta += 1){   //theta duplicates the flower shape ring towards the center
-
-  //Using power will make the petals look more sharper when changing from 1 to 2 or 3
-    for(let phi = 0; phi <360; phi +=2){
-      let r = (70 * pow(abs(sin(phi * 5/2)), 1) + 225) * theta/60;
-      //polar cordinate of the sinwave, I noticed was that when its an odd number, the waves overlap. Using power will make petals look sharper when value is over 1
-
-      let x = r * cos(phi);
-      let y = r * sin(phi);
-      // this is where you can edit the flower according to these variables, look further below for variable defintions!
-      let z = 
-          vShape(300, r/100, 0.8, 0.15, 1.5) - 200 + bumpiness(1.5, r/100, 12, phi); 
-
-
-      //some general info; z turns shape into 3D, exponent makes gradual cone-like trumpet shape of the flowers stem. Eulers Constant helps prevent less warping outwards for the petals.
-      vertex(x,y,z);
+    // Clear the background
+    background(225, 10, 10);
+    
+    // Add ambient light to improve visibility
+    ambientLight(100, 100, 100);
+    
+    // Auto-rotate or use mouse control
+    if (autoRotate) {
+        rotY += autoRotateSpeed;
+    } else {
+        // Use orbit control for interaction
+        orbitControl(4, 4);
     }
-  }
-
-  endShape();
+    
+    // Set the camera angle
+    rotateX(rotX);
+    rotateY(rotY);
+    
+    // Scale the flower based on canvas size
+    const scaleFactor = canvasSize / 850;
+    scale(scaleFactor);
+    
+    // Draw the flower
+    drawFlower();
 }
 
-  //A   edits how high from the stem to the petals go before sprouting out
-  //r   edits where the petals begin to bloom out
-  //a   edits how big the cone of the flower is
-  //b   edits the angle of the bloom
-  //c   increases petal length
-  function vShape(A, r, a, b, c){
-    return A * pow(Math.E,-b * pow(abs(r), c)) * pow(abs(r), a);
-  }
+function drawFlower() {
+    beginShape(POINTS);
+    
+    // Flower generation parameters
+    const thetaMax = 60;
+    const phiStep = 1.5;
+    
+    // Create the flower shape
+    for (let theta = 0; theta < thetaMax; theta += 1) {
+        for (let phi = 0; phi < 360; phi += phiStep) {
+            // Calculate the base radius using polar coordinates
+            let r = (70 * pow(abs(sin(phi * 5/2)), 1) + 225) * theta/thetaMax;
+            
+            // Convert to Cartesian coordinates
+            let x = r * cos(phi);
+            let y = r * sin(phi);
+            
+            // Calculate Z value (height) using the custom functions
+            let z = vShape(300, r/100, 0.8, 0.15, 1.5) - 200 + bumpiness(1.5, r/100, 12, phi);
+            
+            // Add the vertex to the shape
+            vertex(x, y, z);
+        }
+    }
+    
+    endShape();
+}
 
+// V-shape function for the overall flower form
+// A: height from stem to petals
+// r: where petals begin to bloom
+// a: cone size of the flower
+// b: bloom angle
+// c: petal length
+function vShape(A, r, a, b, c) {
+    return A * pow(Math.E, -b * pow(abs(r), c)) * pow(abs(r), a);
+}
 
-  //makes the flower petal edges have a slight bumpy and curvy look
-  function bumpiness(A, r, f, angle){
+// Add a natural bumpiness to the petal edges
+function bumpiness(A, r, f, angle) {
     return 1 + A * pow(r, 2) * sin(f * angle);
-  }
+}
+
+// Toggle auto-rotation when canvas is clicked
+function mousePressed() {
+    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        autoRotate = !autoRotate;
+    }
+}
