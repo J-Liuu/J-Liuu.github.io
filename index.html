@@ -3,74 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacky Liu | Portfolio</title>
-    <script src="p5.js"></script>
+    <title>Jacky Liu | Creative Developer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <script src="p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #121212; color: #fff; text-align: center; }
-        header { background: #1e1e1e; padding: 20px; font-size: 28px; font-weight: bold; }
-        section { padding: 40px; max-width: 800px; margin: auto; }
-        a { color: #1db954; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        .project-section { background: #222; padding: 30px; border-radius: 10px; margin: 20px 0; }
-        .project-section h3 { color: #1db954; }
-        canvas { display: block; margin: auto; border: 2px solid #1db954; }
-        footer { background: #1e1e1e; padding: 20px; margin-top: 40px; font-size: 14px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Jacky Liu | Portfolio</header>
-    
-    <section>
-        <h2>About Me</h2>
-        <p>Welcome to my portfolio! I'm a designer and programmer with a passion for graphics programming and interactive experiences.</p>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Jacky Liu</h1>
+                <p class="tagline">Designer & Creative Developer</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Exploring the intersection of code and creativity</h2>
+                <p>Interactive graphics & game design</p>
+            </div>
+            <div id="p5-container"></div>
+        </div>
     </section>
     
-    <section>
-        <h2>Projects</h2>
-        
-        <div class="project-section">
-            <h3>p5.js Flower - Procedural Graphics</h3>
-            <p><strong>Duration:</strong> 2 Weeks (Graphics Programming Course)</p>
-            <p>This project explores procedural graphics generation using mathematical principles. The flower is generated in 3D using trigonometric functions and parametric equations. Concepts applied include:</p>
-            <ul>
-                <li><strong>Polar Coordinates:</strong> Used to generate the petal formations.</li>
-                <li><strong>Power Functions:</strong> Modify petal sharpness and curvature.</li>
-                <li><strong>Exponential Decay:</strong> Shapes the stem and gradual cone-like structure.</li>
-                <li><strong>Bump Mapping:</strong> Adds texture variations to the petal edges.</li>
-                <li><strong>Orbit Control:</strong> Allows interactive rotation and zooming in WEBGL mode.</li>
-            </ul>
-            <p>The flower dynamically updates using p5.js, demonstrating mathematical visualization techniques.</p>
-            <div id="p5-container"></div>
-            <script src="sketch.js"></script>
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a designer and programmer with a passion for graphics programming and interactive experiences. My work explores the creative potential of code, focusing on procedural generation, game design, and interactive visualizations.</p>
+                    <p>With a strong foundation in both technical and artistic aspects of digital creation, I bring ideas to life through engaging and visually striking digital experiences.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="project-section">
-            <h3>Cult Conspiracy</h3>
-            <p><strong>Duration:</strong> 2 Days (Game Jam)</p>
-            <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
-            <p><strong>Role:</strong> Created cutscene artwork and programmed animated backgrounds.</p>
-            <p><a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank">Play Cult Conspiracy</a></p>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            
+            <div class="project-card featured">
+                <div class="project-info">
+                    <h3>Procedural Flower Generator</h3>
+                    <p class="project-meta">Graphics Programming | WebGL</p>
+                    <p>An exploration of procedural graphics generation using mathematical principles. This 3D flower is generated using trigonometric functions and parametric equations, demonstrating the beauty of computational art.</p>
+                    <ul class="project-skills">
+                        <li>p5.js</li>
+                        <li>WebGL</li>
+                        <li>Parametric Equations</li>
+                        <li>3D Visualization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Cult Conspiracy</h3>
+                    <p class="project-meta">Game Jam | 2 Days</p>
+                    <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
+                    <p><strong>Role:</strong> Created cutscene artwork and programmed animated backgrounds.</p>
+                    <div class="project-links">
+                        <a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank" class="btn">Play Game</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Heist Havoc</h3>
+                    <p class="project-meta">Stealth Game | 12 Weeks</p>
+                    <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
+                    <p><strong>Role:</strong> Designed animated intro and coded UI for displaying object values.</p>
+                    <div class="project-links">
+                        <a href="https://homiedomo.itch.io/heist-havoc" target="_blank" class="btn">Play Game</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Red Goes Fasta!</h3>
+                    <p class="project-meta">Racing Game | 6 Weeks</p>
+                    <p>A 2D racing game inspired by Warhammer Orks. Players race against the fastest Orks in high-speed tracks.</p>
+                    <p><strong>Role:</strong> Handled all audio design, including engine sounds, drifting, and crash effects.</p>
+                    <div class="project-links">
+                        <a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank" class="btn">Play Game</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-section">
-            <h3>Heist Havoc</h3>
-            <p><strong>Duration:</strong> 12 Weeks</p>
-            <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
-            <p><strong>Role:</strong> Designed animated intro and coded UI for displaying object values.</p>
-            <p><a href="https://homiedomo.itch.io/heist-havoc" target="_blank">Play Heist Havoc</a></p>
-        </div>
-        <div class="project-section">
-            <h3>Red Goes Fasta!</h3>
-            <p><strong>Duration:</strong> 6 Weeks</p>
-            <p>A 2D racing game inspired by Warhammer Orks. Players race against the fastest Orks in high-speed tracks.</p>
-            <p><strong>Role:</strong> Handled all audio design, including engine sounds, drifting, and crash effects.</p>
-            <p><a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank">Play Red Goes Fasta!</a></p>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+            
+            <div class="contact-links">
+                <a href="mailto:jackyliu432@gmail.com" class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span>jackyliu432@gmail.com</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
         </div>
     </section>
     
     <footer>
-        <p>Contact: jackyliu432@gmail.com | <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
+        <div class="container">
+            <p>&copy; 2025 Jacky Liu | Designer & Creative Developer</p>
+        </div>
     </footer>
+
+    <script src="sketch.js"></script>
 </body>
 </html>
