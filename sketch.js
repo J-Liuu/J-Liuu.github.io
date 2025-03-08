@@ -1,13 +1,14 @@
 let x = 40;
 
 function setup() {
-  createCanvas(850, 850, WEBGL);
-  colorMode(HSB, 360, 100, 100);
-  angleMode(DEGREES);
-
-  stroke(71, 26, 92);
-  strokeWeight(4);
+    let canvas = createCanvas(850, 850, WEBGL);
+    canvas.parent('p5-container'); // Attach canvas to the correct div
+    colorMode(HSB, 360, 100, 100);
+    angleMode(DEGREES);
+    stroke(71, 26, 92);
+    strokeWeight(4);
 }
+
 
 function draw() {
 
