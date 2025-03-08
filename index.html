@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacky Liu | 3D Portfolio</title>
+    <title>Jacky Liu | Portfolio</title>
     <script src="p5.js"></script>
     <script src="p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -11,65 +11,65 @@
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #121212; color: #fff; text-align: center; }
         header { background: #1e1e1e; padding: 20px; font-size: 28px; font-weight: bold; }
         section { padding: 40px; max-width: 800px; margin: auto; }
-        .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
-        .gallery img { width: 250px; margin: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); }
         a { color: #1db954; text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
-        .game-section { background: #222; padding: 30px; border-radius: 10px; margin: 20px 0; }
-        .game-section h3 { color: #1db954; }
+        .project-section { background: #222; padding: 30px; border-radius: 10px; margin: 20px 0; }
+        .project-section h3 { color: #1db954; }
         canvas { display: block; margin: auto; border: 2px solid #1db954; }
         footer { background: #1e1e1e; padding: 20px; margin-top: 40px; font-size: 14px; }
     </style>
 </head>
 <body>
-    <header>Jacky Liu | 3D Model Design Portfolio</header>
+    <header>Jacky Liu | Portfolio</header>
     
     <section>
         <h2>About Me</h2>
-        <p>Welcome to my portfolio! I'm a 3D model design student passionate about digital art and interactive experiences.</p>
+        <p>Welcome to my portfolio! I'm a designer and programmer with a passion for graphics programming and interactive experiences.</p>
     </section>
     
     <section>
-        <h2>3D Model Gallery</h2>
-        <div class="gallery">
-            <img src="your-3d-model-1.jpg" alt="3D Model 1">
-            <img src="your-3d-model-2.jpg" alt="3D Model 2">
-            <img src="your-3d-model-3.jpg" alt="3D Model 3">
+        <h2>Projects</h2>
+        
+        <div class="project-section">
+            <h3>p5.js Flower - Procedural Graphics</h3>
+            <p><strong>Duration:</strong> 2 Weeks (Graphics Programming Course)</p>
+            <p>This project explores procedural graphics generation using mathematical principles. The flower is generated in 3D using trigonometric functions and parametric equations. Concepts applied include:</p>
+            <ul>
+                <li><strong>Polar Coordinates:</strong> Used to generate the petal formations.</li>
+                <li><strong>Power Functions:</strong> Modify petal sharpness and curvature.</li>
+                <li><strong>Exponential Decay:</strong> Shapes the stem and gradual cone-like structure.</li>
+                <li><strong>Bump Mapping:</strong> Adds texture variations to the petal edges.</li>
+                <li><strong>Orbit Control:</strong> Allows interactive rotation and zooming in WEBGL mode.</li>
+            </ul>
+            <p>The flower dynamically updates using p5.js, demonstrating mathematical visualization techniques.</p>
+            <script src="sketch.js"></script>
         </div>
-    </section>
-    
-    <section>
-        <h2>Game Projects</h2>
-        <div class="game-section">
+        
+        <div class="project-section">
             <h3>Cult Conspiracy</h3>
             <p><strong>Duration:</strong> 2 Days (Game Jam)</p>
-            <p>Ghosts, cults, and magic—Cult Conspiracy has a little bit of everything! In this bullet-hell style game, you play as an investigative journalist infiltrating a mysterious cult while disguised as one of its members. This game was developed in under two days by a team of four during a university game jam.</p>
-            <p><strong>Role:</strong> Created the main cutscene artwork and programmed the animated moving backgrounds for the game’s introduction title screen.</p>
+            <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
+            <p><strong>Role:</strong> Created cutscene artwork and programmed animated backgrounds.</p>
             <p><a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank">Play Cult Conspiracy</a></p>
         </div>
-        <div class="game-section">
+        <div class="project-section">
             <h3>Heist Havoc</h3>
             <p><strong>Duration:</strong> 12 Weeks</p>
-            <p>Steal valuable items and escape undetected! Heist Havoc is a stealth-based game where players must navigate a house, avoiding security cameras, guards, and even roombas. The game supports single-player, LAN, and online multiplayer modes.</p>
-            <p><strong>Role:</strong> Designed and implemented the animated intro sequence. Developed the UI system that ensures item values dynamically face the camera for better readability.</p>
+            <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
+            <p><strong>Role:</strong> Designed animated intro and coded UI for displaying object values.</p>
             <p><a href="https://homiedomo.itch.io/heist-havoc" target="_blank">Play Heist Havoc</a></p>
         </div>
-        <div class="game-section">
+        <div class="project-section">
             <h3>Red Goes Fasta!</h3>
             <p><strong>Duration:</strong> 6 Weeks</p>
-            <p>Race against the fastest Orks in this high-speed 2D racing game! Inspired by the Warhammer universe, Red Goes Fasta! challenges players to test their reflexes on adrenaline-pumping tracks.</p>
-            <p><strong>Role:</strong> Handled the game's audio design, including engine sounds, drifting, wheel impacts, and crash effects. Additionally, organized and implemented the Ork voice lines.</p>
+            <p>A 2D racing game inspired by Warhammer Orks. Players race against the fastest Orks in high-speed tracks.</p>
+            <p><strong>Role:</strong> Handled all audio design, including engine sounds, drifting, and crash effects.</p>
             <p><a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank">Play Red Goes Fasta!</a></p>
         </div>
     </section>
     
-    <section>
-        <h2>p5.js Flower</h2>
-        <script src="sketch.js"></script>
-    </section>
-    
     <footer>
-        <p>Contact: your-email@example.com | <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
+        <p>Contact: jackyliu432@gmail.com | <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
     </footer>
 </body>
 </html>
