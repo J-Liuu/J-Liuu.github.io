@@ -6,11 +6,17 @@
     <title>Jacky Liu | 3D Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; text-align: center; }
-        header { background: #333; color: white; padding: 20px; font-size: 24px; }
-        section { padding: 20px; }
-        .gallery img { width: 200px; margin: 10px; border-radius: 10px; }
-        canvas { display: block; margin: auto; }
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #121212; color: #fff; text-align: center; }
+        header { background: #1e1e1e; padding: 20px; font-size: 28px; font-weight: bold; }
+        section { padding: 40px; max-width: 800px; margin: auto; }
+        .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+        .gallery img { width: 250px; margin: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); }
+        a { color: #1db954; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        .game-section { background: #222; padding: 30px; border-radius: 10px; margin: 20px 0; }
+        .game-section h3 { color: #1db954; }
+        canvas { display: block; margin: auto; border: 2px solid #1db954; }
+        footer { background: #1e1e1e; padding: 20px; margin-top: 40px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -33,23 +39,29 @@
     <section>
         <h2>Game Projects</h2>
         
-        <h3>Cult Conspiracy</h3>
-        <p><strong>Duration:</strong> 2 Days (Game Jam)</p>
-        <p>Ghosts, cults, and magic—Cult Conspiracy has a little bit of everything! In this bullet-hell style game, you play as an investigative journalist infiltrating a mysterious cult while disguised as one of its members. This game was developed in under two days by a team of four during a university game jam.</p>
-        <p><strong>Role:</strong> Created the main cutscene artwork and programmed the animated moving backgrounds for the game’s introduction title screen.</p>
-        <p><a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank">Play Cult Conspiracy</a></p>
+        <div class="game-section">
+            <h3>Cult Conspiracy</h3>
+            <p><strong>Duration:</strong> 2 Days (Game Jam)</p>
+            <p>Ghosts, cults, and magic—Cult Conspiracy has a little bit of everything! In this bullet-hell style game, you play as an investigative journalist infiltrating a mysterious cult while disguised as one of its members. This game was developed in under two days by a team of four during a university game jam.</p>
+            <p><strong>Role:</strong> Created the main cutscene artwork and programmed the animated moving backgrounds for the game’s introduction title screen.</p>
+            <p><a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank">Play Cult Conspiracy</a></p>
+        </div>
         
-        <h3>Heist Havoc</h3>
-        <p><strong>Duration:</strong> 12 Weeks</p>
-        <p>Steal valuable items and escape undetected! Heist Havoc is a stealth-based game where players must navigate a house, avoiding security cameras, guards, and even roombas. The game supports single-player, LAN, and online multiplayer modes.</p>
-        <p><strong>Role:</strong> Designed and implemented the animated intro sequence. Developed the UI system that ensures item values dynamically face the camera for better readability.</p>
-        <p><a href="https://homiedomo.itch.io/heist-havoc" target="_blank">Play Heist Havoc</a></p>
+        <div class="game-section">
+            <h3>Heist Havoc</h3>
+            <p><strong>Duration:</strong> 12 Weeks</p>
+            <p>Steal valuable items and escape undetected! Heist Havoc is a stealth-based game where players must navigate a house, avoiding security cameras, guards, and even roombas. The game supports single-player, LAN, and online multiplayer modes.</p>
+            <p><strong>Role:</strong> Designed and implemented the animated intro sequence. Developed the UI system that ensures item values dynamically face the camera for better readability.</p>
+            <p><a href="https://homiedomo.itch.io/heist-havoc" target="_blank">Play Heist Havoc</a></p>
+        </div>
         
-        <h3>Red Goes Fasta!</h3>
-        <p><strong>Duration:</strong> 6 Weeks</p>
-        <p>Race against the fastest Orks in this high-speed 2D racing game! Inspired by the Warhammer universe, Red Goes Fasta! challenges players to test their reflexes on adrenaline-pumping tracks.</p>
-        <p><strong>Role:</strong> Handled the game's audio design, including engine sounds, drifting, wheel impacts, and crash effects. Additionally, organized and implemented the Ork voice lines.</p>
-        <p><a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank">Play Red Goes Fasta!</a></p>
+        <div class="game-section">
+            <h3>Red Goes Fasta!</h3>
+            <p><strong>Duration:</strong> 6 Weeks</p>
+            <p>Race against the fastest Orks in this high-speed 2D racing game! Inspired by the Warhammer universe, Red Goes Fasta! challenges players to test their reflexes on adrenaline-pumping tracks.</p>
+            <p><strong>Role:</strong> Handled the game's audio design, including engine sounds, drifting, wheel impacts, and crash effects. Additionally, organized and implemented the Ork voice lines.</p>
+            <p><a href="https://frenchfrys.itch.io/red-goes-fasta" target="_blank">Play Red Goes Fasta!</a></p>
+        </div>
     </section>
     
     <section>
@@ -70,10 +82,8 @@
         </script>
     </section>
     
-    <section>
-        <h2>Contact</h2>
-        <p>Email: JackyLiu432@gmail.com</p>
-        <p>Social: <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
-    </section>
+    <footer>
+        <p>Contact: your-email@example.com | <a href="#">LinkedIn</a> | <a href="#">ArtStation</a></p>
+    </footer>
 </body>
 </html>
