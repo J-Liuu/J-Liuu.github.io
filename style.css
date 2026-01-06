@@ -304,6 +304,9 @@ canvas {
 
 .project-links {
   margin-top: var(--spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
 }
 
 .btn {
@@ -372,30 +375,30 @@ footer {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   nav {
     width: 100%;
     margin-top: var(--spacing-md);
   }
-  
+
   nav ul {
     justify-content: space-between;
   }
-  
+
   nav ul li {
     margin-left: 0;
   }
-  
+
   .hero-content h2 {
     font-size: 2.2rem;
   }
-  
+
   #hero {
     padding-top: 100px;
     height: auto;
     min-height: 100vh;
   }
-  
+
   #p5-container {
     position: relative;
     height: 350px;
@@ -407,16 +410,20 @@ footer {
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.7rem;
   }
-  
+
   .hero-content h2 {
     font-size: 1.8rem;
   }
-  
+
   .contact-links {
+    flex-direction: column;
+  }
+
+  .project-links {
     flex-direction: column;
   }
 }
