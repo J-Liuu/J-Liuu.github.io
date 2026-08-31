@@ -6,10 +6,11 @@ Source: 1920 x 1080, 24 fps, 150 frames (6.25 seconds), no audio.
 `flowers-intro.mp4` plays source times 1s up to 5s once. Its 96 frames at 24 fps
 last 4 seconds, ending just before the frame at 5s.
 
-`flowers-idle.mp4` starts on that next frame at 5s, plays backward to 4s, then
-forward toward 5s. Its 48 frames at 24 fps form a 2-second loop without duplicated
-turnaround frames. This clip takes over after the intro, so only the final second
-of the selected source segment keeps moving.
+`flowers-idle.mp4` starts on that next frame at 5s, plays backward to 4.5s, then
+forward toward 5s at 1/3.5 of the source speed. Each direction takes 1.75 seconds,
+forming a 3.5-second breathing cycle with 84 frames at 24 fps and no duplicated turnaround
+frames. Motion interpolation smooths the slow movement. This clip takes over
+after the intro, so only the final half-second of the selected segment moves.
 
 Both videos are H.264/yuv420p at 1280 x 720 with fast-start metadata and no audio.
 
