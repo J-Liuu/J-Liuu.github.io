@@ -4,291 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacky Liu | Portfolio</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
-    <script src="p5.sound.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=flower-video">
+    <script src="startup.js?v=flower-video" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <h1>Jacky Liu (Tiao) | Portfolio</h1>
-                <p class="tagline"><p class="tagline">Technical Artist and Interactive Developer</p>
+    <main class="startup-stage" aria-label="Jacky Liu portfolio">
+        <img
+            class="blender-ui"
+            src="assets/blender_ui_grouped.svg?v=colored-logo"
+            alt="Blender-style portfolio workspace"
+        >
+
+        <div class="startup-window">
+            <div class="startup-art" aria-hidden="true">
+                <video
+                    class="startup-video"
+                    src="assets/media/flowers-ping-pong.mp4"
+                    poster="assets/media/flowers-poster.jpg"
+                    muted loop playsinline preload="auto"
+                    disablepictureinpicture tabindex="-1"
+                ></video>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <img
+                class="startup-frame"
+                src="assets/blender_startup_grouped_jacky_v7.svg?v=video-overlay"
+                alt="Jacky Liu portfolio startup window with project list"
+            >
         </div>
-    </header>
-
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h2>Exploring the intersection of code and creativity</h2>
-                <p>Interactivity & Games</p>
-            </div>
-            <div id="p5-container"></div>
-        </div>
-    </section>
-    
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Welcome to my portfolio! My work often sits between art and engineering. I build shaders, tools, UI, and interactive systems that shape how players experience space and mechanics. I'm especially drawn to technical art problems that involve structure and logic, like procedural generation, visual systems, and data-driven interactions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-
-            <div class="project-card time-heist featured">
-                <div class="project-image">
-                    <img src="https://img.itch.zone/aW1nLzI3NjEwNTcxLnBuZw==/original/lNpf6J.png" alt="Time Heist - Game Screenshot">
-                </div>
-                <div class="project-info">
-                    <h3>Time Heist</h3>
-                    <p class="project-meta"><strong>Status:</strong> In Development | <strong>Duration:</strong> 27+ Weeks</p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>A stealth puzzle game where players break into Time Corp, uncover secrets, collect documents, and use time travel to explore different parts of the building across repeated nights.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> Lead 3D Artist, Environmental Artist, Animator, Level Design</p>
-                        <p>I created most of the 3D models for the world, contributed to the layout and structure of the levels, and helped design how puzzles could be discovered, navigated, and solved through the game's spaces.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://surfinkreeper.itch.io/time-heist" target="_blank" class="btn">Play Time Heist</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card featured">
-                <div class="project-info">
-                    <h3>p5.js Flower - Procedural Graphics</h3>
-                    <p class="project-meta"><strong>Duration:</strong> 2 Weeks </p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>This project was inspired by János Karsai and explores procedural flower generation using mathematical principles. The flower is generated in 3D using trigonometric functions and parametric equations.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p>I developed this interactive flower visualization applying various mathematical concepts including:</p>
-                        <ul class="project-skills">
-                            <li><strong>Polar Coordinates:</strong> Used to generate the petal formations.</li>
-                            <li><strong>Power Functions:</strong> Modify petal sharpness and curvature.</li>
-                            <li><strong>Exponential Decay:</strong> Shapes the stem and gradual cone-like structure.</li>
-                            <li><strong>Bump Mapping:</strong> Adds texture variations to the petal edges.</li>
-                        </ul>
-                        <p>The flower dynamically updates using p5.js, demonstrating mathematical visualization techniques.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <h4>Demonstration</h4>
-                        <p>The interactive visualization above shows the flower in action. You can click on it to toggle auto-rotation or manually control the camera by clicking and dragging.</p>
-                        <div class="project-links">
-                            <a href="https://editor.p5js.org/jackyliu432/sketches/OWZIvngLd" target="_blank" class="btn">View Full p5.js Sketch</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card boberts-mad-dash featured">
-                <div class="project-image">
-                    <img src="https://img.itch.zone/aW1nLzIyNDM1MzA1LnBuZw==/original/UxVmJY.png" alt="Boberts Mad Dash - Game Screenshot">
-                </div>
-                <div class="project-info">
-                    <h3>Boberts Mad Dash</h3>
-                    <p class="project-meta"><strong>Duration:</strong> ~ 2-3 Months</p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>Play as Bobert the frog, making a wild, stylish dash through a bleak city in this 3D skateboarding game! A unique take on the skating genre with vibrant characters and urban exploration.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> Technical Artist & Rendering Specialist</p>
-                        <p>I lead the entire rendering pipeline and technical aspects of our 3D art department, including assets as well. Developed custom shader graphs using HLSL programming to achieve the game's distinctive toon aesthetic, optimized lighting systems for performance, and implemented runtime shader optimizations. Through strategic asset optimization I successfully reduced 3D assets in scene by 97% in data size while maintaining visual quality.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://tinyurl.com/bobertdash" target="_blank" class="btn">Play Boberts Mad Dash</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card g-nome">
-                <div class="project-image">
-                    <img src="https://img.itch.zone/aW1hZ2UvMzM5MjYzNi8yMTQ5NDY2OC5wbmc=/original/ogxyTS.png" alt="G-nome - Game Screenshot">
-                </div>
-                <div class="project-info">
-                    <h3>G-nome</h3>
-                    <p class="project-meta"><strong>Duration:</strong> 3 months </p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>A quake-like shooter game developed as a capstone project. Features fast-paced multiplayer combat with genetically altered gnomes that have their own unique abilities.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> Level Designer & AI Navigation Programmer</p>
-                        <p>I focused on the level layout that promotes the fast style of gameplay while implementing AI mapping navigation for our lawn mower ability. Utilized custom scripts integrated with Unity's NavMesh system to attempt to create intelligent enemy movement patterns that interact with 3D environments. We configured Photon PUN as our networking solution to enable smooth multiplayer implementation.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://frenchfrys.itch.io/g-nome" target="_blank" class="btn">Play G-nome</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card cooking-havoc">
-                <div class="project-info">
-                    <h3>Cooking Havoc RPG</h3>
-                    <p class="project-meta"><strong>Duration:</strong> 5 weeks </p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>A static cooking/exploration RPG that combines cooking mechanics with data-driven gameplay. Features a backend system for tracking player behavior and game analytics.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> Systems Programmer & Datahook architecture </p>
-                        <p>Two person project. Built a Twine-based data-logging system that tracks player location visit counts and sends them in real-time to Google Sheets. Utilized Harlowe scripting language and integrated calls to Google Apps Script web app for Cooking Havoc's data transmission. The system was inspired by Blizzard's Datahooks architecture used in their MMORPG systems, allowing for detailed player behavior analysis and game balancing insights.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://j-liuu.itch.io/cooking-havoc" target="_blank" class="btn">Play Cooking Havoc RPG</a>
-                            <a href="https://docs.google.com/spreadsheets/d/1P7m7JISunexrorbSa00R3xcTQbOfaRtxyE6ZIFYEWjI/edit?usp=sharing" target="_blank" class="btn">View Data Analytics</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card heist-havoc">
-                <div class="project-image">
-                    <img src="https://img.itch.zone/aW1nLzE1NDcwNDk2LnBuZw==/original/mYrs0s.png" alt="Heist Havoc - Game Screenshot">
-                </div>
-                <div class="project-info">
-                    <h3>Heist Havoc</h3>
-                    <p class="project-meta"><strong>Duration:</strong> 12 Weeks</p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>A stealth-based game where players navigate a house avoiding security cameras and guards. Supports single-player, LAN, and online multiplayer.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> UX/UI + 3D - Designed animated intro and coded UI for displaying object values.</p>
-                        <p>I created the animated introduction sequence that sets the tone for the game, and developed a UI system that dynamically displays important object values to the player.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://homiedomo.itch.io/heist-havoc" target="_blank" class="btn">Play Heist Havoc</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card cult-conspiracy">
-                <div class="project-image">
-                    <img src="https://img.itch.zone/aW1nLzE4MzQzMTgwLnBuZw==/original/JGFcFN.png" alt="Cult Conspiracy - Game Screenshot">
-                </div>
-                <div class="project-info">
-                    <h3>Cult Conspiracy</h3>
-                    <p class="project-meta"><strong>Duration:</strong> 2 Days (Game Jam)</p>
-
-                    <!-- 1. Overview -->
-                    <div class="project-section">
-                        <h4>Overview</h4>
-                        <p>A bullet-hell game where players infiltrate a cult as an investigative journalist. Developed in under two days during a university game jam.</p>
-                    </div>
-
-                    <!-- 2. Evidence of Role -->
-                    <div class="project-section">
-                        <h4>My Contribution</h4>
-                        <p><strong>Role:</strong> 2D Artist and Art Programmer </p>
-                        <p>I designed and implemented key visual elements that establish the game's eerie atmosphere, including hand-drawn cutscenes that advance the narrative and programmed animated background at the games introduction, enhancing the immersive experience.</p>
-                    </div>
-
-                    <!-- 3. General Evidence -->
-                    <div class="project-section">
-                        <div class="project-links">
-                            <a href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank" class="btn">Play Cult Conspiracy</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>I'm always open to discussing new projects and opportunities.</p>
-
-            <div class="contact-links">
-                <a href="mailto:jackyliu432@gmail.com" class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <span>jackyliu432@gmail.com</span>
-                </a>
-                <a href="https://www.linkedin.com/in/jacky-liu-3a021b179/" class="contact-item">
-                    <span class="contact-icon">🔗</span>
-                    <span>LinkedIn</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>Contact: jackyliu432@gmail.com | <a href="https://www.linkedin.com/in/jacky-liu-3a021b179/">LinkedIn</a></p>
-        </div>
-    </footer>
-
-    <script src="sketch.js"></script>
+    </main>
 </body>
 </html>

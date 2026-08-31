@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="752" viewBox="0 0 768 752">
+  <defs>
+    <style>
+      .ui { font-family: "Segoe UI", Arial, sans-serif; }
+      .body { font-size: 17px; fill: #e6e6e6; }
+      .title { font-size: 18px; fill: #b9b9b9; }
+      .small { font-size: 14px; fill: #dcdcdc; }
+      .tiny { font-size: 13px; fill: #ffffff; }
+      .muted { fill: #c8c8c8; }
+      svg { color: #e5e5e5; }
+      .divider { stroke: #303030; stroke-width: 1; }
+      .panel-bg { fill: #0e0f10; }
+    </style>
+
+    <clipPath id="window-clip">
+      <rect x="2" y="2" width="744" height="748" rx="8" ry="8" />
+    </clipPath>
+
+    <clipPath id="hero-clip">
+      <path d="M10,2 H738 Q746,2 746,10 V374 H2 V10 Q2,2 10,2 Z" />
+    </clipPath>
+
+    <linearGradient id="hero-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#29415e" />
+      <stop offset="40%" stop-color="#212c58" />
+      <stop offset="75%" stop-color="#2f3859" />
+      <stop offset="100%" stop-color="#17202d" />
+    </linearGradient>
+
+    <radialGradient id="orb1" cx="52%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#ffd45d" stop-opacity="1" />
+      <stop offset="45%" stop-color="#8a54ff" stop-opacity=".9" />
+      <stop offset="100%" stop-color="#172745" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="orb2" cx="22%" cy="35%" r="35%">
+      <stop offset="0%" stop-color="#6cf6ff" stop-opacity=".8" />
+      <stop offset="60%" stop-color="#6a50ff" stop-opacity=".45" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  <symbol viewBox="0 0 1600 1600" id="blender-editmode_hlt" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(0 -100 -100 0 28600.00000000001 -60000)"><g enable-background="new" transform="matrix(0 1 -1 0 -317 34)"><path d="m237.5 284c-.27613.00003-.49997.22387-.5.5v4c.00003.27613.22387.49997.5.5h4c.27613-.00003.49997-.22387.5-.5v-4c-.00003-.27613-.22387-.49997-.5-.5z" fill="currentColor" /></g><path d="m-614.5 272a.50005.50005 0 0 0 -.5.5v3a.50005.50005 0 0 0 .5.5h.50781v5h-.50781a.50005.50005 0 0 0 -.5.5v3a.50005.50005 0 0 0 .5.5h3a.50005.50005 0 0 0 .5-.5v-.5h5v.5a.50005.50005 0 0 0 .5.5h3a.50005.50005 0 0 0 .5-.5v-3a.50005.50005 0 0 0 -.5-.5h-.49219v-3.5a.50005.50005 0 1 0 -1 0v3.5h-1.50781a.50005.50005 0 0 0 -.5.5v1.5h-5v-1.5a.50005.50005 0 0 0 -.5-.5h-1.49219v-5h1.49219a.50005.50005 0 0 0 .5-.5v-1.5h3.5a.50005.50005 0 1 0 0-1h-3.5v-.5a.50005.50005 0 0 0 -.5-.5zm.5 1h2v2h-1.41406a.50005.50005 0 0 0 -.16016 0h-.42578zm0 9h2v2h-2zm9 0h2v2h-2z" opacity=".6" /></g></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-file_blend" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g id="blender-file_blend-g4"><g id="blender-file_blend-g3" enable-background="new"><g id="blender-file_blend-g2" transform="matrix(100 0 0 100 -40400.007 -7300.021)" /><path id="blender-file_blend-path3" d="m430.48047 53c-.15153.004-.29304.07659-.38477.197266l-3.94922 3.949218c-.31479.315-.0918.853346.35352.853516h4c.27613-.00003.49997-.22387.5-.5v-3.5h6v2.999953c-.01.676161 1.00956.676161 1 0v-3.499953c-.00003-.276131-.22387-.499972-.5-.5h-7c-.005-.000062-.009-.000062-.0137 0-.00067.000018-.001-.000021-.002 0-.001.000041-.003-.00005-.004 0zm-4.48047 6.000004v7.499996c.00003.276131.22387.499972.5.5h4.49914c.67616.0096.67616-1.009563 0-1h-3.99914v-6.999996z" fill-rule="evenodd" opacity=".6" transform="matrix(100 0 0 100 -42499.907 -5200.011)" /></g></g><g id="blender-file_blend-g2-5" clip-rule="evenodd" enable-background="new" stroke-linejoin="round" stroke-miterlimit="1.41421" transform="matrix(19.422273 0 0 19.422248 -3749.2614 7589.9505)"><path id="blender-file_blend-path1-2" d="m242.9696-333.715c.106-1.891 1.032-3.557 2.429-4.738 1.37-1.16 3.214-1.869 5.226-1.869 2.01 0 3.854.709 5.225 1.869 1.396 1.181 2.322 2.847 2.429 4.736.106 1.943-.675 3.748-2.045 5.086-1.397 1.361-3.384 2.215-5.609 2.215s-4.216-.854-5.612-2.215c-1.371-1.338-2.15-3.143-2.043-5.084z" /><path id="blender-file_blend-path2-4" d="m230.94-329.894c.013.74.249 2.178.603 3.301.744 2.377 2.006 4.576 3.762 6.514 1.802 1.992 4.021 3.592 6.584 4.728 2.694 1.193 5.613 1.801 8.645 1.796 3.027-.004 5.946-.624 8.64-1.826 2.563-1.147 4.78-2.754 6.579-4.747 1.755-1.946 3.015-4.149 3.761-6.526.375-1.201.612-2.42.707-3.643.093-1.205.054-2.412-.117-3.618-.334-2.35-1.147-4.555-2.399-6.565-1.145-1.847-2.621-3.464-4.376-4.825l.004-.003-17.711-13.599c-.016-.012-.029-.025-.046-.036-1.162-.892-3.116-.889-4.394.005-1.292.904-1.44 2.399-.29 3.342l-.005.005 7.387 5.99289-22.515.024h-.03c-1.861.002-3.65 1.23711-4.004 2.78011-.364 1.572.9 2.876 2.835 2.883l-.003.007 11.412-.022-20.364 15.631c-.026.019-.054.039-.078.058-1.921 1.471-2.542 3.917-1.332 5.465 1.228 1.574 3.839 1.577 5.78.009l11.114-9.096s-.162 1.228-.149 1.965zm28.64913 4.112c-2.29 2.333-5.496 3.656-8.965 3.663-3.474.006-6.68-1.305-8.97-3.634-1.119-1.135-1.941-2.441-2.448-3.832-.497-1.367-.69-2.818-.562-4.282.121-1.431.547-2.796 1.227-4.031.668-1.214 1.588-2.311 2.724-3.239 2.226-1.814 5.06-2.796 8.024-2.8 2.967-.004 5.799.969 8.027 2.777 1.134.924 2.053 2.017 2.721 3.229.683 1.234 1.106 2.594 1.232 4.029.126 1.462-.067 2.911-.564 4.279-.508 1.395-1.327 2.701-2.446 3.841z" /></g></g></symbol><symbol viewBox="0 0 1600 1500" id="blender-file_folder" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(100 0 0 100 -36200 -9400)"><path d="m363.5 95c-.27613.00003-.49997.22387-.5.5v3.5h14v-1.5c-.00003-.27613-.22387-.49997-.5-.5h-8.5v-1.5c-.00003-.27613-.22387-.49997-.5-.5z" /><path d="m363.5 100c-.27613.00003-.49997.22387-.5.5v7c.00003.27613.22387.49997.5.5h13c.27613-.00003.49997-.22387.5-.5v-7c-.00003-.27613-.22387-.49997-.5-.5z" /></g></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-file_new" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(100 0 0 100 -25299.957 -68699.98)"><path d="m264.5 688c-1.933 0-3.5 1.567-3.5 3.5s1.567 3.5 3.5 3.5 3.5-1.567 3.5-3.5-1.567-3.5-3.5-3.5zm-.5 1h1v2h2v1h-2v2h-1v-2h-2v-1h2z" /><path d="m366.48438 579c-.12718.004-.248.0564-.3379.14648l-3 3c-.31479.315-.0918.85335.35352.85352h3c.27613-.00003.49997-.22387.5-.5v-2.5h1.5c.67616.01.67616-1.00956 0-1h-2v.002c-.005 0-.0101-.002-.0156-.002zm-3.48438 5v7.5c.00003.27613.22387.49997.5.5h10c.27613-.00003.49997-.22387.5-.5v-5c.01-.67616-1.00956-.67616-1 0v4.5h-9v-7z" fill-rule="evenodd" opacity=".6" transform="translate(-109 109.9996)" /></g></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-greasepencil" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><path d="m353.13867 473.0332c-.49613-.0451-1.03862.15972-1.49219.61328l-.75.75c-.19519.19527-.19519.51177 0 .70704l3 3c.19527.19519.51177.19519.70704 0l.75-.75c.45356-.45357.65838-.99606.61328-1.49219s-.30436-.90592-.61328-1.21485l-1-1c-.30893-.30892-.71872-.56817-1.21485-.61328zm-3.39644 2.7168c-.12989.002-.25387.0546-.34571.14648l-6.25 6.25c-.0639.0642-.10909.14453-.13086.23243l-1 4c-.0904.36537.2401.69582.60547.60547l4-1c.0879-.0218.16823-.067.23243-.13086l6.25-6.25c.19519-.19527.19519-.51177 0-.70704l-3-3c-.0957-.0957-.22605-.14856-.36137-.14648z" transform="matrix(100 0 0 100 -34098.674 -47201.32709999999)" /></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-heart" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><path d="m450.32227 452.0625c-1.71014.07277-3.32227 1.4838-3.32227 3.9375 0 2.05278 1.07076 4.01178 2.38672 5.71289 1.31595 1.70111 2.90024 3.15481 4.03125 4.16016a.50005.50005 0 0 0 .33203.12695h.5a.50005.50005 0 0 0 .33203-.12695c1.13101-1.00535 2.7153-2.45905 4.03125-4.16016 1.31596-1.70111 2.38672-3.66011 2.38672-5.71289 0-2.4537-1.61213-3.86473-3.32227-3.9375-1.52139-.0647-3.0532.927-3.67773 2.69727-.62453-1.77027-2.15634-2.76201-3.67773-2.69727zm.043 1c1.22737-.0522 2.55838.74689 2.89258 2.5293a.50005.50005 0 0 0 .49215.4082h.5a.50005.50005 0 0 0 .49219-.4082c.3342-1.78241 1.66521-2.58153 2.89258-2.5293 1.22736.0522 2.36523.8912 2.36523 2.9375 0 1.69722-.92924 3.48822-2.17578 5.09961-1.20727 1.56061-2.67447 2.91135-3.7832 3.90039h-.082c-1.10873-.98904-2.57593-2.33978-3.7832-3.90039-1.24658-1.61139-2.17582-3.40239-2.17582-5.09961 0-2.0463 1.13787-2.88527 2.36523-2.9375z" opacity=".6" transform="matrix(100 0 0 100 -44600 -45102.9758)" /></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-recover_last" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><path d="m447.49414 577.99023a.50005.50005 0 0 0 -.49219.50782v4a.50005.50005 0 0 0 .5.5h4a.50005.50005 0 1 0 0-1h-2.6875c1.48423-2.56389 4.60739-3.65907 7.36719-2.58008 2.762 1.07985 4.31643 4.00744 3.66406 6.90039s-3.31139 4.87021-6.26953 4.66016c-2.95814-.21006-5.31375-2.5439-5.55078-5.5a.50005.50005 0 1 0 -.99609.0801c.27595 3.44157 3.03067 6.17147 6.47461 6.41602 3.44393.24455 6.55885-2.06751 7.31836-5.43555.7595-3.36803-1.05982-6.79554-4.27539-8.05273-.8039-.3143-1.63664-.46878-2.45899-.47852-2.43307-.0288-4.77966 1.22272-6.08594 3.40821v-2.91797a.50005.50005 0 0 0 -.50781-.50782zm8.98828 3.00391a.50005.50005 0 0 0 -.38281.20508l-3 4a.50005.50005 0 0 0 -.0156.57812l2 3a.50005.50005 0 1 0 .83204-.55468l-1.80274-2.70508 2.78711-3.7168a.50005.50005 0 0 0 .10352-.3125.50005.50005 0 0 0 -.52149-.49414z" opacity=".99" transform="matrix(100 0 0 100 -44599.795 -57699.128)" /></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-sculptmode_hlt" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><path d="m143.13867 515.0332c-.49613-.0451-1.03862.15972-1.49219.61328l-1.75 1.75c-.19519.19527-.19519.51177 0 .70704l3 3c.19527.19519.51177.19519.70704 0l1.75-1.75c.45356-.45357.65838-.99606.61328-1.49219s-.30436-.90592-.61328-1.21485l-1-1c-.30893-.30892-.71872-.56817-1.21485-.61328zm-4.39648 3.7168a.50005.50005 0 0 0 -.34571.14648l-.25.25a.50005.50005 0 0 0 0 .70704l3 3a.50005.50005 0 0 0 .70704 0l.25-.25a.50005.50005 0 0 0 0-.70704l-3-3a.50005.50005 0 0 0 -.36133-.14648zm-1.25196 2.24609a.50005.50005 0 0 0 -.34375.15039l-4.25 4.25c-.83838.83839-1.06879 1.7573-.80273 2.4668s.94792 1.13672 1.65625 1.13672h4.25c1.00042 0 2-.79793 2-2v-3.5a.50005.50005 0 1 0 -1 0v3.5c0 .66505-.50442 1-1 1h-4.25c-.29167 0-.60981-.19778-.71875-.48828s-.0893-.74659.57227-1.4082l4.25-4.25a.50005.50005 0 0 0 -.36329-.85743z" transform="matrix(100 0 0 100 -13098.08899999999 -51401.3548)" /></g></symbol><symbol viewBox="0 0 1500 1700" id="blender-sequence" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(100 0 0 100 -131400.39500000002 -140799.58299999998)"><path d="m164.48438 535.00586a.50005.50005 0 0 0 -.1211.0195l-1.36328.3887.01 2.03906 1.63085-.46679a.50005.50005 0 0 0 .35915-.48047v-1a.50005.50005 0 0 0 -.51562-.5zm-2.48438.69531-2 .57031.01 2.03907 2-.57227zm-3 .85547-1.63672.46875a.50005.50005 0 0 0 -.36328.48047v1a.50005.50005 0 0 0 .63672.48047l1.36914-.39063zm-2 5.44336v1l8.5.01c.276-.0005.4995-.224.5-.5-.0005-.276-.224-.4995-.5-.5zm-3 2.00586v5.49219c0 .2761.2239.5.5.5h11c.2761 0 .5-.2239.5-.5v-4.99219c0-.2761-.2239-.5-.5-.5z" transform="translate(1162 873.994)" /><path d="m1315.5078 1411.9922a.50005.50005 0 0 0 -.5.5v4a.50005.50005 0 0 0 .5.5h2a.50005.50005 0 0 0 .5-.5v-2-2a.50005.50005 0 0 0 -.5-.5zm.5 1h1v1.5 1.5h-1z" opacity=".7" /></g></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-tracking" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(100 0 0 100 -29900 -51400.60249999999)"><g enable-background="new" transform="matrix(1 0 0 -1 -42 813.007)"><path d="m346 286.00391c0-1.09977-.90081-2.00196-2-2.00196s-2 .90219-2 2.00196c0 1.09976.90081 2.0039 2 2.0039s2-.90414 2-2.0039zm-1 0c0 .56041-.44233 1.0039-1 1.0039s-1-.44349-1-1.0039.44233-1.00196 1-1.00196 1 .44155 1 1.00196z" /><path d="m356 296.00391c0-1.09734-.90199-1.9961-2-1.9961s-2 .89876-2 1.9961c0 1.09733.90199 1.99609 2 1.99609s2-.89876 2-1.99609z" /></g><path d="m306.49609 516.00391a.50005.50005 0 1 0 0 1h2a.50005.50005 0 1 0 0-1zm-2.00976.99414a.50005.50005 0 0 0 -.34375.15234l-1 1a.50005.50005 0 1 0 .70703.70703l1-1a.50005.50005 0 0 0 -.36328-.85937zm-1.00195 3a.50005.50005 0 0 0 -.34766.85937l1 1a.50005.50005 0 1 0 .70703-.70703l-1-1a.50005.50005 0 0 0 -.35937-.15234zm3.01171 2.00586a.50005.50005 0 1 0 0 1h1a.50005.50005 0 1 0 0-1zm2.9961.99414a.50005.50005 0 0 0 -.34961.85937l1 1a.50005.50005 0 1 0 .70703-.70703l-1-1a.50005.50005 0 0 0 -.35742-.15234zm.99414 3a.50005.50005 0 0 0 -.34375.15234l-1 1a.50005.50005 0 1 0 .70703.70703l1-1a.50005.50005 0 0 0 -.36328-.85937zm-4.9961 1.00586a.50005.50005 0 1 0 0 1h2a.50005.50005 0 1 0 0-1z" /></g></g></symbol><symbol viewBox="0 0 1700 1700" id="blender-url" preserveAspectRatio="xMidYMid meet"><g fill="currentColor"><g enable-background="new" transform="matrix(100 0 0 100 -75700.047 900.15500000001)"><path d="m432.96875 577.99609a.50015801.499942 0 0 0 -.0488.006.50015801.499942 0 0 0 -.0879.0215c-.22504.005-.45054.00044-.67383.0273-1.50924.18184-2.95823.85326-4.0957 1.98242-2.27494 2.25834-2.72493 5.78034-1.08984 8.53711 1.26078 2.1257 3.51721 3.36761 5.89257 3.41407.00065.00001.001-.00002.002 0a.50015801.499942 0 0 0 .32031-.01c.60037-.016 1.20402-.0867 1.80078-.26367a.50073965.5005234 0 1 0 -.28516-.95899c-.52501.15567-1.05482.21548-1.58203.22657-.32205-.21838-.86207-.82158-1.28906-1.77344-.15847-.35327-.29568-.76712-.41992-1.20508h2.08783a.50043241.50021629 0 1 0 0-1h-2.31641c-.10902-.61479-.18359-1.27474-.18359-1.99988 0-.72848.074-1.38791.18359-2h3.5625c.15752.77172.25391 1.61389.25391 2.5a.50015801.499942 0 1 0 1 0c0-.883-.0936-1.71998-.24023-2.5h2.88671c.41677 1.17713.47801 2.4832.0937 3.74609a.50015801.499942 0 1 0 .95704.28907c.93293-3.06617-.34127-6.37791-3.08789-8.03125-1.07945-.64978-2.27964-.96925-3.47657-.99219a.50015801.499942 0 0 0 -.14648-.0156.50015801.499942 0 0 0 -.0176 0zm.0273 1.13086c.3107.30928.79344.97648 1.16602 1.90039.12076.29947.23379.62673.33594.97266h-3.08399c.12298-.42695.25956-.8299.41602-1.17578.37038-.81882.82294-1.39159 1.16601-1.69727zm1.33789.0312c.60769.13919 1.20278.36589 1.75977.70118.89497.53872 1.60631 1.28287 2.10156 2.14062h-2.66797c-.12978-.47868-.2726-.9368-.4375-1.3457-.23548-.58396-.48644-1.07928-.75586-1.4961zm-2.70507.0156c-.24979.35295-.49203.75628-.71094 1.24023-.21038.4651-.38853 1.0058-.53906 1.58594h-2.5586c.26045-.4489.56294-.87823.94531-1.25781.81076-.80484 1.80942-1.32143 2.86329-1.56836zm-4.26758 3.80664a.50043241.50021629 0 0 0 .14066.01961h2.66993c-.10178.62227-.17188 1.28017-.17188 2 0 .71751.0707 1.37536.17188 2h-2.66993a.50043241.50021629 0 0 0 -.14648.0234c-.47566-1.32219-.45827-2.74775.006-4.04297zm.4434 5.01961h2.57226c.15111.59053.32906 1.14077.54102 1.61328.21198.47256.44409.86643.68555 1.21289-1.53987-.36784-2.91769-1.3294-3.76954-2.76562-.0116-.0196-.0179-.0409-.0293-.0606z" fill-rule="evenodd" opacity=".7" transform="matrix(.9999975975 0 0 .9999996138 332.0065548 -585.999861073)" /><path d="m767.49023 1c-.3497.00648-.58488.3607678-.45507.6855469l2 5c.1836.4628079.85703.4022128.95507-.085937l.43946-2.1738282 2.16797-.4355468c.48875-.096787.55077-.7707095.0879-.9550782l-5-2c-.06211-.024652-.12853-.03660629-.19533-.0351567z" /></g></g></symbol><symbol viewBox="0 0 1600 1600" id="blender-viewzoom" preserveAspectRatio="xMidYMid meet"><defs id="blender-viewzoom-defs1" /><g fill="currentColor" id="blender-viewzoom-g1" transform="matrix(-1,0,0,1,1599.9999,0)">
+    <path d="m 99,599 c -2.74773,0 -5,2.25226 -5,5 0,1.1945 0.441488,2.28163 1.148438,3.14453 l -5.001954,5.00195 a 0.50005,0.50005 0 1 0 0.707032,0.70704 l 5.001953,-5.00196 C 96.718369,608.55851 97.805503,609 99,609 c 2.74773,0 5,-2.25227 5,-5 0,-2.74774 -2.25227,-5 -5,-5 z m 0,1 c 2.20227,0 4,1.79773 4,4 0,2.20226 -1.79773,4 -4,4 -2.20227,0 -4,-1.79774 -4,-4 0,-2.20227 1.79773,-4 4,-4 z" transform="matrix(100,0,0,100,-8899.6439,-59800.356)" id="blender-viewzoom-path1" />
+  </g></symbol></defs>
+
+  <g id="startup-window">
+    <g clip-path="url(#window-clip)">
+      <rect id="window-bg" x="2" y="2" width="744" height="748" rx="8" ry="8" class="panel-bg" />
+
+      <!-- ================= HERO / SPLASH ART ================= -->
+      <g id="splash-art-region" clip-path="url(#hero-clip)">
+        <rect id="splash-art-placeholder" x="2" y="2" width="744" height="372" fill="url(#hero-grad)" />
+
+        <g id="splash-art-placeholder-paint" opacity="0.9">
+          <ellipse cx="500" cy="160" rx="220" ry="170" fill="#22375d" opacity="0.7" />
+          <ellipse cx="610" cy="120" rx="150" ry="120" fill="#314270" opacity="0.55" />
+          <ellipse cx="330" cy="90" rx="140" ry="90" fill="#3f4d81" opacity="0.4" />
+          <ellipse cx="390" cy="230" rx="180" ry="130" fill="#20294a" opacity="0.45" />
+
+          <g filter="url(#soft-blur)" opacity="0.85">
+            <ellipse cx="160" cy="105" rx="90" ry="60" fill="#7cb1d8" />
+            <ellipse cx="320" cy="58" rx="120" ry="40" fill="#8d6ccc" />
+            <ellipse cx="550" cy="78" rx="180" ry="62" fill="#5e67d0" />
+            <ellipse cx="646" cy="208" rx="92" ry="54" fill="#3f66c7" />
+            <ellipse cx="454" cy="258" rx="240" ry="76" fill="#84add9" />
+            <ellipse cx="218" cy="210" rx="140" ry="80" fill="#273f67" />
+          </g>
+
+          <ellipse cx="420" cy="185" rx="130" ry="120" fill="url(#orb1)" />
+          <ellipse cx="165" cy="130" rx="120" ry="100" fill="url(#orb2)" />
+
+          <path d="M115 306&#xA;                   C180 286, 275 280, 352 298&#xA;                   C427 316, 495 298, 577 281&#xA;                   C632 269, 687 272, 745 286&#xA;                   L745 374 L2 374 L2 336&#xA;                   C58 324, 76 316, 115 306 Z" fill="#c8d3e3" opacity="0.9" />
+          <path d="M115 306&#xA;                   C180 286, 275 280, 352 298&#xA;                   C427 316, 495 298, 577 281&#xA;                   C632 269, 687 272, 745 286" fill="none" stroke="#f6fbff" stroke-opacity="0.35" stroke-width="2" />
+
+          <g fill="#ffd894" opacity="0.75" filter="url(#glow)">
+            <circle cx="258" cy="324" r="2" />
+            <circle cx="266" cy="336" r="2.4" />
+            <circle cx="282" cy="320" r="2" />
+            <circle cx="294" cy="334" r="2.4" />
+            <circle cx="307" cy="322" r="2" />
+            <circle cx="331" cy="312" r="2.2" />
+            <circle cx="341" cy="324" r="1.8" />
+          </g>
+
+          <g id="placeholder-character" transform="translate(402 176)">
+            <ellipse cx="0" cy="0" rx="38" ry="52" fill="#5033bb" />
+            <circle cx="-8" cy="-34" r="26" fill="#5641c6" />
+            <circle cx="-16" cy="-38" r="11" fill="#ffdc6e" />
+            <circle cx="6" cy="-36" r="10" fill="#ffdc6e" />
+            <circle cx="-14" cy="-39" r="4" fill="#131313" />
+            <circle cx="7" cy="-37" r="4" fill="#131313" />
+            <path d="M-7 -18 Q-1 -14 7 -18" stroke="#ffd576" stroke-width="3" fill="none" stroke-linecap="round" />
+            <path d="M-41 -31 q-18 -3 -22 -18" stroke="#ffe07d" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#glow)" />
+            <path d="M36 -31 q18 -3 22 -18" stroke="#ffe07d" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#glow)" />
+            <path d="M-10 18 q-18 2 -28 15" stroke="#ffd37a" stroke-width="10" fill="none" stroke-linecap="round" />
+            <path d="M13 14 q16 18 17 38" stroke="#ffd37a" stroke-width="10" fill="none" stroke-linecap="round" />
+            <path d="M-7 46 q-10 18 -14 37" stroke="#ffd37a" stroke-width="10" fill="none" stroke-linecap="round" />
+            <path d="M16 46 q18 18 26 35" stroke="#ffd37a" stroke-width="10" fill="none" stroke-linecap="round" />
+            <g fill="#ffd58b" filter="url(#glow)">
+              <circle cx="-3" cy="2" r="4" />
+              <circle cx="7" cy="10" r="4" />
+              <circle cx="-15" cy="17" r="4" />
+              <circle cx="20" cy="2" r="4" />
+            </g>
+          </g>
+
+          <g opacity="0.88">
+            <path d="M118 138 C93 112, 72 110, 62 132 C71 149, 88 152, 101 148 C105 164, 118 166, 130 152 C134 137, 126 129, 118 138 Z" fill="#6655f1" stroke="#9af175" stroke-width="2" />
+            <path d="M615 175 C644 150, 678 146, 700 173 C680 188, 661 192, 646 194 C653 216, 642 226, 620 221 C606 202, 609 187, 615 175 Z" fill="#2146d7" stroke="#ffd58a" stroke-width="2" />
+            <path d="M86 280 C58 265, 30 267, 18 284 C29 291, 47 294, 66 294 C67 307, 82 311, 101 302 C105 286, 99 277, 86 280 Z" fill="#9c6eff" stroke="#d8b3ff" stroke-width="2" />
+            <path d="M662 300 C681 287, 707 286, 725 296 C716 312, 699 322, 681 320 C673 328, 661 328, 650 317 C649 306, 654 301, 662 300 Z" fill="#e18bd4" stroke="#ffe66f" stroke-width="2" />
+          </g>
+        </g>
+
+        <g id="branding">
+          <text id="app-name" x="42" y="54" font-size="30" font-weight="700" class="ui" fill="#ffffff">Jacky Liu</text>
+          <text id="app-version" x="716" y="27" text-anchor="end" font-size="14" class="ui" fill="#ffffff">current ver 8.30.2026</text>
+          <text id="footer-link" x="30" y="354" font-size="14" class="ui" fill="#ffffff">studio.blender.org</text>
+        </g>
+      </g>
+
+      <!-- ================= LOWER PANEL ================= -->
+      <g id="lower-panel">
+        <rect x="2" y="374" width="744" height="376" class="panel-bg" />
+
+        <text x="52" y="408" class="ui title">New File</text>
+        <text x="390" y="408" class="ui title">My Projects</text>
+
+        <!-- New File list -->
+        <g id="new-file-list" class="ui body">
+          <!-- General -->
+          <g id="new-general" transform="translate(52 440)">
+            <g id="new-general-icon" transform="translate(0 -14)">
+              <use href="#blender-file_new" width="24" height="24" />
+            </g>
+            <text x="34" y="5">General</text>
+          </g>
+
+          <!-- 2D Animation -->
+          <g id="new-2d-animation" transform="translate(52 472)">
+            <g id="new-2d-animation-icon" transform="translate(0 -14)">
+              <use href="#blender-greasepencil" width="24" height="24" />
+            </g>
+            <text x="34" y="5">2D Animation</text>
+          </g>
+
+          <!-- Sculpting -->
+          <g id="new-sculpting" transform="translate(52 504)">
+            <g id="new-sculpting-icon" transform="translate(0 -14)">
+              <use href="#blender-sculptmode_hlt" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Sculpting</text>
+          </g>
+
+          <!-- Storyboarding -->
+          <g id="new-storyboarding" transform="translate(52 536)">
+            <g id="new-storyboarding-icon" transform="translate(0 -14)">
+              <use href="#blender-editmode_hlt" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Storyboarding</text>
+          </g>
+
+          <!-- VFX -->
+          <g id="new-vfx" transform="translate(52 568)">
+            <g id="new-vfx-icon" transform="translate(0 -14)">
+              <use href="#blender-tracking" width="24" height="24" />
+            </g>
+            <text x="34" y="5">VFX</text>
+          </g>
+
+          <!-- Video Editing -->
+          <g id="new-video-editing" transform="translate(52 600)">
+            <g id="new-video-editing-icon" transform="translate(0 -14)">
+              <use href="#blender-sequence" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Video Editing</text>
+          </g>
+        </g>
+
+        <!-- My Projects list -->
+        <g id="recent-files-list" class="ui body">
+          <g id="recent-1" transform="translate(392 440)">
+            <g id="recent-1-icon" transform="translate(0 -14)">
+              <use href="#blender-file_blend" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Time Heist</text>
+          </g>
+
+          <g id="recent-2" transform="translate(392 472)">
+            <g id="recent-2-icon" transform="translate(0 -14)">
+              <use href="#blender-file_blend" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Boberts Mad Dash</text>
+          </g>
+
+          <g id="recent-3" transform="translate(392 504)">
+            <g id="recent-3-icon" transform="translate(0 -14)">
+              <use href="#blender-file_blend" width="24" height="24" />
+            </g>
+            <text x="34" y="5">G-nome</text>
+          </g>
+
+          <g id="recent-4" transform="translate(392 536)">
+            <g id="recent-4-icon" transform="translate(0 -14)">
+              <use href="#blender-file_blend" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Cooking Havoc RPG</text>
+          </g>
+
+          <g id="recent-5" transform="translate(392 568)">
+            <g id="recent-5-icon" transform="translate(0 -14)">
+              <use href="#blender-file_blend" width="24" height="24" />
+            </g>
+            <text x="34" y="5">p5.js Flower</text>
+          </g>
+
+          <g id="recent-more" transform="translate(392 600)">
+            <g id="recent-more-icon" transform="translate(0 -14)">
+              <use href="#blender-viewzoom" width="24" height="24" />
+            </g>
+            <text x="34" y="5">More...</text>
+          </g>
+        </g>
+
+        <line x1="50" y1="632" x2="356" y2="632" class="divider" />
+        <line x1="390" y1="632" x2="696" y2="632" class="divider" />
+
+        <!-- Bottom actions -->
+        <g id="left-bottom-actions" class="ui body">
+          <g id="action-open" transform="translate(52 676)">
+            <g id="action-open-icon" transform="translate(0 -14)">
+              <use href="#blender-file_folder" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Open...</text>
+          </g>
+
+          <g id="action-recover-session" transform="translate(52 708)">
+            <g id="action-recover-session-icon" transform="translate(0 -14)">
+              <use href="#blender-recover_last" width="24" height="24" />
+            </g>
+            <text x="34" y="5">Recover Last Session</text>
+          </g>
+        </g>
+
+        <g id="right-bottom-actions" class="ui body">
+          <g id="action-whats-new" transform="translate(392 676)">
+            <g id="action-whats-new-icon" transform="translate(0 -14)">
+              <use href="#blender-url" width="24" height="24" />
+            </g>
+            <text x="34" y="5">What's New</text>
+          </g>
+
+          <g id="action-donate" transform="translate(392 708)">
+            <g id="action-donate-icon" transform="translate(0 -14)">
+              <use href="#blender-heart" width="24" height="24" color="#c92f51" />
+            </g>
+            <text x="34" y="5" fill="#e6e6e6">Donate to Blender</text>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <rect x="2.5" y="2.5" width="743" height="747" rx="8" ry="8" fill="none" stroke="#232323" />
+  </g>
+</svg>
