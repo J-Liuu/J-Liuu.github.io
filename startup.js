@@ -8,7 +8,8 @@
   let popupVisible = false;
 
   function updateVideo() {
-    if (!video) return;
+    // Keep the final frame visible, including after tab changes or user input.
+    if (!video || video.ended) return;
     if (!popupVisible || document.hidden || reducedMotion.matches) {
       video.pause();
       return;
