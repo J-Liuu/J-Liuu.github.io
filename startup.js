@@ -3,20 +3,33 @@
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   if (!stage) return;
 
-  const video = stage.querySelector('.startup-video');
+  const video = stage.querySelector('.startup-video-intro');
+  const idleVideo = stage.querySelector('.startup-video-idle');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let popupVisible = false;
+  let introFinished = false;
 
   function updateVideo() {
-    // Keep the final frame visible, including after tab changes or user input.
-    if (!video || video.ended) return;
     if (!popupVisible || document.hidden || reducedMotion.matches) {
-      video.pause();
+      video?.pause();
+      idleVideo?.pause();
       return;
     }
-    video.muted = true;
-    video.play().catch(() => {});
+    const activeVideo = introFinished ? idleVideo : video;
+    if (!activeVideo || !activeVideo.paused) return;
+    activeVideo.muted = true;
+    activeVideo.play().catch(() => {});
   }
+
+  video?.addEventListener('ended', () => {
+    introFinished = true;
+    updateVideo();
+  });
+
+  // Hold the intro's final image underneath until the loop is ready to display.
+  idleVideo?.addEventListener('playing', () => {
+    idleVideo.classList.add('is-active');
+  });
 
   document.addEventListener('visibilitychange', updateVideo);
   reducedMotion.addEventListener('change', updateVideo);
@@ -40,7 +53,7 @@
     if (context && context.state === 'suspended') {
       context.resume().catch(() => {});
     }
-    if (video?.paused) updateVideo();
+    updateVideo();
   }
 
   function playPop(pitch) {

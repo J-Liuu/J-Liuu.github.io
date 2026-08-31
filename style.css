@@ -87,6 +87,16 @@ body {
   object-position: center;
 }
 
+.startup-video-idle {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.startup-video-idle.is-active {
+  opacity: 1;
+}
+
 .startup-frame {
   position: relative;
   display: block;
