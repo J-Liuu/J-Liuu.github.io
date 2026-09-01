@@ -4,16 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacky Liu | Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=flower-idle">
-    <script src="startup.js?v=flower-idle" defer></script>
+    <link rel="stylesheet" href="style.css?v=time-heist-recruiter-card-v5">
+    <script src="startup.js?v=time-heist-recruiter-showcase" defer></script>
+    <script type="module" src="showcase.js?v=time-heist-recruiter-showcase"></script>
 </head>
 <body>
     <main class="startup-stage" aria-label="Jacky Liu portfolio">
-        <img
-            class="blender-ui"
-            src="assets/blender_ui_grouped.svg?v=viewport-transform-controls"
-            alt="Blender-style portfolio workspace"
-        >
+        <div class="workspace-window">
+            <img
+                class="blender-ui"
+                src="assets/blender_ui_shell.svg?v=seamless-viewport-controls"
+                alt="Blender-style portfolio workspace"
+            >
+        </div>
+
+        <div class="viewport-showcase" aria-label="Time Heist 3D model showcase">
+            <canvas class="viewport-canvas"></canvas>
+            <div class="model-status" role="status">Loading Time Heist model...</div>
+        </div>
+
+        <div class="viewport-controls" aria-hidden="true">
+            <svg class="viewport-control-header" viewBox="0 29 1190 26" preserveAspectRatio="none">
+                <use href="assets/blender_ui_grouped.svg?v=viewport-transform-controls#viewport-header"></use>
+            </svg>
+            <svg class="viewport-control-toolbar" viewBox="0 55 54 370" preserveAspectRatio="xMinYMin meet">
+                <use href="assets/blender_ui_grouped.svg?v=viewport-transform-controls#left-toolbar"></use>
+            </svg>
+            <svg class="viewport-control-options" viewBox="1100 55 90 30" preserveAspectRatio="xMaxYMin meet">
+                <use href="assets/blender_ui_grouped.svg?v=viewport-transform-controls#viewport-options"></use>
+            </svg>
+            <svg class="viewport-control-navigation" viewBox="1150 155 40 140" preserveAspectRatio="xMaxYMin meet">
+                <use href="assets/blender_ui_grouped.svg?v=viewport-transform-controls#right-viewport-nav"></use>
+            </svg>
+        </div>
+
+        <aside class="project-details" aria-hidden="true" aria-label="Time Heist project details" inert>
+            <div class="project-details-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span class="project-details-filename">Time Heist.blend</span>
+                <div class="project-window-controls" aria-hidden="true">
+                    <span class="project-window-minimize"></span>
+                    <span class="project-window-maximize"></span>
+                    <span class="project-window-close"></span>
+                </div>
+            </div>
+            <div class="project-details-body">
+                <div class="project-heading">
+                    <div class="project-meta">
+                        <span>In development</span>
+                        <span>27+ weeks</span>
+                    </div>
+                    <h1>Time Heist</h1>
+                    <p class="project-summary">
+                        A stealth puzzle game about breaking into Time Corp and using time travel to explore the building across repeated nights.
+                    </p>
+                </div>
+
+                <div class="project-scope">
+                    <div>
+                        <span>Primary role</span>
+                        <strong>Lead 3D Artist</strong>
+                    </div>
+                    <div>
+                        <span>Additional disciplines</span>
+                        <strong>Environment Art, Animation, Level Design</strong>
+                    </div>
+                </div>
+
+                <div class="asset-preview-row" aria-live="polite">
+                    <span>Selected asset</span>
+                    <strong data-active-model>PC workstation</strong>
+                    <span data-active-model-count>01 / 07</span>
+                </div>
+
+                <section class="project-contribution" aria-labelledby="contribution-heading">
+                    <div class="contribution-heading">
+                        <h2 id="contribution-heading">Selected contributions</h2>
+                        <span>Jacky Liu</span>
+                    </div>
+                    <ol>
+                        <li>
+                            <span class="contribution-index">01</span>
+                            <div>
+                                <strong>3D environment production</strong>
+                                <p>Created most of the 3D models that establish the world of Time Corp.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">02</span>
+                            <div>
+                                <strong>Level layout and spatial flow</strong>
+                                <p>Contributed to the structure of levels and how players move through each space.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">03</span>
+                            <div>
+                                <strong>Environmental puzzle design</strong>
+                                <p>Helped shape how puzzles are discovered, navigated, and solved through the environment.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <div class="project-footer">
+                    <span class="project-genre">Stealth puzzle game</span>
+                    <a class="project-link" href="https://surfinkreeper.itch.io/time-heist" target="_blank" rel="noreferrer">
+                        View on itch.io
+                    </a>
+                </div>
+            </div>
+        </aside>
 
         <div class="startup-window">
             <div class="startup-art" aria-hidden="true">
@@ -36,6 +139,13 @@
                 src="assets/blender_startup_grouped_jacky_v7.svg?v=video-overlay"
                 alt="Jacky Liu portfolio startup window with project list"
             >
+            <div class="project-menu" aria-label="My Projects">
+                <button type="button" data-project="time-heist" aria-label="Open Time Heist"></button>
+                <button type="button" data-project="boberts-mad-dash" aria-label="Select Boberts Mad Dash"></button>
+                <button type="button" data-project="g-nome" aria-label="Select G-nome"></button>
+                <button type="button" data-project="cooking-havoc-rpg" aria-label="Select Cooking Havoc RPG"></button>
+                <button type="button" data-project="p5-flower" aria-label="Select p5.js Flower"></button>
+            </div>
         </div>
     </main>
 </body>

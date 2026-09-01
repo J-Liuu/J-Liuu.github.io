@@ -15,6 +15,7 @@ const types = {
   '.gif': 'image/gif',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
+  '.glb': 'model/gltf-binary',
 };
 
 http.createServer((request, response) => {

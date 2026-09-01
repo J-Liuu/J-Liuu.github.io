@@ -5,6 +5,10 @@
 
   const video = stage.querySelector('.startup-video-intro');
   const idleVideo = stage.querySelector('.startup-video-idle');
+  const startupWindow = stage.querySelector('.startup-window');
+  const workspaceWindow = stage.querySelector('.workspace-window');
+  const projectDetails = stage.querySelector('.project-details');
+  const projectButtons = stage.querySelectorAll('.project-menu button');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let popupVisible = false;
   let introFinished = false;
@@ -33,6 +37,53 @@
 
   document.addEventListener('visibilitychange', updateVideo);
   reducedMotion.addEventListener('change', updateVideo);
+
+  function setControlPositions() {
+    if (!workspaceWindow || stage.classList.contains('project-open')) return;
+    const workspace = workspaceWindow.getBoundingClientRect();
+    const set = (name, value) => stage.style.setProperty(name, `${value}px`);
+
+    set('--control-header-left', workspace.left);
+    set('--control-header-top', workspace.top + workspace.height * 57 / 912);
+    set('--control-header-width', workspace.width * 1190 / 1430);
+    set('--control-header-height', workspace.height * 26 / 912);
+
+    set('--control-toolbar-left', workspace.left);
+    set('--control-toolbar-top', workspace.top + workspace.height * 83 / 912);
+    set('--control-toolbar-width', workspace.width * 54 / 1430);
+    set('--control-toolbar-height', workspace.height * 370 / 912);
+
+    set('--control-options-left', workspace.left + workspace.width * 1100 / 1430);
+    set('--control-options-top', workspace.top + workspace.height * 83 / 912);
+    set('--control-options-width', workspace.width * 90 / 1430);
+    set('--control-options-height', workspace.height * 30 / 912);
+
+    set('--control-navigation-left', workspace.left + workspace.width * 1150 / 1430);
+    set('--control-navigation-top', workspace.top + workspace.height * 183 / 912);
+    set('--control-navigation-width', workspace.width * 40 / 1430);
+    set('--control-navigation-height', workspace.height * 140 / 912);
+  }
+
+  setControlPositions();
+  window.addEventListener('resize', setControlPositions, { passive: true });
+
+  projectButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.dataset.project !== 'time-heist') return;
+      popupVisible = false;
+      video?.pause();
+      idleVideo?.pause();
+      setControlPositions();
+      document.body.classList.add('project-active');
+      startupWindow?.setAttribute('aria-hidden', 'true');
+      projectDetails?.setAttribute('aria-hidden', 'false');
+      projectDetails?.removeAttribute('inert');
+      window.dispatchEvent(new CustomEvent('portfolio:project-open', {
+        detail: { project: 'time-heist' },
+      }));
+      requestAnimationFrame(() => stage.classList.add('project-open'));
+    });
+  });
 
   let audio;
 
