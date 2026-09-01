@@ -2,9 +2,18 @@ import * as THREE from './assets/vendor/three.module.min.js';
 import { GLTFLoader } from './assets/vendor/GLTFLoader.js';
 
 const MODEL_ASSETS = [
+  { label: 'Corner table', src: './assets/models/corner_table_v1.glb?v=2', frontOffset: Math.PI - Math.PI / 6 },
+  { label: 'Desk phone', src: './assets/models/phone.glb?v=3', frontOffset: Math.PI },
+  { label: 'Workspace station', src: './assets/models/Workspace.glb' },
+  { label: 'Mug', src: './assets/models/Mug.glb', displayScale: 0.55 },
+  { label: 'Key card reader', src: './assets/models/KeyCardReader.glb' },
+  { label: 'Wall lever', src: './assets/models/WallLever.glb' },
+  { label: 'Fuse', src: './assets/models/Fuse.glb' },
+  { label: 'Recharger', src: './assets/models/Recharger.glb' },
+  { label: 'Bathroom stalls', src: './assets/models/bathroom_stalls.glb' },
   { label: 'PC workstation', src: './assets/models/time-heist-pc.glb' },
   { label: 'Office desk', src: './assets/models/deskv3.glb' },
-  { label: 'Monitor', src: './assets/models/monitor.glb' },
+  { label: 'Monitor', src: './assets/models/monitor.glb', frontOffset: Math.PI },
   { label: 'Locker', src: './assets/models/Locker.glb' },
   { label: 'Whiteboard', src: './assets/models/Whiteboard.glb' },
   { label: 'Television', src: './assets/models/tv.glb' },
@@ -37,10 +46,12 @@ let activeIndex = -1;
 let compositionScale = 1;
 let revealStartedAt = 0;
 let nextSwapAt = Infinity;
+let frontRotation = 0;
 let started = false;
 let cycleReady = false;
 let swapPending = false;
 let frameId;
+let previousFrameTime;
 let resizeObserver;
 
 function updateComposition() {
@@ -93,6 +104,13 @@ function prepareModel(gltf, index) {
   animated.add(normalized);
   animated.visible = false;
   animated.userData.assetIndex = index;
+  if (gltf.animations.length) {
+    animated.userData.mixer = new THREE.AnimationMixer(content);
+    animated.userData.actions = gltf.animations.map((clip) => (
+      animated.userData.mixer.clipAction(clip)
+    ));
+    animated.userData.animationNames = gltf.animations.map((clip) => clip.name || 'Untitled clip');
+  }
   scene.add(animated);
   return animated;
 }
@@ -114,12 +132,25 @@ function updateAssetReadout(index) {
 
 async function showModel(index) {
   const nextModel = await loadModel(index);
-  if (modelRoot) modelRoot.visible = false;
+  if (modelRoot) {
+    modelRoot.visible = false;
+    modelRoot.userData.actions?.forEach((action) => {
+      action.paused = true;
+    });
+  }
   modelRoot = nextModel;
   modelRoot.visible = true;
+  modelRoot.userData.actions?.forEach((action) => {
+    action.reset().play();
+    action.paused = reducedMotion.matches;
+  });
   activeIndex = index;
   revealStartedAt = performance.now();
   nextSwapAt = revealStartedAt + MODEL_INTERVAL;
+  if (viewport) {
+    viewport.dataset.activeAnimationClips = String(modelRoot.userData.actions?.length || 0);
+    viewport.dataset.activeAnimationNames = modelRoot.userData.animationNames?.join(', ') || '';
+  }
   updateAssetReadout(index);
 }
 
@@ -145,21 +176,27 @@ async function preloadRemainingModels() {
 
 function render(time = 0) {
   if (!renderer || !scene || !camera) return;
+  const frameDelta = previousFrameTime === undefined
+    ? 0
+    : Math.min((time - previousFrameTime) / 1000, 0.1);
+  previousFrameTime = time;
   if (modelRoot) {
     const revealProgress = Math.min(1, Math.max(0, (time - revealStartedAt) / REVEAL_DURATION));
     const revealEase = 1 - Math.pow(1 - revealProgress, 3);
     const exitProgress = Math.min(1, Math.max(0, (time - (nextSwapAt - EXIT_DURATION)) / EXIT_DURATION));
     const revealScale = reducedMotion.matches ? 1 : (0.66 + revealEase * 0.34) * (1 - exitProgress * 0.13);
-    const motionScale = revealScale * compositionScale;
+    const assetScale = MODEL_ASSETS[activeIndex]?.displayScale || 1;
+    const motionScale = revealScale * compositionScale * assetScale;
     const bob = reducedMotion.matches ? 0 : Math.sin(time * 0.0015) * 0.055;
     const revealRise = reducedMotion.matches ? 0 : (1 - revealEase) * -0.22;
 
     modelRoot.scale.setScalar(motionScale);
     modelRoot.position.copy(compositionOffset);
     modelRoot.position.y += bob + revealRise;
-    if (!reducedMotion.matches) {
-      modelRoot.rotation.y = time * 0.00028 + activeIndex * 0.82 + (1 - revealEase) * -0.7;
-    }
+    const rotationElapsed = reducedMotion.matches ? 0 : Math.max(0, time - revealStartedAt);
+    const assetFrontOffset = MODEL_ASSETS[activeIndex]?.frontOffset || 0;
+    modelRoot.rotation.y = frontRotation + assetFrontOffset + rotationElapsed * 0.00028;
+    if (!reducedMotion.matches) modelRoot.userData.mixer?.update(frameDelta);
 
     if (revealLight) {
       revealLight.position.copy(compositionOffset).add(revealLightOffset);
@@ -186,6 +223,7 @@ async function startShowcase() {
   camera = new THREE.PerspectiveCamera(35, 1, 0.01, 100);
   camera.position.copy(new THREE.Vector3(0.9, 0.45, 1.5).normalize().multiplyScalar(3.25));
   camera.lookAt(0, 0, 0);
+  frontRotation = Math.atan2(camera.position.x, camera.position.z);
 
   scene.add(new THREE.HemisphereLight(0xdce8ff, 0x30343a, 2.8));
   const key = new THREE.DirectionalLight(0xffffff, 4.2);
@@ -236,6 +274,7 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     cancelAnimationFrame(frameId);
     frameId = undefined;
+    previousFrameTime = undefined;
   } else if (!frameId) {
     render();
   }
