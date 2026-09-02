@@ -152,6 +152,65 @@ body {
   background: rgba(56, 126, 201, 0.5);
 }
 
+.wip-menu {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wip-entry {
+  position: absolute;
+  height: calc(32 / 752 * 100%);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  pointer-events: auto;
+  cursor: help;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.wip-entry::after {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  padding: 2px 6px;
+  border: 1px solid #b84d4d;
+  border-radius: 3px;
+  background: #3b2022;
+  color: #ff9b9b;
+  content: 'WIP';
+  font-size: clamp(8px, 1vw, 11px);
+  font-weight: 700;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translate(4px, -50%);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.wip-entry:hover,
+.wip-entry:focus-visible {
+  border-color: rgba(223, 95, 95, 0.52);
+  outline: none;
+  background: rgba(150, 46, 46, 0.2);
+}
+
+.wip-entry:hover::after,
+.wip-entry:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.wip-entry[data-wip='2d-animation'] { left: calc(38 / 768 * 100%); top: calc(452 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='sculpting'] { left: calc(38 / 768 * 100%); top: calc(484 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='storyboarding'] { left: calc(38 / 768 * 100%); top: calc(516 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='vfx'] { left: calc(38 / 768 * 100%); top: calc(548 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='video-editing'] { left: calc(38 / 768 * 100%); top: calc(580 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='more'] { left: calc(378 / 768 * 100%); top: calc(580 / 752 * 100%); width: calc(360 / 768 * 100%); }
+.wip-entry[data-wip='open'] { left: calc(38 / 768 * 100%); top: calc(656 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='recover'] { left: calc(38 / 768 * 100%); top: calc(688 / 752 * 100%); width: calc(318 / 768 * 100%); }
+.wip-entry[data-wip='whats-new'] { left: calc(378 / 768 * 100%); top: calc(656 / 752 * 100%); width: calc(360 / 768 * 100%); }
+.wip-entry[data-wip='donate'] { left: calc(378 / 768 * 100%); top: calc(688 / 752 * 100%); width: calc(360 / 768 * 100%); }
+
 .project-menu {
   position: absolute;
   z-index: 3;
@@ -228,6 +287,15 @@ body {
   background: #1b1d20;
   color: #cfd1d4;
   font-size: 12px;
+}
+
+.resume-pdf {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  border: 0;
+  background: #525659;
 }
 
 .resume-close {

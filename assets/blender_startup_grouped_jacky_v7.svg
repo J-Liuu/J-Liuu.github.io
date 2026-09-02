@@ -10,6 +10,9 @@
       svg { color: #e5e5e5; }
       .divider { stroke: #303030; stroke-width: 1; }
       .panel-bg { fill: #0e0f10; }
+      .wip { color: #df5f5f; fill: #df5f5f; }
+      .wip text { fill: #df5f5f !important; }
+      .wip use { color: #df5f5f !important; }
     </style>
 
     <clipPath id="window-clip">
@@ -147,7 +150,7 @@
           </g>
 
           <!-- 2D Animation -->
-          <g id="new-2d-animation" transform="translate(52 472)">
+          <g id="new-2d-animation" class="wip" transform="translate(52 472)">
             <g id="new-2d-animation-icon" transform="translate(0 -14)">
               <use href="#blender-greasepencil" width="24" height="24" />
             </g>
@@ -155,7 +158,7 @@
           </g>
 
           <!-- Sculpting -->
-          <g id="new-sculpting" transform="translate(52 504)">
+          <g id="new-sculpting" class="wip" transform="translate(52 504)">
             <g id="new-sculpting-icon" transform="translate(0 -14)">
               <use href="#blender-sculptmode_hlt" width="24" height="24" />
             </g>
@@ -163,7 +166,7 @@
           </g>
 
           <!-- Storyboarding -->
-          <g id="new-storyboarding" transform="translate(52 536)">
+          <g id="new-storyboarding" class="wip" transform="translate(52 536)">
             <g id="new-storyboarding-icon" transform="translate(0 -14)">
               <use href="#blender-editmode_hlt" width="24" height="24" />
             </g>
@@ -171,7 +174,7 @@
           </g>
 
           <!-- VFX -->
-          <g id="new-vfx" transform="translate(52 568)">
+          <g id="new-vfx" class="wip" transform="translate(52 568)">
             <g id="new-vfx-icon" transform="translate(0 -14)">
               <use href="#blender-tracking" width="24" height="24" />
             </g>
@@ -179,7 +182,7 @@
           </g>
 
           <!-- Video Editing -->
-          <g id="new-video-editing" transform="translate(52 600)">
+          <g id="new-video-editing" class="wip" transform="translate(52 600)">
             <g id="new-video-editing-icon" transform="translate(0 -14)">
               <use href="#blender-sequence" width="24" height="24" />
             </g>
@@ -224,7 +227,7 @@
             <text x="34" y="5">Cult Conspiracy</text>
           </g>
 
-          <g id="recent-more" transform="translate(392 600)">
+          <g id="recent-more" class="wip" transform="translate(392 600)">
             <g id="recent-more-icon" transform="translate(0 -14)">
               <use href="#blender-viewzoom" width="24" height="24" />
             </g>
@@ -237,14 +240,14 @@
 
         <!-- Bottom actions -->
         <g id="left-bottom-actions" class="ui body">
-          <g id="action-open" transform="translate(52 676)">
+          <g id="action-open" class="wip" transform="translate(52 676)">
             <g id="action-open-icon" transform="translate(0 -14)">
               <use href="#blender-file_folder" width="24" height="24" />
             </g>
             <text x="34" y="5">Open...</text>
           </g>
 
-          <g id="action-recover-session" transform="translate(52 708)">
+          <g id="action-recover-session" class="wip" transform="translate(52 708)">
             <g id="action-recover-session-icon" transform="translate(0 -14)">
               <use href="#blender-recover_last" width="24" height="24" />
             </g>
@@ -253,14 +256,14 @@
         </g>
 
         <g id="right-bottom-actions" class="ui body">
-          <g id="action-whats-new" transform="translate(392 676)">
+          <g id="action-whats-new" class="wip" transform="translate(392 676)">
             <g id="action-whats-new-icon" transform="translate(0 -14)">
               <use href="#blender-url" width="24" height="24" />
             </g>
             <text x="34" y="5">What's New</text>
           </g>
 
-          <g id="action-donate" transform="translate(392 708)">
+          <g id="action-donate" class="wip" transform="translate(392 708)">
             <g id="action-donate-icon" transform="translate(0 -14)">
               <use href="#blender-heart" width="24" height="24" color="#c92f51" />
             </g>
