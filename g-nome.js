@@ -64,6 +64,12 @@
     if (event.detail?.project === 'g-nome') openGNOME();
   });
 
+  window.addEventListener('portfolio:project-close', (event) => {
+    if (event.detail?.project !== 'g-nome') return;
+    stopGallery();
+    frame.removeAttribute('src');
+  });
+
   document.addEventListener('visibilitychange', () => {
     if (!stage.classList.contains('project-g-nome')) return;
     if (document.hidden) stopGallery();

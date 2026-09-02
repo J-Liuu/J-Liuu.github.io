@@ -65,6 +65,12 @@
     if (event.detail?.project === 'boberts-mad-dash') openBoberts();
   });
 
+  window.addEventListener('portfolio:project-close', (event) => {
+    if (event.detail?.project !== 'boberts-mad-dash') return;
+    stopGallery();
+    frame.removeAttribute('src');
+  });
+
   document.addEventListener('visibilitychange', () => {
     if (!stage.classList.contains('project-boberts-mad-dash')) return;
     if (document.hidden) stopGallery();

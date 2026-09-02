@@ -143,7 +143,10 @@
   }
 
   async function startShowcase() {
-    if (instance) return;
+    if (instance) {
+      instance.loop();
+      return;
+    }
     try {
       const P5 = await loadP5();
       instance = new P5(flowerSketch, host);
@@ -156,6 +159,10 @@
 
   window.addEventListener('portfolio:project-open', (event) => {
     if (event.detail?.project === 'p5-flower') startShowcase();
+  });
+
+  window.addEventListener('portfolio:project-close', (event) => {
+    if (event.detail?.project === 'p5-flower') instance?.noLoop();
   });
 
   interactionSurface.addEventListener('pointerdown', (event) => {

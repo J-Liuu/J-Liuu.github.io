@@ -9,9 +9,13 @@
   const workspaceWindow = stage.querySelector('.workspace-window');
   const projectDetails = stage.querySelectorAll('[data-project-details]');
   const projectButtons = stage.querySelectorAll('.project-menu button');
+  const exitButtons = stage.querySelectorAll('.project-exit');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const projects = ['time-heist', 'boberts-mad-dash', 'g-nome', 'p5-flower', 'cult-conspiracy'];
   let popupVisible = false;
   let introFinished = false;
+  let activeProject;
+  let closeTimer;
 
   function updateVideo() {
     if (!popupVisible || document.hidden || reducedMotion.matches) {
@@ -70,7 +74,9 @@
   projectButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const project = button.dataset.project;
-      if (!['time-heist', 'boberts-mad-dash', 'g-nome', 'p5-flower', 'cult-conspiracy'].includes(project)) return;
+      if (!projects.includes(project) || activeProject || stage.classList.contains('project-closing')) return;
+      window.clearTimeout(closeTimer);
+      activeProject = project;
       popupVisible = false;
       video?.pause();
       idleVideo?.pause();
@@ -90,6 +96,39 @@
         stage.classList.add('project-open', `project-${project}`);
       });
     });
+  });
+
+  function closeProject() {
+    if (!activeProject || stage.classList.contains('project-closing')) return;
+    const project = activeProject;
+    document.activeElement?.blur();
+    stage.classList.add('has-started', 'project-closing');
+    stage.classList.remove('project-open', `project-${project}`);
+    startupWindow?.setAttribute('aria-hidden', 'false');
+    popupVisible = true;
+    updateVideo();
+    window.dispatchEvent(new CustomEvent('portfolio:project-close', {
+      detail: { project },
+    }));
+
+    closeTimer = window.setTimeout(() => {
+      projectDetails.forEach((details) => {
+        details.setAttribute('aria-hidden', 'true');
+        details.setAttribute('inert', '');
+      });
+      stage.classList.remove('project-closing');
+      document.body.classList.remove('project-active');
+      activeProject = undefined;
+      setControlPositions();
+    }, reducedMotion.matches ? 30 : 1750);
+  }
+
+  exitButtons.forEach((button) => {
+    button.addEventListener('click', closeProject);
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeProject();
   });
 
   let audio;
@@ -154,6 +193,7 @@
   window.addEventListener('pointerdown', unlockAudio, { passive: true });
   window.addEventListener('keydown', unlockAudio);
   window.addEventListener('pagehide', () => {
+    window.clearTimeout(closeTimer);
     if (audio && audio.state !== 'closed') audio.close().catch(() => {});
     audio = null;
   });

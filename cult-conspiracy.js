@@ -57,6 +57,10 @@
     if (event.detail?.project === 'cult-conspiracy') openCultConspiracy();
   });
 
+  window.addEventListener('portfolio:project-close', (event) => {
+    if (event.detail?.project === 'cult-conspiracy') stopGallery();
+  });
+
   document.addEventListener('visibilitychange', () => {
     if (!stage.classList.contains('project-cult-conspiracy')) return;
     if (document.hidden) stopGallery();

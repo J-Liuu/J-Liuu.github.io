@@ -210,7 +210,11 @@ function render(time = 0) {
 }
 
 async function startShowcase() {
-  if (started || !viewport || !canvas) return;
+  if (started) {
+    if (!frameId) render();
+    return;
+  }
+  if (!viewport || !canvas) return;
   started = true;
 
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -263,6 +267,13 @@ window.addEventListener('portfolio:project-open', (event) => {
     if (status) status.textContent = 'Could not start the 3D viewer';
     console.error(error);
   });
+});
+
+window.addEventListener('portfolio:project-close', (event) => {
+  if (event.detail?.project !== 'time-heist') return;
+  cancelAnimationFrame(frameId);
+  frameId = undefined;
+  previousFrameTime = undefined;
 });
 
 if (document.querySelector('.startup-stage')?.classList.contains('project-time-heist')) {

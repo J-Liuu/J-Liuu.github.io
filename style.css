@@ -245,6 +245,9 @@ body {
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
   opacity: 0;
   transform: translateY(20px) scale(0.97);
+  transition:
+    opacity 380ms ease,
+    transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-media-titlebar {
@@ -399,6 +402,11 @@ body {
   position: fixed;
   display: block;
   overflow: visible;
+  transition:
+    left 1600ms cubic-bezier(0.18, 0.84, 0.26, 1),
+    top 1600ms cubic-bezier(0.18, 0.84, 0.26, 1),
+    width 1600ms cubic-bezier(0.18, 0.84, 0.26, 1),
+    height 1600ms cubic-bezier(0.18, 0.84, 0.26, 1);
 }
 
 .viewport-control-header {
@@ -526,7 +534,7 @@ body {
 }
 
 .project-window-close {
-  background: #c84c4c;
+  background: transparent;
 }
 
 .project-window-close::before {
@@ -746,6 +754,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 18px;
   margin-top: auto;
   padding-top: 10px;
@@ -759,26 +768,52 @@ body {
   text-transform: uppercase;
 }
 
-.project-link {
+.project-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.project-link,
+.project-exit {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 34px;
   flex: 0 0 auto;
   margin-top: 0;
   padding: 0 13px;
   border: 1px solid #5f646a;
   border-radius: 4px;
-  background: #3a3d42;
   color: #f4f4f4;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.project-link {
+  border-color: #4c9a5f;
+  background: #347a46;
+}
+
+.project-exit {
+  background: #3a3d42;
 }
 
 .project-link:hover,
 .project-link:focus-visible {
-  border-color: #f39a42;
+  border-color: #72c486;
+  outline: none;
+  background: #438c55;
+}
+
+.project-exit:hover,
+.project-exit:focus-visible {
+  border-color: #858b92;
   outline: none;
   background: #484c52;
 }
@@ -944,6 +979,61 @@ body {
   top: clamp(90px, 12vh, 150px);
   width: clamp(36px, 3.4vw, 44px);
   height: clamp(126px, 12vw, 154px);
+}
+
+.startup-stage.project-closing .startup-window {
+  animation: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  filter: drop-shadow(0 22px 58px rgba(0, 0, 0, 0.58));
+  pointer-events: none;
+  transition-delay: 760ms;
+}
+
+.startup-stage.project-closing .blender-ui {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  filter: blur(6px) drop-shadow(0 24px 80px rgba(0, 0, 0, 0.72));
+  transition: filter 900ms ease 620ms;
+}
+
+.startup-stage.project-closing .viewport-controls {
+  animation: none;
+  opacity: 0;
+  filter: blur(6px);
+  transition:
+    opacity 360ms ease 1220ms,
+    filter 900ms ease 620ms;
+}
+
+.startup-stage.project-closing .project-details {
+  pointer-events: none;
+  transition-delay: 0ms;
+}
+
+.startup-stage.project-closing .project-media-window {
+  transition-delay: 0ms;
+}
+
+.startup-stage.has-started:not(.project-open):not(.project-closing) .startup-window {
+  animation: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  filter: drop-shadow(0 22px 58px rgba(0, 0, 0, 0.58));
+}
+
+.startup-stage.has-started:not(.project-open):not(.project-closing) .blender-ui {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  filter: blur(6px) drop-shadow(0 24px 80px rgba(0, 0, 0, 0.72));
+}
+
+.startup-stage.has-started:not(.project-open):not(.project-closing) .viewport-controls {
+  animation: none;
+  opacity: 1;
+  filter: blur(6px);
 }
 
 @keyframes windowPop {
@@ -1153,6 +1243,21 @@ body {
 
   .project-footer {
     margin-top: 10px;
+  }
+
+  .project-footer-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-link,
+  .project-exit {
+    min-width: 0;
+    padding-right: 8px;
+    padding-left: 8px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }
 
