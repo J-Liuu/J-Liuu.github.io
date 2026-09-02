@@ -138,12 +138,12 @@
 
         <!-- New File list -->
         <g id="new-file-list" class="ui body">
-          <!-- General -->
+          <!-- Resume -->
           <g id="new-general" transform="translate(52 440)">
             <g id="new-general-icon" transform="translate(0 -14)">
               <use href="#blender-file_new" width="24" height="24" />
             </g>
-            <text x="34" y="5">General</text>
+            <text x="34" y="5">Resume</text>
           </g>
 
           <!-- 2D Animation -->

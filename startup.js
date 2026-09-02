@@ -10,6 +10,10 @@
   const projectDetails = stage.querySelectorAll('[data-project-details]');
   const projectButtons = stage.querySelectorAll('.project-menu button');
   const exitButtons = stage.querySelectorAll('.project-exit');
+  const resumeTrigger = stage.querySelector('.resume-trigger');
+  const resumeWindow = stage.querySelector('.resume-window');
+  const resumeClose = stage.querySelector('.resume-close');
+  const resumeBackdrop = stage.querySelector('.resume-backdrop');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const projects = ['time-heist', 'boberts-mad-dash', 'g-nome', 'p5-flower', 'cult-conspiracy'];
   let popupVisible = false;
@@ -74,7 +78,7 @@
   projectButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const project = button.dataset.project;
-      if (!projects.includes(project) || activeProject || stage.classList.contains('project-closing')) return;
+      if (!projects.includes(project) || activeProject || stage.classList.contains('project-closing') || stage.classList.contains('resume-open')) return;
       window.clearTimeout(closeTimer);
       activeProject = project;
       popupVisible = false;
@@ -127,8 +131,39 @@
     button.addEventListener('click', closeProject);
   });
 
+  function openResume() {
+    if (!resumeWindow || activeProject || stage.classList.contains('project-closing')) return;
+    popupVisible = false;
+    video?.pause();
+    idleVideo?.pause();
+    startupWindow?.setAttribute('inert', '');
+    resumeWindow.removeAttribute('inert');
+    resumeWindow.setAttribute('aria-hidden', 'false');
+    resumeTrigger?.setAttribute('aria-expanded', 'true');
+    stage.classList.add('resume-open');
+    requestAnimationFrame(() => resumeClose?.focus());
+  }
+
+  function closeResume() {
+    if (!resumeWindow || !stage.classList.contains('resume-open')) return;
+    stage.classList.remove('resume-open');
+    resumeWindow.setAttribute('aria-hidden', 'true');
+    resumeWindow.setAttribute('inert', '');
+    startupWindow?.removeAttribute('inert');
+    resumeTrigger?.setAttribute('aria-expanded', 'false');
+    popupVisible = true;
+    updateVideo();
+    resumeTrigger?.focus();
+  }
+
+  resumeTrigger?.addEventListener('click', openResume);
+  resumeClose?.addEventListener('click', closeResume);
+  resumeBackdrop?.addEventListener('click', closeResume);
+
   window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeProject();
+    if (event.key !== 'Escape') return;
+    if (stage.classList.contains('resume-open')) closeResume();
+    else closeProject();
   });
 
   let audio;

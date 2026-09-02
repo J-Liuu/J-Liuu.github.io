@@ -127,6 +127,31 @@ body {
   height: auto;
 }
 
+.resume-trigger {
+  position: absolute;
+  z-index: 3;
+  left: calc(38 / 768 * 100%);
+  top: calc(420 / 752 * 100%);
+  width: calc(318 / 768 * 100%);
+  height: calc(32 / 752 * 100%);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.resume-trigger:hover,
+.resume-trigger:focus-visible {
+  border-color: rgba(105, 168, 235, 0.5);
+  outline: none;
+  background: rgba(47, 111, 178, 0.34);
+}
+
+.resume-trigger:active {
+  background: rgba(56, 126, 201, 0.5);
+}
+
 .project-menu {
   position: absolute;
   z-index: 3;
@@ -157,6 +182,257 @@ body {
 
 .project-menu button:active {
   background: rgba(56, 126, 201, 0.5);
+}
+
+.resume-backdrop {
+  position: fixed;
+  z-index: 7;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.66);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+.resume-window {
+  position: fixed;
+  z-index: 8;
+  left: 50%;
+  top: 50%;
+  width: min(900px, calc(100vw - 64px));
+  height: min(86svh, 760px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #55595e;
+  border-radius: 7px;
+  background: #24272b;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.7);
+  color: #d9dcdf;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -46%) scale(0.92);
+  transition:
+    opacity 260ms ease,
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-titlebar {
+  flex: 0 0 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 9px;
+  border-bottom: 1px solid #111214;
+  background: #1b1d20;
+  color: #cfd1d4;
+  font-size: 12px;
+}
+
+.resume-close {
+  position: relative;
+  align-self: stretch;
+  width: 38px;
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: #d5d5d5;
+  cursor: pointer;
+}
+
+.resume-close::before,
+.resume-close::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+  content: '';
+}
+
+.resume-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.resume-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.resume-close:hover,
+.resume-close:focus-visible {
+  outline: none;
+  background: #35383d;
+  color: #fff;
+}
+
+.resume-document {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 28px 32px 32px;
+  background: #282b30;
+  scrollbar-color: #676c72 #25272b;
+}
+
+.resume-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #565a60;
+}
+
+.resume-kicker,
+.resume-document h2,
+.resume-entry-heading > span {
+  color: #e69a50;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.resume-header h1 {
+  margin-top: 4px;
+  color: #f2f3f4;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.resume-role {
+  margin-top: 8px;
+  color: #b9bec3;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.resume-contact {
+  display: grid;
+  justify-items: end;
+  gap: 7px;
+  font-style: normal;
+}
+
+.resume-contact a {
+  color: #8ec99a;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.resume-contact a:hover,
+.resume-contact a:focus-visible {
+  outline: none;
+  color: #b7e4c0;
+  text-decoration: underline;
+}
+
+.resume-summary {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #45494e;
+}
+
+.resume-summary p {
+  max-width: 720px;
+  color: #c2c6ca;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.resume-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(210px, 0.8fr);
+  gap: 30px;
+  padding-top: 22px;
+}
+
+.resume-experience > h2,
+.resume-sidebar h2 {
+  margin-bottom: 10px;
+}
+
+.resume-entry {
+  padding: 13px 0;
+  border-top: 1px solid #45494e;
+}
+
+.resume-entry-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.resume-entry h3,
+.resume-feature h3 {
+  color: #eef0f1;
+  font-size: 15px;
+}
+
+.resume-entry-heading div > p {
+  margin-top: 2px;
+  color: #8ec99a;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.resume-entry-heading > span {
+  flex: 0 0 auto;
+  color: #92989e;
+}
+
+.resume-entry > p,
+.resume-feature p {
+  margin-top: 7px;
+  color: #b7bbc0;
+  font-size: 13px;
+  line-height: 1.48;
+}
+
+.resume-sidebar {
+  padding-left: 24px;
+  border-left: 1px solid #45494e;
+}
+
+.resume-skill-list {
+  list-style: none;
+}
+
+.resume-skill-list li {
+  padding: 8px 0;
+  border-top: 1px solid #45494e;
+  color: #c7cbd0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.resume-feature {
+  margin-top: 28px;
+}
+
+.resume-feature h3 {
+  padding-top: 10px;
+  border-top: 1px solid #45494e;
+}
+
+.startup-stage.resume-open .resume-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.startup-stage.resume-open .resume-window {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.startup-stage.resume-open .startup-window {
+  filter: blur(4px) brightness(0.65) drop-shadow(0 22px 58px rgba(0, 0, 0, 0.58));
+  pointer-events: none;
 }
 
 .viewport-showcase,
@@ -1147,6 +1423,49 @@ body {
     min-width: 0;
   }
 
+  .resume-window {
+    width: calc(100vw - 20px);
+    height: calc(100svh - 20px);
+  }
+
+  .resume-document {
+    padding: 22px 20px 26px;
+  }
+
+  .resume-header {
+    display: grid;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .resume-header h1 {
+    font-size: 32px;
+  }
+
+  .resume-contact {
+    justify-items: start;
+  }
+
+  .resume-summary,
+  .resume-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-summary {
+    gap: 9px;
+  }
+
+  .resume-columns {
+    gap: 24px;
+  }
+
+  .resume-sidebar {
+    padding-top: 22px;
+    padding-left: 0;
+    border-top: 1px solid #45494e;
+    border-left: 0;
+  }
+
   .startup-stage.project-open .viewport-control-header {
     width: max(850px, 100vw);
   }
@@ -1279,6 +1598,8 @@ body {
   .cult-gallery-image,
   .cult-title-art,
   .cult-sprite-magic,
+  .resume-backdrop,
+  .resume-window,
   .startup-window,
   .project-details,
   .viewport-controls,

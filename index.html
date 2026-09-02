@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacky Liu | Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=project-return-v2">
-    <script src="startup.js?v=project-return-v1" defer></script>
+    <link rel="stylesheet" href="style.css?v=resume-window-v1">
+    <script src="startup.js?v=resume-window-v1" defer></script>
     <script src="boberts.js?v=project-return-v1" defer></script>
     <script src="g-nome.js?v=project-return-v1" defer></script>
     <script src="cult-conspiracy.js?v=project-return-v1" defer></script>
@@ -582,6 +582,105 @@
             </div>
         </aside>
 
+        <div class="resume-backdrop" aria-hidden="true"></div>
+        <section class="resume-window" role="dialog" aria-modal="true" aria-labelledby="resume-heading" aria-hidden="true" inert>
+            <div class="resume-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span>Jacky_Liu_Resume</span>
+                <button class="resume-close" type="button" aria-label="Close resume" title="Close resume"></button>
+            </div>
+            <div class="resume-document">
+                <header class="resume-header">
+                    <div>
+                        <p class="resume-kicker">Portfolio Resume</p>
+                        <h1 id="resume-heading">Jacky Liu</h1>
+                        <p class="resume-role">Technical Artist &amp; Interactive Developer</p>
+                    </div>
+                    <address class="resume-contact">
+                        <a href="mailto:jackyliu432@gmail.com">jackyliu432@gmail.com</a>
+                        <a href="https://www.linkedin.com/in/jacky-liu-3a021b179/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    </address>
+                </header>
+
+                <section class="resume-summary" aria-labelledby="resume-profile-heading">
+                    <h2 id="resume-profile-heading">Profile</h2>
+                    <p>Technical artist whose work sits between art and engineering. Builds shaders, tools, UI, and interactive systems with a focus on procedural visuals, environment production, and the structure behind player-facing experiences.</p>
+                </section>
+
+                <div class="resume-columns">
+                    <section class="resume-experience" aria-labelledby="resume-work-heading">
+                        <h2 id="resume-work-heading">Selected Work</h2>
+
+                        <article class="resume-entry">
+                            <div class="resume-entry-heading">
+                                <div>
+                                    <h3>Time Heist</h3>
+                                    <p>Lead 3D Artist</p>
+                                </div>
+                                <span>In development</span>
+                            </div>
+                            <p>Created most of the environment models, contributed to level layouts and spatial flow, and helped shape how environmental puzzles are discovered and solved.</p>
+                        </article>
+
+                        <article class="resume-entry">
+                            <div class="resume-entry-heading">
+                                <div>
+                                    <h3>Bobert's Mad Dash</h3>
+                                    <p>Lead 3D &amp; Technical Artist</p>
+                                </div>
+                                <span>2-3 months</span>
+                            </div>
+                            <p>Developed node-based toon and halftone shaders, addressed outline artifacts, supported UV and topology cleanup, and created VFX and scene lighting.</p>
+                        </article>
+
+                        <article class="resume-entry">
+                            <div class="resume-entry-heading">
+                                <div>
+                                    <h3>G-NOME</h3>
+                                    <p>Level Designer &amp; 3D Artist</p>
+                                </div>
+                                <span>Z3 Expo 2025</span>
+                            </div>
+                            <p>Designed ability-aware multiplayer combat spaces and supported low-poly environment production for a fast arena FPS.</p>
+                        </article>
+
+                        <article class="resume-entry">
+                            <div class="resume-entry-heading">
+                                <div>
+                                    <h3>Cult Conspiracy</h3>
+                                    <p>2D Artist &amp; Art Programmer</p>
+                                </div>
+                                <span>48-hour jam</span>
+                            </div>
+                            <p>Created hand-drawn narrative cutscenes, programmed the animated intro background, and produced visual elements for the game's eerie bullet-hell atmosphere.</p>
+                        </article>
+                    </section>
+
+                    <aside class="resume-sidebar" aria-label="Skills and additional work">
+                        <section aria-labelledby="resume-skills-heading">
+                            <h2 id="resume-skills-heading">Core Skills</h2>
+                            <ul class="resume-skill-list">
+                                <li>3D modeling &amp; environment art</li>
+                                <li>Technical art &amp; shader graphs</li>
+                                <li>Level design &amp; spatial flow</li>
+                                <li>VFX, lighting &amp; toon rendering</li>
+                                <li>UV and topology support</li>
+                                <li>Procedural graphics with p5.js</li>
+                            </ul>
+                        </section>
+
+                        <section class="resume-feature" aria-labelledby="resume-feature-heading">
+                            <h2 id="resume-feature-heading">Additional Work</h2>
+                            <h3>p5.js Flower</h3>
+                            <p>Built an interactive 3D flower from polar coordinates, power functions, exponential decay, and procedural bump mapping.</p>
+                        </section>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <div class="startup-window">
             <div class="startup-art" aria-hidden="true">
                 <video
@@ -600,9 +699,10 @@
             </div>
             <img
                 class="startup-frame"
-                src="assets/blender_startup_grouped_jacky_v7.svg?v=video-overlay"
+                src="assets/blender_startup_grouped_jacky_v7.svg?v=resume-entry"
                 alt="Jacky Liu portfolio startup window with project list"
             >
+            <button class="resume-trigger" type="button" aria-label="Open resume" aria-haspopup="dialog" aria-expanded="false"></button>
             <div class="project-menu" aria-label="My Projects">
                 <button type="button" data-project="time-heist" aria-label="Open Time Heist"></button>
                 <button type="button" data-project="boberts-mad-dash" aria-label="Open Boberts Mad Dash"></button>
