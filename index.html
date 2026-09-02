@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacky Liu | Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=time-heist-recruiter-card-v5">
-    <script src="startup.js?v=time-heist-recruiter-showcase" defer></script>
+    <link rel="stylesheet" href="style.css?v=cult-conspiracy-v1">
+    <script src="startup.js?v=cult-conspiracy-v1" defer></script>
+    <script src="boberts.js?v=boberts-project-v1" defer></script>
+    <script src="g-nome.js?v=g-nome-project-v1" defer></script>
+    <script src="cult-conspiracy.js?v=cult-conspiracy-v1" defer></script>
+    <script src="flower-showcase.js?v=p5-flower-interaction-v1" defer></script>
     <script type="module" src="showcase.js?v=time-heist-phone-v3"></script>
 </head>
 <body>
@@ -23,6 +27,142 @@
             <div class="model-status" role="status">Loading Time Heist model...</div>
         </div>
 
+        <div class="flower-showcase" aria-label="p5.js procedural flower 3D showcase">
+            <div class="flower-canvas-host"></div>
+            <div class="flower-interaction-surface" role="button" tabindex="0" aria-label="Pause or orbit the procedural flower"></div>
+            <div class="model-status flower-status" role="status">Generating procedural flower...</div>
+        </div>
+
+        <div class="boberts-showcase" aria-label="Boberts Mad Dash media showcase">
+            <div class="boberts-media-stack">
+                <section class="project-media-window boberts-video-window" aria-label="Boberts Mad Dash gameplay video">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>Gameplay_Preview.mp4</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="boberts-video-frame">
+                        <iframe
+                            title="Boberts Mad Dash gameplay video"
+                            data-src="https://www.youtube-nocookie.com/embed/MgvmPtvbOAM?rel=0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </section>
+
+                <section class="project-media-window boberts-gallery-window" aria-label="Boberts Mad Dash image showcase">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>Art_Development</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="boberts-gallery-frame">
+                        <img class="boberts-gallery-image is-active" src="assets/projects/boberts/itch-01.png" alt="Bobert character artwork">
+                        <img class="boberts-gallery-image" src="assets/projects/boberts/itch-02.png" alt="Boberts Mad Dash city gameplay">
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="g-nome-showcase" aria-label="G-NOME media showcase">
+            <div class="g-nome-media-stack">
+                <section class="project-media-window g-nome-video-window" aria-label="G-NOME gameplay video">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>G-NOME_Gameplay.mp4</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="g-nome-video-frame">
+                        <iframe
+                            title="G-NOME gameplay video"
+                            data-src="https://www.youtube-nocookie.com/embed/psUDA7cmL-o?rel=0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </section>
+
+                <section class="project-media-window g-nome-gallery-window" aria-label="G-NOME image showcase">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>Arena_And_Environment_Design</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="g-nome-gallery-frame">
+                        <img class="g-nome-gallery-image is-active" src="assets/projects/g-nome/itch-07.png" alt="G-NOME multiplayer arena overview">
+                        <img class="g-nome-gallery-image" src="assets/projects/g-nome/itch-04.png" alt="G-NOME arena with floating islands and bridges">
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="cult-showcase" aria-label="Cult Conspiracy media showcase">
+            <div class="cult-media-stack">
+                <section class="project-media-window cult-animation-window" aria-label="Cult Conspiracy animated game art">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>Animated_Game_Art.gif</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="cult-animation-frame">
+                        <img class="cult-title-art" src="assets/projects/cult-conspiracy/title.png" alt="Cult Conspiracy title screen">
+                        <img class="cult-sprite cult-sprite-investigator" src="assets/projects/cult-conspiracy/animation-01.gif" alt="Animated purple cult character">
+                        <img class="cult-sprite cult-sprite-cultist" src="assets/projects/cult-conspiracy/animation-03.gif" alt="Animated gray cult character">
+                        <img class="cult-sprite cult-sprite-magic" src="assets/projects/cult-conspiracy/animation-02.gif" alt="Animated purple magic effect">
+                    </div>
+                </section>
+
+                <section class="project-media-window cult-gallery-window" aria-label="Cult Conspiracy art and gameplay showcase">
+                    <div class="project-media-titlebar">
+                        <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                            <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                        </svg>
+                        <span>Cutscenes_And_Gameplay</span>
+                        <div class="project-window-controls" aria-hidden="true">
+                            <span class="project-window-minimize"></span>
+                            <span class="project-window-maximize"></span>
+                            <span class="project-window-close"></span>
+                        </div>
+                    </div>
+                    <div class="cult-gallery-frame">
+                        <img class="cult-gallery-image is-active" src="assets/projects/cult-conspiracy/screenshot-01.png" alt="Hand-drawn Cult Conspiracy cave cutscene">
+                        <img class="cult-gallery-image" src="assets/projects/cult-conspiracy/screenshot-02.png" alt="Cult Conspiracy shooting tutorial gameplay">
+                    </div>
+                </section>
+            </div>
+        </div>
+
         <div class="viewport-controls" aria-hidden="true">
             <svg class="viewport-control-header" viewBox="0 29 1190 26" preserveAspectRatio="none">
                 <use href="assets/blender_ui_grouped.svg?v=viewport-transform-controls#viewport-header"></use>
@@ -38,7 +178,7 @@
             </svg>
         </div>
 
-        <aside class="project-details" aria-hidden="true" aria-label="Time Heist project details" inert>
+        <aside class="project-details project-details-time-heist" data-project-details="time-heist" aria-hidden="true" aria-label="Time Heist project details" inert>
             <div class="project-details-titlebar">
                 <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
                     <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
@@ -76,12 +216,11 @@
                 <div class="asset-preview-row" aria-live="polite">
                     <span>Selected asset</span>
                     <strong data-active-model>PC workstation</strong>
-                    <span data-active-model-count>01 / 07</span>
                 </div>
 
-                <section class="project-contribution" aria-labelledby="contribution-heading">
+                <section class="project-contribution" aria-labelledby="time-heist-contribution-heading">
                     <div class="contribution-heading">
-                        <h2 id="contribution-heading">Selected contributions</h2>
+                        <h2 id="time-heist-contribution-heading">Selected contributions</h2>
                         <span>Jacky Liu</span>
                     </div>
                     <ol>
@@ -118,6 +257,316 @@
             </div>
         </aside>
 
+        <aside class="project-details project-details-boberts" data-project-details="boberts-mad-dash" aria-hidden="true" aria-label="Boberts Mad Dash project details" inert>
+            <div class="project-details-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span class="project-details-filename">Boberts_Mad_Dash.blend</span>
+                <div class="project-window-controls" aria-hidden="true">
+                    <span class="project-window-minimize"></span>
+                    <span class="project-window-maximize"></span>
+                    <span class="project-window-close"></span>
+                </div>
+            </div>
+            <div class="project-details-body">
+                <div class="project-heading">
+                    <div class="project-meta">
+                        <span>In development</span>
+                        <span>2-3 months</span>
+                    </div>
+                    <h1>Bobert's Mad Dash</h1>
+                    <p class="project-summary">
+                        A fast 3D skateboarding game about stylish movement, tricks, and urban exploration through a playful city.
+                    </p>
+                </div>
+
+                <div class="project-scope">
+                    <div>
+                        <span>Primary role</span>
+                        <strong>Lead 3D &amp; Technical Artist</strong>
+                    </div>
+                    <div>
+                        <span>Additional disciplines</span>
+                        <strong>Shader Graphs, VFX, Lighting</strong>
+                    </div>
+                </div>
+
+                <section class="project-contribution" aria-labelledby="boberts-contribution-heading">
+                    <div class="contribution-heading">
+                        <h2 id="boberts-contribution-heading">Selected contributions</h2>
+                        <span>Jacky Liu</span>
+                    </div>
+                    <ol>
+                        <li>
+                            <span class="contribution-index">01</span>
+                            <div>
+                                <strong>Toon shading and halftones</strong>
+                                <p>Built primarily node-based toon shaders and halftone treatments that shape the game's illustrated look, with targeted HLSL where needed.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">02</span>
+                            <div>
+                                <strong>Connected hard-surface outlines</strong>
+                                <p>Worked through normal-based outline artifacts where square corners could split and extrude outward, keeping silhouettes visually connected around hard-edged forms.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">03</span>
+                            <div>
+                                <strong>3D pipeline and mesh cleanup</strong>
+                                <p>Led 3D art support, helped modelers improve UVs and topology, and used ProBuilder geometry tools to remove excessive faces from environment assets.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">04</span>
+                            <div>
+                                <strong>VFX and scene lighting</strong>
+                                <p>Created effects including sparks and motion trails, and contributed to the lighting that supports the game's speed and readability.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <div class="project-footer">
+                    <span class="project-genre">3D action and racing</span>
+                    <a class="project-link" href="https://frenchfrys.itch.io/boberts-mad-dash-to-the-silly-and-whimsy-factory" target="_blank" rel="noreferrer">
+                        View on itch.io
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <aside class="project-details project-details-g-nome" data-project-details="g-nome" aria-hidden="true" aria-label="G-NOME project details" inert>
+            <div class="project-details-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span class="project-details-filename">G-NOME.blend</span>
+                <div class="project-window-controls" aria-hidden="true">
+                    <span class="project-window-minimize"></span>
+                    <span class="project-window-maximize"></span>
+                    <span class="project-window-close"></span>
+                </div>
+            </div>
+            <div class="project-details-body">
+                <div class="project-heading">
+                    <div class="project-meta">
+                        <span>Released WIP build</span>
+                        <span>Z3 Expo 2025</span>
+                    </div>
+                    <h1>G-NOME</h1>
+                    <p class="project-summary">
+                        A fast multiplayer arena shooter where players combine movement, offense, and utility abilities to build their own gnome loadout.
+                    </p>
+                </div>
+
+                <div class="project-scope">
+                    <div>
+                        <span>Primary role</span>
+                        <strong>Level Designer &amp; 3D Artist</strong>
+                    </div>
+                    <div>
+                        <span>Project focus</span>
+                        <strong>Arena Layout, Environment Art</strong>
+                    </div>
+                </div>
+
+                <section class="project-contribution" aria-labelledby="g-nome-contribution-heading">
+                    <div class="contribution-heading">
+                        <h2 id="g-nome-contribution-heading">Selected contributions</h2>
+                        <span>Jacky Liu</span>
+                    </div>
+                    <ol>
+                        <li>
+                            <span class="contribution-index">01</span>
+                            <div>
+                                <strong>Multiplayer arena flow</strong>
+                                <p>Contributed to combat layouts with clear sightlines, quick routes back into action, and space for fast FPS movement.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">02</span>
+                            <div>
+                                <strong>Ability-aware level design</strong>
+                                <p>Shaped traversal and combat spaces around movement abilities such as dashing, leaping, and teleporting.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">03</span>
+                            <div>
+                                <strong>3D environment production</strong>
+                                <p>Created and supported low-poly environment assets that establish the arena's playful floating-island setting.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <div class="project-footer">
+                    <span class="project-genre">Multiplayer arena FPS</span>
+                    <a class="project-link" href="https://frenchfrys.itch.io/g-nome" target="_blank" rel="noreferrer">
+                        View on itch.io
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <aside class="project-details project-details-p5-flower" data-project-details="p5-flower" aria-hidden="true" aria-label="p5.js Flower project details" inert>
+            <div class="project-details-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span class="project-details-filename">p5_Flower.js</span>
+                <div class="project-window-controls" aria-hidden="true">
+                    <span class="project-window-minimize"></span>
+                    <span class="project-window-maximize"></span>
+                    <span class="project-window-close"></span>
+                </div>
+            </div>
+            <div class="project-details-body">
+                <div class="project-heading">
+                    <div class="project-meta">
+                        <span>Procedural graphics</span>
+                        <span>2 weeks</span>
+                    </div>
+                    <h1>p5.js Flower</h1>
+                    <p class="project-summary">
+                        An interactive 3D flower generated with trigonometric functions and parametric equations, inspired by J&aacute;nos Karsai.
+                    </p>
+                </div>
+
+                <div class="project-scope">
+                    <div>
+                        <span>Primary role</span>
+                        <strong>Interactive Developer</strong>
+                    </div>
+                    <div>
+                        <span>Project focus</span>
+                        <strong>Procedural 3D, Mathematical Visualization</strong>
+                    </div>
+                </div>
+
+                <section class="project-contribution" aria-labelledby="p5-flower-contribution-heading">
+                    <div class="contribution-heading">
+                        <h2 id="p5-flower-contribution-heading">Mathematical approach</h2>
+                        <span>Jacky Liu</span>
+                    </div>
+                    <ol>
+                        <li>
+                            <span class="contribution-index">01</span>
+                            <div>
+                                <strong>Polar coordinate petals</strong>
+                                <p>Used angular sampling and polar coordinates to generate the repeating petal formations.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">02</span>
+                            <div>
+                                <strong>Power-controlled curvature</strong>
+                                <p>Applied power functions to tune the sharpness and curvature of each petal.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">03</span>
+                            <div>
+                                <strong>Exponential bloom profile</strong>
+                                <p>Used exponential decay to form the gradual cone-like transition from the stem into the bloom.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">04</span>
+                            <div>
+                                <strong>Bump mapping</strong>
+                                <p>Added a procedural bump function to create organic texture variation along the petal edges.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <div class="project-footer">
+                    <span class="project-genre">Interactive generative art</span>
+                    <a class="project-link" href="https://editor.p5js.org/jackyliu432/sketches/OWZIvngLd" target="_blank" rel="noreferrer">
+                        View p5.js sketch
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <aside class="project-details project-details-cult" data-project-details="cult-conspiracy" aria-hidden="true" aria-label="Cult Conspiracy project details" inert>
+            <div class="project-details-titlebar">
+                <svg class="project-details-logo" viewBox="0 0 1800 1500" aria-hidden="true">
+                    <use href="assets/blender_ui_grouped.svg#blender-blender"></use>
+                </svg>
+                <span class="project-details-filename">Cult_Conspiracy.project</span>
+                <div class="project-window-controls" aria-hidden="true">
+                    <span class="project-window-minimize"></span>
+                    <span class="project-window-maximize"></span>
+                    <span class="project-window-close"></span>
+                </div>
+            </div>
+            <div class="project-details-body">
+                <div class="project-heading">
+                    <div class="project-meta">
+                        <span>48-hour game jam</span>
+                        <span>Fall 2024 ZotJam</span>
+                    </div>
+                    <h1>Cult Conspiracy</h1>
+                    <p class="project-summary">
+                        A spooky bullet-hell game about an investigative journalist infiltrating a cult and fighting through magic, enemies, and escalating chaos.
+                    </p>
+                </div>
+
+                <div class="project-scope">
+                    <div>
+                        <span>Primary role</span>
+                        <strong>2D Artist &amp; Art Programmer</strong>
+                    </div>
+                    <div>
+                        <span>Project focus</span>
+                        <strong>Pixel Art, Cutscenes, Animated Intro</strong>
+                    </div>
+                </div>
+
+                <section class="project-contribution" aria-labelledby="cult-contribution-heading">
+                    <div class="contribution-heading">
+                        <h2 id="cult-contribution-heading">Selected contributions</h2>
+                        <span>Jacky Liu</span>
+                    </div>
+                    <ol>
+                        <li>
+                            <span class="contribution-index">01</span>
+                            <div>
+                                <strong>Hand-drawn narrative cutscenes</strong>
+                                <p>Created story artwork that introduces the infiltration and carries the game's eerie atmosphere between gameplay moments.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">02</span>
+                            <div>
+                                <strong>Animated intro background</strong>
+                                <p>Programmed the moving background used in the introduction, bringing the opening scene to life within the jam's two-day deadline.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contribution-index">03</span>
+                            <div>
+                                <strong>2D visual production</strong>
+                                <p>Designed and implemented key visual elements that support the cult theme, magical action, and overall game atmosphere.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <div class="project-footer">
+                    <span class="project-genre">Spooky bullet hell</span>
+                    <a class="project-link" href="https://frenchfrys.itch.io/cult-conspiracies" target="_blank" rel="noreferrer">
+                        View on itch.io
+                    </a>
+                </div>
+            </div>
+        </aside>
+
         <div class="startup-window">
             <div class="startup-art" aria-hidden="true">
                 <video
@@ -141,10 +590,10 @@
             >
             <div class="project-menu" aria-label="My Projects">
                 <button type="button" data-project="time-heist" aria-label="Open Time Heist"></button>
-                <button type="button" data-project="boberts-mad-dash" aria-label="Select Boberts Mad Dash"></button>
-                <button type="button" data-project="g-nome" aria-label="Select G-nome"></button>
-                <button type="button" data-project="cooking-havoc-rpg" aria-label="Select Cooking Havoc RPG"></button>
-                <button type="button" data-project="p5-flower" aria-label="Select p5.js Flower"></button>
+                <button type="button" data-project="boberts-mad-dash" aria-label="Open Boberts Mad Dash"></button>
+                <button type="button" data-project="g-nome" aria-label="Open G-NOME"></button>
+                <button type="button" data-project="p5-flower" aria-label="Open p5.js Flower"></button>
+                <button type="button" data-project="cult-conspiracy" aria-label="Open Cult Conspiracy"></button>
             </div>
         </div>
     </main>

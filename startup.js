@@ -7,7 +7,7 @@
   const idleVideo = stage.querySelector('.startup-video-idle');
   const startupWindow = stage.querySelector('.startup-window');
   const workspaceWindow = stage.querySelector('.workspace-window');
-  const projectDetails = stage.querySelector('.project-details');
+  const projectDetails = stage.querySelectorAll('[data-project-details]');
   const projectButtons = stage.querySelectorAll('.project-menu button');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let popupVisible = false;
@@ -69,19 +69,26 @@
 
   projectButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      if (button.dataset.project !== 'time-heist') return;
+      const project = button.dataset.project;
+      if (!['time-heist', 'boberts-mad-dash', 'g-nome', 'p5-flower', 'cult-conspiracy'].includes(project)) return;
       popupVisible = false;
       video?.pause();
       idleVideo?.pause();
       setControlPositions();
       document.body.classList.add('project-active');
       startupWindow?.setAttribute('aria-hidden', 'true');
-      projectDetails?.setAttribute('aria-hidden', 'false');
-      projectDetails?.removeAttribute('inert');
+      projectDetails.forEach((details) => {
+        const isActive = details.dataset.projectDetails === project;
+        details.setAttribute('aria-hidden', String(!isActive));
+        if (isActive) details.removeAttribute('inert');
+        else details.setAttribute('inert', '');
+      });
       window.dispatchEvent(new CustomEvent('portfolio:project-open', {
-        detail: { project: 'time-heist' },
+        detail: { project },
       }));
-      requestAnimationFrame(() => stage.classList.add('project-open'));
+      requestAnimationFrame(() => {
+        stage.classList.add('project-open', `project-${project}`);
+      });
     });
   });
 

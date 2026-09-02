@@ -265,7 +265,7 @@ window.addEventListener('portfolio:project-open', (event) => {
   });
 });
 
-if (document.querySelector('.startup-stage')?.classList.contains('project-open')) {
+if (document.querySelector('.startup-stage')?.classList.contains('project-time-heist')) {
   startShowcase();
 }
 
