@@ -1702,3 +1702,7 @@ body {
   background: #353535;
   outline: none;
 }
+
+body.project-active .portfolio-home-link {
+  display: none;
+}
