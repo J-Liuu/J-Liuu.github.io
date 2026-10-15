@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cell AI Factory</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <main class="game">
+    <section class="simulation" aria-label="Cell simulation area">
+      <div class="sim-wrap">
+        <svg id="cellSvg" viewBox="0 0 900 560" role="img" aria-label="Clickable cell factory map">
+          <defs>
+            <radialGradient id="nucleusGrad" cx="35%" cy="30%">
+              <stop offset="0%" stop-color="#f0abfc" />
+              <stop offset="80%" stop-color="#7e22ce" />
+            </radialGradient>
+            <radialGradient id="mitoGrad" cx="40%" cy="35%">
+              <stop offset="0%" stop-color="#fed7aa" />
+              <stop offset="75%" stop-color="#ea580c" />
+            </radialGradient>
+            <radialGradient id="chloroGrad" cx="35%" cy="30%">
+              <stop offset="0%" stop-color="#bef264" />
+              <stop offset="75%" stop-color="#16a34a" />
+            </radialGradient>
+            <linearGradient id="erGrad" x1="0" x2="1">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#2563eb" />
+            </linearGradient>
+            <linearGradient id="golgiGrad" x1="0" x2="1">
+              <stop offset="0%" stop-color="#fde68a" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+            <linearGradient id="vacGrad" x1="0" x2="1">
+              <stop offset="0%" stop-color="#a5f3fc" />
+              <stop offset="100%" stop-color="#0891b2" />
+            </linearGradient>
+            <radialGradient id="demoOutsideGrad" cx="48%" cy="42%" r="78%">
+              <stop offset="0%" stop-color="#17345e" />
+              <stop offset="100%" stop-color="#0a1930" />
+            </radialGradient>
+            <radialGradient id="demoInsideGrad" cx="52%" cy="42%" r="78%">
+              <stop offset="0%" stop-color="#123d4c" />
+              <stop offset="100%" stop-color="#091f30" />
+            </radialGradient>
+            <clipPath id="demoMembraneClip" clipPathUnits="userSpaceOnUse">
+              <rect x="400" y="0" width="100" height="560" />
+            </clipPath>
+          </defs>
+
+          <path id="plantWall" class="plant-wall" d="M95,78 C195,10 400,25 538,54 C760,100 858,226 802,387 C748,548 526,550 326,516 C150,486 39,380 60,230 C68,168 65,113 95,78 Z" />
+          <path id="membrane" data-org="membrane" class="cell-outline organelle-shape" d="M105,91 C204,30 394,42 528,70 C724,111 819,222 771,372 C723,520 520,521 333,491 C169,464 71,367 91,232 C100,172 76,126 105,91 Z" />
+          <text class="label" x="130" y="126">Cell membrane</text>
+          <text class="sub-label" x="136" y="145">entry / exit gate</text>
+
+          <path class="flow-line" d="M218,168 C332,156 440,151 557,174" />
+          <path class="flow-line" d="M320,369 C417,335 519,331 651,356" />
+          <path class="flow-line" d="M520,205 C578,237 596,283 642,321" />
+
+          <g id="cytoplasm" data-org="cytoplasm" class="organelle-shape">
+            <ellipse cx="449" cy="284" rx="330" ry="203" fill="rgba(34,211,238,.055)" stroke="rgba(34,211,238,.22)" stroke-width="2" stroke-dasharray="8 9" />
+            <text class="label" x="455" y="480">Cytoplasm</text>
+            <text class="sub-label" x="455" y="498">factory floor / material flow</text>
+          </g>
+
+          <g id="nucleus" data-org="nucleus" class="organelle-shape">
+            <ellipse cx="330" cy="218" rx="92" ry="67" fill="url(#nucleusGrad)" stroke="#f5d0fe" stroke-width="3" />
+            <path d="M285,217 C300,188 360,250 377,213" fill="none" stroke="#f5d0fe" stroke-width="6" stroke-linecap="round" />
+            <path d="M286,238 C315,195 349,256 378,228" fill="none" stroke="#f5d0fe" stroke-width="4" stroke-linecap="round" opacity=".75" />
+            <text class="label" x="330" y="210">Nucleus</text>
+            <text class="sub-label" x="330" y="229">DNA instructions</text>
+          </g>
+
+          <g id="ribosomes" data-org="ribosomes" class="organelle-shape">
+            <circle cx="507" cy="151" r="12" fill="#f472b6" />
+            <circle cx="540" cy="167" r="10" fill="#f472b6" />
+            <circle cx="573" cy="142" r="11" fill="#f472b6" />
+            <circle cx="604" cy="165" r="9" fill="#f472b6" />
+            <circle cx="530" cy="126" r="8" fill="#f472b6" />
+            <circle cx="590" cy="119" r="8" fill="#f472b6" />
+            <rect x="487" y="108" width="136" height="80" rx="28" fill="rgba(244,114,182,.08)" stroke="rgba(244,114,182,.5)" stroke-width="2" />
+            <text class="label" x="556" y="205">Ribosomes</text>
+            <text class="sub-label" x="556" y="222">protein synthesis</text>
+          </g>
+
+          <g id="er" data-org="er" class="organelle-shape">
+            <path d="M420,243 C492,214 544,226 594,250 C541,267 493,273 423,302 C486,304 547,315 607,345 C520,343 462,345 403,371" fill="none" stroke="url(#erGrad)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" opacity=".92" />
+            <path d="M420,243 C492,214 544,226 594,250 C541,267 493,273 423,302 C486,304 547,315 607,345 C520,343 462,345 403,371" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8" />
+            <text class="label" x="511" y="294">ER</text>
+            <text class="sub-label" x="510" y="313">conveyor transport</text>
+          </g>
+
+          <g id="golgi" data-org="golgi" class="organelle-shape">
+            <path d="M650,230 C701,213 736,220 762,241" fill="none" stroke="url(#golgiGrad)" stroke-width="18" stroke-linecap="round" />
+            <path d="M637,267 C699,246 743,255 781,281" fill="none" stroke="url(#golgiGrad)" stroke-width="18" stroke-linecap="round" />
+            <path d="M634,305 C695,286 740,295 773,319" fill="none" stroke="url(#golgiGrad)" stroke-width="18" stroke-linecap="round" />
+            <text class="label" x="712" y="356">Golgi</text>
+            <text class="sub-label" x="712" y="374">package / ship</text>
+          </g>
+
+          <g id="mitochondria" data-org="mitochondria" class="organelle-shape">
+            <ellipse cx="279" cy="379" rx="84" ry="43" fill="url(#mitoGrad)" stroke="#fed7aa" stroke-width="3" />
+            <path d="M215,379 C241,350 262,408 288,378 C315,344 331,408 354,377" fill="none" stroke="#fff7ed" stroke-width="5" stroke-linecap="round" opacity=".75" />
+            <text class="label" x="279" y="450">Mitochondria</text>
+            <text class="sub-label" x="279" y="467">ATP power plant</text>
+          </g>
+
+          <g id="vacuole" data-org="vacuole" class="organelle-shape">
+            <ellipse cx="623" cy="420" rx="90" ry="55" fill="url(#vacGrad)" stroke="#cffafe" stroke-width="3" opacity=".92" />
+            <path id="vacuoleWater" d="M542,423 C577,402 628,441 703,415 L704,458 C655,486 582,482 543,456 Z" fill="rgba(255,255,255,.25)" />
+            <text class="label" x="623" y="415">Vacuole</text>
+            <text class="sub-label" x="623" y="433">storage tank</text>
+          </g>
+
+          <g id="chloroplast" data-org="chloroplast" class="organelle-shape">
+            <ellipse cx="182" cy="286" rx="72" ry="42" fill="url(#chloroGrad)" stroke="#d9f99d" stroke-width="3" />
+            <path d="M130,286 C152,262 171,310 194,285 C214,261 232,309 246,286" fill="none" stroke="#ecfccb" stroke-width="5" stroke-linecap="round" opacity=".78" />
+            <text class="label" x="182" y="349">Chloroplast</text>
+            <text class="sub-label" x="182" y="366">plant glucose maker</text>
+          </g>
+
+          <g id="cellwallHit" data-org="cellwall" class="organelle-shape">
+            <rect x="60" y="45" width="800" height="475" rx="120" fill="transparent" stroke="transparent" stroke-width="40" />
+          </g>
+          <text id="cellWallLabel" class="label" x="727" y="111">Cell wall</text>
+          <text id="cellWallSubLabel" class="sub-label" x="727" y="130">plant support</text>
+
+          <g id="sizeSystem" data-org="size" class="organelle-shape">
+            <rect x="708" y="434" width="116" height="64" rx="16" fill="rgba(255,255,255,.055)" stroke="rgba(255,255,255,.18)" />
+            <circle cx="737" cy="467" r="11" fill="#38bdf8" />
+            <circle cx="775" cy="467" r="20" fill="#38bdf8" opacity=".65" />
+            <text class="label" x="767" y="425">Cell size</text>
+            <text class="sub-label" x="767" y="493">SA:V transport</text>
+          </g>
+
+          <g id="membraneDemoLayer" class="membrane-demo-layer hidden-svg" aria-label="Membrane smart border close-up">
+            <rect class="demo-panel-bg" x="0" y="0" width="900" height="560" />
+            <rect class="demo-region-outside" x="28" y="52" width="394" height="424" rx="22" />
+            <rect class="demo-region-inside" x="478" y="52" width="394" height="424" rx="22" />
+            <g id="demoMembraneStrip" class="demo-membrane-strip" clip-path="url(#demoMembraneClip)" pointer-events="none">
+              <image id="demoMembraneFallback" class="demo-membrane-asset" href="assets/cell-membrane.svg" x="0" y="0" width="1600" height="320" preserveAspectRatio="xMidYMid meet" transform="translate(517.2 -72) rotate(90) scale(.42)" pointer-events="none" />
+              <g id="demoMembraneInline" class="demo-membrane-asset" transform="translate(517.2 -72) rotate(90) scale(.42)" pointer-events="none"></g>
+            </g>
+            <text class="demo-side-label" x="225" y="84">Outside Cell</text>
+            <text class="demo-side-label" x="675" y="84">Inside Cell</text>
+            <text id="demoFeedback" class="demo-feedback" x="450" y="42">Watch the membrane act like a smart border.</text>
+
+            <g id="glucoseDoor" class="demo-door" onclick="runAction('demoGlucoseDoor')">
+              <rect x="420" y="132" width="60" height="42" rx="14" fill="#fde047" stroke="#fff7ad" stroke-width="3" />
+              <text x="450" y="126" class="demo-hotspot-label">Glucose Door</text>
+            </g>
+            <g id="waterGate" class="demo-door aquaporin-door" onclick="runAction('demoWaterGate')">
+              <g transform="translate(450 280) rotate(90)">
+                <path d="M-22,-44 C-33,-49 -46,-44 -50,-30 C-53,-18 -52,-7 -50,0 C-52,7 -53,18 -50,30 C-46,44 -33,49 -22,44 C-27,33 -29,19 -29,0 C-29,-19 -27,-33 -22,-44 Z"
+                  fill="#38bdf8"
+                  stroke="#7dd3fc"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                  filter="drop-shadow(0 0 10px rgba(56,189,248,.55))"/>
+                <rect x="-24" y="-46" width="48" height="92" rx="14"
+                  fill="#0f3b53"
+                  stroke="#155e75"
+                  stroke-width="3"
+                  opacity=".96"/>
+                <path d="M22,-44 C33,-49 46,-44 50,-30 C53,-18 52,-7 50,0 C52,7 53,18 50,30 C46,44 33,49 22,44 C27,33 29,19 29,0 C29,-19 27,-33 22,-44 Z"
+                  fill="#38bdf8"
+                  stroke="#7dd3fc"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                  filter="drop-shadow(0 0 10px rgba(56,189,248,.55))"/>
+                <path d="M-35,-31 C-38,-23 -38,-8 -36,0 C-38,8 -38,23 -35,31" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M35,-31 C38,-23 38,-8 36,0 C38,8 38,23 35,31" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+              <text x="450" y="206" class="demo-hotspot-label">Water Channel</text>
+            </g>
+            <g id="wasteExit" class="demo-door" onclick="runAction('demoWasteExit')">
+              <rect x="418" y="355" width="64" height="42" rx="14" fill="#94a3b8" stroke="#e2e8f0" stroke-width="3" />
+              <path d="M474,376 L426,376 M436,366 L426,376 L436,386" stroke="#f8fafc" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              <text x="450" y="349" class="demo-hotspot-label">Waste Exit</text>
+            </g>
+
+            <g id="demoCracks">
+              <path class="demo-crack" d="M469,174 L492,190 L472,209 L494,230" />
+              <path class="demo-crack" d="M429,286 L405,306 L430,323 L410,345" />
+              <path class="demo-crack" d="M468,383 L494,401 L470,421" />
+              <path class="demo-crack" d="M431,129 L410,147 L432,160" />
+            </g>
+
+            <g id="membraneHealthMeter">
+              <text x="100" y="502" class="demo-hotspot-label" text-anchor="start">Membrane Health</text>
+              <rect x="238" y="488" width="220" height="24" rx="12" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" />
+              <rect id="membraneHealthFill" x="238" y="488" width="220" height="24" rx="12" fill="#34d399" />
+              <text id="membraneHealthText" x="348" y="506" class="demo-hotspot-label">100</text>
+            </g>
+
+            <g id="waterBalanceMeter">
+              <text x="550" y="502" class="demo-hotspot-label" text-anchor="start">Water Balance</text>
+              <rect id="waterBalanceTrack" x="668" y="488" width="150" height="24" rx="12" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.22)" />
+              <rect id="waterBalanceFill" x="668" y="488" width="75" height="24" rx="12" fill="#34d399" />
+              <text id="waterBalanceText" x="744" y="506" class="demo-hotspot-label">Balanced</text>
+            </g>
+
+            <g id="osmosisVisual" class="hidden-svg">
+              <rect x="30" y="24" width="840" height="512" rx="30" fill="rgba(2,6,23,.98)" stroke="rgba(125,211,252,.18)" />
+
+              <text x="70" y="62" class="demo-hotspot-label start-anchor">Water Balance Challenge</text>
+              <text x="70" y="84" class="demo-hotspot-label start-anchor" fill="#bae6fd">Change the outside environment. Water moves automatically through channels.</text>
+
+              <g id="osmosisSaltHud">
+                <text x="70" y="116" class="demo-hotspot-label start-anchor">Outside Salt</text>
+                <rect x="174" y="104" width="342" height="18" rx="9" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.20)" />
+                <rect id="outsideSaltVisualFill" x="174" y="104" width="171" height="18" rx="9" fill="#34d399" />
+                <text id="outsideSaltVisualText" x="530" y="118" class="demo-hotspot-label start-anchor">50</text>
+                <text id="osmosisWaterDirectionText" x="70" y="143" class="demo-hotspot-label start-anchor">Balanced outside</text>
+                <text id="osmosisTimerLabel" x="624" y="116" class="demo-hotspot-label start-anchor">Healthy Time: 0 / 20s</text>
+              </g>
+
+              <text x="450" y="518" class="demo-hotspot-label" fill="#cbd5e1">Salt and free water roam outside. The cell swells or shrinks automatically.</text>
+
+              <g id="osmosisAmbientLayer"></g>
+
+              <g id="osmosisCellScene">
+                <circle cx="450" cy="306" r="176" fill="rgba(14,165,233,.06)" stroke="rgba(103,232,249,.08)" stroke-width="1"/>
+                <circle cx="450" cy="306" r="142" fill="rgba(14,165,233,.04)" stroke="rgba(103,232,249,.10)" stroke-width="1"/>
+                <g id="osmosisCellMotionGroup" transform="translate(450 306)">
+
+                    <g id="osmosisChannelsGroup">
+                      <g class="osmosis-channel" data-angle="-90" transform="translate(0,-112) rotate(0)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                      <g class="osmosis-channel" data-angle="-30" transform="translate(97,-56) rotate(60)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                      <g class="osmosis-channel" data-angle="30" transform="translate(97,56) rotate(120)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                      <g class="osmosis-channel" data-angle="90" transform="translate(0,112) rotate(180)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                      <g class="osmosis-channel" data-angle="150" transform="translate(-97,56) rotate(240)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                      <g class="osmosis-channel" data-angle="210" transform="translate(-97,-56) rotate(300)">
+                        <path d="M-4,-21 C-8,-23 -13,-20 -15,-14 C-16,-9 -16,-4 -15,0 C-16,4 -16,9 -15,14 C-13,20 -8,23 -4,21 C-6,15 -7,8 -7,0 C-7,-8 -6,-15 -4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <rect x="-7" y="-21" width="14" height="42" rx="4.8" fill="#0f3b53" stroke="#155e75" stroke-width="1.6" opacity=".96"/>
+                        <path d="M4,-21 C8,-23 13,-20 15,-14 C16,-9 16,-4 15,0 C16,4 16,9 15,14 C13,20 8,23 4,21 C6,15 7,8 7,0 C7,-8 6,-15 4,-21 Z" fill="#38bdf8" stroke="#7dd3fc" stroke-width="1.9" stroke-linejoin="round"/>
+                        <path d="M-10,-12 C-11,-8 -11,-3 -10,0 C-11,3 -11,8 -10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M10,-12 C11,-8 11,-3 10,0 C11,3 11,8 10,12" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="1.3" stroke-linecap="round"/>
+                      </g>
+                    </g>
+                  <g id="osmosisCellScaleGroup">
+                    <circle id="osmosisCellGlow" cx="0" cy="0" r="112" fill="rgba(34,197,94,.10)" stroke="none" filter="drop-shadow(0 0 22px rgba(34,197,94,.16))"/>
+                    <circle id="osmosisCellOuter" cx="0" cy="0" r="99" fill="rgba(34,197,94,.18)" stroke="#4ade80" stroke-width="6"/>
+                    <circle id="osmosisCellRing" cx="0" cy="0" r="85" fill="rgba(34,197,94,.10)" stroke="rgba(134,239,172,.62)" stroke-width="2" stroke-dasharray="8 7"/>
+                    <g id="osmosisInnerRotateGroup">
+                      <circle cx="0" cy="0" r="58" fill="none" stroke="rgba(191,219,254,.25)" stroke-width="2" stroke-dasharray="20 16"/>
+                      <path d="M-34,-16 C-6,-40 18,-38 38,-16" fill="none" stroke="rgba(125,211,252,.4)" stroke-width="4" stroke-linecap="round"/>
+                      <path d="M-26,20 C2,0 22,2 34,16" fill="none" stroke="rgba(52,211,153,.35)" stroke-width="4" stroke-linecap="round"/>
+                      <circle cx="36" cy="-7" r="7" fill="rgba(125,211,252,.25)"/>
+                      <circle cx="-28" cy="17" r="6" fill="rgba(191,219,254,.22)"/>
+                    </g>
+                    <circle cx="0" cy="0" r="18" fill="rgba(255,255,255,.16)" stroke="rgba(186,230,253,.4)" stroke-width="2"/>
+                  </g>
+                </g>
+                <text id="osmosisCellLabel" x="450" y="311" class="demo-hotspot-label">Healthy Cell</text>
+              </g>
+            </g>
+
+            <g id="demoParticles"></g>
+          </g>
+        </svg>
+        <button id="levelHintBtn" class="floating-hint" type="button" title="Show level hint" aria-label="Show level hint">?</button>
+        <div class="learning-popup" id="transportLearningPopup" aria-live="polite"></div>
+        <div class="learning-popup hint-popup" id="levelHintPopup" role="dialog" aria-modal="true" aria-live="polite"></div>
+        <div class="toast" id="toast">Click an organelle to inspect it. Then use its action buttons to run a mini simulation.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Membrane level data must load before the shared game engine below. -->
+  <script src="levels/membrane.js"></script>
+
+  <!-- Simulation behavior split out of the main script. Classic scripts, so every
+       function below is hoisted onto window before the main script runs. -->
+  <script src="sims/membrane.js"></script>
+  <script src="sims/osmosis.js"></script>
+
+  <script>
+    const ORG = {
+      membrane: {
+        name: "Cell membrane",
+        role: "Smart border",
+        functionText: "Controls what enters and exits the cell. Glucose uses a door, water uses a gate, oxygen can drift through, waste exits, and some toxins can be blocked or damage the membrane.",
+        evidence: "Check Membrane Health, waste, and transport. If Membrane Health is low, repair it before the cell starts leaking.",
+        actions: [
+          ["Open Glucose Door", "importGlucose"],
+          ["Let Oxygen Drift", "importOxygen"],
+          ["Open Water Gate", "importWater"],
+          ["Export Waste", "exportWaste"],
+          ["Repair Membrane", "repairMembrane"],
+          ["Block Toxin", "blockToxin"]
+        ]
+      },
+      cytoplasm: {
+        name: "Cytoplasm",
+        role: "Factory floor",
+        functionText: "The gel-like space where organelles sit and materials move around. If the cytoplasm is crowded or blocked, transport slows down.",
+        evidence: "If transport efficiency is low but organelles are healthy, the issue may be crowded cytoplasm or large cell size.",
+        actions: [
+          ["View material flow", "viewFlow"],
+          ["Clear blockage", "clearCytoplasm"],
+          ["Improve flow", "improveFlow"]
+        ]
+      },
+      cellwall: {
+        name: "Cell wall",
+        role: "Plant support wall",
+        functionText: "A rigid outer layer found in plant cells. It gives support, protection, and helps the plant cell keep its shape. Animal cells do not have cell walls.",
+        evidence: "If a plant cell is losing shape or being damaged, inspect the cell wall and vacuole water level.",
+        actions: [
+          ["Repair wall", "repairWall"],
+          ["Strengthen wall", "strengthenWall"],
+          ["Compare animal cell", "compareAnimal"],
+        ]
+      },
+      nucleus: {
+        name: "Nucleus",
+        role: "Command center",
+        functionText: "Stores DNA instructions and controls cell activities. It sends instructions for proteins to be made.",
+        evidence: "If the cell needs a specific protein, start with the nucleus to send the correct instructions.",
+        actions: [
+          ["Send repair instructions", "sendRepairInstructions"],
+          ["Send transport instructions", "sendTransportInstructions"],
+          ["Send enzyme instructions", "sendEnzymeInstructions"]
+        ]
+      },
+      ribosomes: {
+        name: "Ribosomes",
+        role: "Protein assembly machines",
+        functionText: "Ribosomes synthesize proteins. They use instructions from the nucleus and energy from ATP to build proteins.",
+        evidence: "If protein production is low while ATP and instructions are available, ribosomes may be the issue.",
+        actions: [
+          ["Synthesize protein", "synthesizeProtein"],
+          ["Build membrane protein", "buildMembraneProtein"],
+          ["Repair ribosomes", "repairRibosomes"]
+        ]
+      },
+      er: {
+        name: "Endoplasmic reticulum",
+        role: "Conveyor belt system",
+        functionText: "The ER helps move and process materials, especially proteins. Rough ER is connected with ribosomes.",
+        evidence: "If proteins are made but not moving forward, the ER may be jammed.",
+        actions: [
+          ["Move proteins to Golgi", "moveProteins"],
+          ["Clear protein jam", "clearERJam"],
+          ["Upgrade ER transport", "upgradeER"]
+        ]
+      },
+      golgi: {
+        name: "Golgi apparatus",
+        role: "Packaging and shipping center",
+        functionText: "Modifies, packages, labels, and ships proteins and other materials to their destinations.",
+        evidence: "If protein production is high but delivery is low, inspect the ER and Golgi rather than making more proteins.",
+        actions: [
+          ["Package proteins", "packageProteins"],
+          ["Ship to membrane", "shipMembrane"],
+          ["Ship outside cell", "shipOutside"],
+          ["Repair Golgi", "repairGolgi"]
+        ]
+      },
+      vacuole: {
+        name: "Vacuole",
+        role: "Storage tank",
+        functionText: "Stores water, nutrients, and waste. Plant cells usually have one large central vacuole that helps keep the cell firm.",
+        evidence: "If waste is high or a plant cell is wilting, check vacuole storage and water balance.",
+        actions: [
+          ["Store water", "storeWater"],
+          ["Release water", "releaseWater"],
+          ["Store waste", "storeWaste"],
+          ["Send waste out", "sendWasteOut"]
+        ]
+      },
+      mitochondria: {
+        name: "Mitochondria",
+        role: "Power plant",
+        functionText: "Performs cellular respiration. It uses glucose and oxygen to produce ATP, the energy that powers cell work.",
+        evidence: "If ATP is low and glucose/oxygen are available, mitochondria are the first place to inspect.",
+        actions: [
+          ["Run cellular respiration", "runRespiration"],
+          ["Send glucose", "sendGlucoseMito"],
+          ["Send oxygen", "sendOxygenMito"],
+          ["Repair mitochondria", "repairMito"]
+        ]
+      },
+      chloroplast: {
+        name: "Chloroplasts",
+        role: "Solar power stations",
+        functionText: "Plant-cell organelles that use sunlight to make glucose. Mitochondria still use that glucose to make ATP.",
+        evidence: "If a plant cell is low on glucose and sunlight is available, inspect chloroplasts.",
+        actions: [
+          ["Collect sunlight", "collectSunlight"],
+          ["Make glucose", "makeGlucose"],
+          ["Send glucose to mitochondria", "sendGlucoseFromChloro"]
+        ]
+      },
+      size: {
+        name: "Cell size / transport",
+        role: "Surface area to volume balance",
+        functionText: "As a cell gets larger, volume increases faster than surface area. The membrane may not move enough materials in and out, so transport becomes inefficient.",
+        evidence: "If the cell is large, transport is low, and waste is rising, cell size may be the root problem.",
+        actions: [
+          ["Show small vs large", "showSizeCompare"],
+          ["Upgrade transport network", "upgradeTransportNetwork"],
+          ["Divide cell", "divideCell"]
+        ]
+      }
+    };
+
+    // This project contains only the membrane sequence, levels 1A-1F.
+    const levels = [...MEMBRANE_LEVELS];
+
+
+    const WATER_CHANNEL_LEVEL_ID = "water-channel";
+    // OSMOSIS_CHALLENGE_LEVEL_ID, OSMOSIS_GOAL_SECONDS, OSMOSIS_TICK_MS, OSMOSIS_CENTER
+    // and OSMOSIS_CHANNELS now live in sims/osmosis.js (loaded before this script).
+    const WATER_DRAG_CHANNEL_Y = 280;
+    const WATER_DRAG_CHANNEL_TOLERANCE = 42;
+    const GLUCOSE_DRAG_DOOR_Y = 280;
+    const GLUCOSE_DRAG_DOOR_TOLERANCE = 36;
+    const MEMBRANE_ROAM_OUTSIDE_MAX_X = 380;
+    const MEMBRANE_ROAM_INSIDE_MIN_X = 520;
+    const WATER_DRAG_BOUNDS = {
+      outside: { xMin: 92, xMax: MEMBRANE_ROAM_OUTSIDE_MAX_X, yMin: 126, yMax: 428 },
+      inside: { xMin: MEMBRANE_ROAM_INSIDE_MIN_X, xMax: 824, yMin: 126, yMax: 428 }
+    };
+    const GLUCOSE_DRAG_BOUNDS = {
+      outside: { xMin: 112, xMax: MEMBRANE_ROAM_OUTSIDE_MAX_X, yMin: 126, yMax: 428 },
+      inside: { xMin: MEMBRANE_ROAM_INSIDE_MIN_X, xMax: 820, yMin: 126, yMax: 428 }
+    };
+    const WASTE_VESICLE_BOUNDS = { xMin: MEMBRANE_ROAM_INSIDE_MIN_X, xMax: 820, yMin: 144, yMax: 424 };
+    const WASTE_VESICLE_CAPACITY = 3;
+    const WASTE_VESICLE_CORE_RADIUS = 18;
+
+    let state = {
+      levelIndex: 0,
+      cellType: "plant",
+      selected: null,
+      score: 0,
+      aiChecks: 0,
+      completedActions: new Set(),
+      instructionsReady: false,
+      stats: {},
+      completedLevel: false,
+      levelLost: false,
+      lossReason: null,
+      warnedKeys: new Set(),
+      demoTimers: [],
+      demoFrames: [],
+      demoRunId: 0,
+      feedbackLockUntil: 0,
+      feedbackPriority: 0,
+      osmosisHealthySeconds: 0,
+      osmosisDriftDirection: 1,
+      osmosisTickCount: 0,
+      osmosisCellScaleBase: 1,
+      osmosisCellAngle: 0,
+      osmosisChannelRadius: 112,
+      osmosisDangerTicks: 0,
+      osmosisAmbientSprites: [],
+      activeSneakyToxins: [],
+      activeFloatingWaste: [],
+      cleanupCrewUnits: [],
+      trashTakerUnits: [],
+      cleanupWaveActive: false,
+      trashWaveActive: false,
+      nextDemoObjectId: 1,
+      membraneCracksUnlocked: false,
+      transportPreludeIndex: 0,
+      transportPreludeActive: false,
+      transportPreludePopupOpen: false,
+      transportPreludeFinished: false,
+      simpleMoleculeDragChallengeActive: false,
+      simpleMoleculeDragSprites: [],
+      simpleMoleculeDragCompleted: 0,
+      simpleMoleculeDragPhase: "in",
+      simpleMoleculeDragReviewQueued: false,
+      waterDragChallengeActive: false,
+      waterDragSprites: [],
+      waterDragTransported: 0,
+      waterDragReviewQueued: false,
+      glucoseDragChallengeActive: false,
+      glucoseDragSprites: [],
+      glucoseDragTransported: 0,
+      glucoseDragReviewQueued: false,
+      glucoseLeverState: "up",
+      glucoseLeverReadyAt: 0,
+      glucoseInPocket: null,
+      glucoseAirlockOverlay: null,
+      glucoseLeverOverlay: null,
+      wasteVesicleChallengeActive: false,
+      wasteDragSprites: [],
+      wasteVesicles: [],
+      wasteVesicleExported: 0,
+      wasteVesicleReviewQueued: false,
+      combinedTransportReviewQueued: false,
+      chatThreads: {},
+      chatThreadOrder: [],
+      activeChatLevelId: null,
+      osmosisSideQuestActive: false,
+      osmosisReturnLevelId: null,
+      osmosisSideQuestOffered: false,
+      osmosisSideQuestChoiceMade: false,
+      osmosisSideQuestCompleted: false,
+      osmosisReturnMessageShown: false,
+      osmosisRecapShown: false,
+      transportRecapOnStartIndex: null,
+      actionHistory: [],
+      statHistory: [],
+      gameRecapShown: false
+    };
+
+    let sfxAudioContext = null;
+
+    const statMeta = [
+      ["atp", "ATP"], ["glucose", "Glucose"], ["oxygen", "Oxygen"], ["protein", "Protein"],
+      ["toxinsInside", "Toxins Inside"], ["outsideSalt", "Outside Salt"], ["waste", "Waste"], ["water", "Water"], ["transport", "Transport"], ["size", "Cell size"],
+      ["sunlight", "Sunlight"], ["delivery", "Delivery"], ["membraneHealth", "Membrane Health"]
+    ];
+
+    const svg = document.getElementById("cellSvg");
+    const messages = document.getElementById("messages");
+    const details = document.getElementById("details");
+    const toast = document.getElementById("toast");
+    const levelHintBtn = document.getElementById("levelHintBtn");
+    const levelHintPopup = document.getElementById("levelHintPopup");
+
+    function clamp(n, min = 0, max = 100) { return Math.max(min, Math.min(max, Math.round(n))); }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[ch]));
+    }
+
+    function levelHintPlayText(level = currentLevel()) {
+      if (!level?.membraneDemoMode) return "";
+      if (isCombinedTransportLevel(level)) {
+        return "Drag water to the blue Water Channel, drag glucose to the yellow Glucose Door, and pack inside waste into vesicles. A full vesicle releases waste outside near the bottom exit.";
+      }
+      if (isSimpleMoleculeDragLevel(level)) {
+        return simpleMoleculeDragKind(level) === "oxygen"
+          ? "Move all 5 oxygen molecules through the membrane into the cell. After the checkpoint, move those same 5 molecules back outside."
+          : "Drag large molecules toward the phospholipid membrane. Release from the middle or closer and watch them bounce off.";
+      }
+      if (isWaterDragLevel(level)) {
+        const waterStart = waterDragStartSide(level) === "outside" ? "outside-cell box" : "inside-cell box";
+        const waterTarget = waterDragTargetSide(level) === "outside" ? "outside cell" : "inside cell";
+        return `Drag water in the ${waterStart}. Release it at the Water Channel to move it into the ${waterTarget}.`;
+      }
+      if (isGlucoseDragLevel(level)) {
+        return level.glucoseDragChallenge?.autoDoor
+          ? "Drag glucose into the Glucose Door. The door opens, closes, then releases glucose inside."
+          : "Click the lever up to open the left door. Drag glucose into the door, then click the lever down to release it inside.";
+      }
+      if (isWasteVesicleLevel(level)) {
+        return "Drag floating waste blocks into moving vesicle bubbles. A vesicle exports automatically when it holds 3 waste blocks.";
+      }
+      if (level.demoStage === "transportReview") {
+        return "Review each path: oxygen slips through, water uses the channel, glucose uses the door, and waste exits.";
+      }
+      return "";
+    }
+
+    function showLevelHintPopup() {
+      const level = currentLevel();
+      if (!level || !levelHintPopup) return;
+      const playText = levelHintPlayText(level);
+
+      levelHintPopup.innerHTML = `
+        <div class="learning-card">
+          <div class="learning-step">Level Hint</div>
+          <h3>${escapeHtml(level.title)}</h3>
+          <div class="learning-grid">
+            <div class="learning-point-bubble">
+              <p><b>Goal:</b> ${escapeHtml(level.goal)}</p>
+              <p><b>Scenario:</b> ${escapeHtml(level.scenario)}</p>
+              ${playText ? `<p><b>How to play:</b> ${escapeHtml(playText)}</p>` : ""}
+              <p><b>Hint:</b> ${escapeHtml(level.hint)}</p>
+              <p><b>Evidence:</b> ${escapeHtml(level.evidence)}</p>
+            </div>
+          </div>
+          <div class="learning-actions">
+            <button class="ghost" onclick="closeLevelHintPopup()">Close</button>
+          </div>
+        </div>
+      `;
+      levelHintPopup.classList.add("visible");
+    }
+
+    function closeLevelHintPopup() {
+      if (!levelHintPopup) return;
+      levelHintPopup.classList.remove("visible");
+      levelHintPopup.innerHTML = "";
+    }
+
+    function getSfxAudioContext() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      if (!sfxAudioContext) sfxAudioContext = new AudioContextClass();
+      if (sfxAudioContext.state === "suspended") sfxAudioContext.resume().catch(() => {});
+      return sfxAudioContext;
+    }
+
+    function snapshotStats(stats = state.stats) {
+      const keys = ["atp", "toxinsInside", "waste", "membraneHealth", "outsideSalt", "water", "size", "transport", "glucose", "oxygen"];
+      return Object.fromEntries(keys.filter(key => stats && stats[key] !== undefined).map(key => [key, stats[key]]));
+    }
+
+    function actionLabel(action) {
+      const labels = {
+        cleaner: "Sent Cleaner Protein",
+        trashTaker: "Sent Garbage Man Protein",
+        demoWaterGate: "Moved Water Through Channel",
+        demoGlucoseDoor: "Moved Glucose Through Door",
+        demoLargeMoleculeBlock: "Watched Large Molecules Bounce",
+        demoWasteExit: "Used Waste Exit",
+        addSaltOutside: "Added Salt Outside",
+        addWaterOutside: "Added Water Outside",
+        balanceOutside: "Balanced Outside",
+        repairMembrane: "Repaired Membrane",
+        importGlucose: "Imported Glucose",
+        runRespiration: "Ran Respiration",
+        repairMito: "Repaired Mitochondria",
+        exportWaste: "Exported Waste",
+        challengeAI: "Challenged AI"
+      };
+      return labels[action] || action.replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase());
+    }
+
+    function isInteractiveGameLevel(level = currentLevel()) {
+      return !!level && (
+        !level.membraneDemoMode ||
+        ["sneaky", "mixed", "damaging", "waterBalance"].includes(level.demoStage) ||
+        !!level.combinedTransportChallenge
+      );
+    }
+
+    function recordStatSnapshot(reason = "Stats changed", delta = null) {
+      if (!isInteractiveGameLevel()) return;
+      const now = Date.now();
+      const previous = state.statHistory[state.statHistory.length - 1];
+      if (previous && now - previous.time < 700 && !delta) return;
+      state.statHistory.push({
+        time: now,
+        reason,
+        delta,
+        stats: snapshotStats()
+      });
+      if (state.statHistory.length > 60) state.statHistory.shift();
+    }
+
+    function beginActionLog(action) {
+      if (!isInteractiveGameLevel()) return null;
+      const entry = {
+        time: Date.now(),
+        action,
+        label: actionLabel(action),
+        before: snapshotStats(),
+        after: null
+      };
+      state.actionHistory.push(entry);
+      if (state.actionHistory.length > 40) state.actionHistory.shift();
+      return entry;
+    }
+
+    function finishActionLog(entry) {
+      if (!entry || entry.after) return;
+      entry.after = snapshotStats();
+    }
+
+    function setStats(newStats) {
+      state.stats = { ...state.stats, ...newStats };
+      for (const key in state.stats) state.stats[key] = clamp(state.stats[key]);
+      renderStats();
+      recordStatSnapshot("Stats set", newStats);
+    }
+
+    function adjustStats(delta) {
+      const next = { ...state.stats };
+      for (const key in delta) next[key] = clamp((next[key] || 0) + delta[key]);
+      state.stats = next;
+      renderStats(delta);
+      recordStatSnapshot("Stats changed", delta);
+      evaluateLossConditions();
+    }
+
+    function statStatus(key, value) {
+      if (key === "outsideSalt") {
+        if (value <= 15 || value >= 85) return "critical";
+        if (value <= 30 || value >= 70) return "warning";
+        return "";
+      }
+      if (key === "size" && currentLevel().membraneDemoMode && currentLevel().demoStage === "waterBalance") {
+        if (value <= 20 || value >= 86) return "critical";
+        if (value <= 35 || value >= 70) return "warning";
+        return "";
+      }
+      if (key === "toxinsInside") {
+        if (value >= 20) return "critical";
+        if (value >= 12) return "warning";
+        return "";
+      }
+      if (key === "waste" || key === "size") {
+        if (value > 85) return "critical";
+        if (value > 65) return "warning";
+        return "";
+      }
+      if (key === "water") {
+        if (value > 85 || value < 15) return "critical";
+        if (value > 75 || value < 30) return "warning";
+        return "";
+      }
+      if (key === "membraneHealth") {
+        if (value <= 24) return "critical";
+        if (value <= 49) return "warning";
+        return "";
+      }
+      if (key === "sunlight" && state.cellType === "animal") return "";
+      if (value < 15) return "critical";
+      if (value < 30) return "warning";
+      return "";
+    }
+
+    function statColor(key, value) {
+      if (key === "outsideSalt") {
+        return (value <= 15 || value >= 85) ? "var(--bad)" : (value <= 30 || value >= 70) ? "var(--warn)" : "var(--good)";
+      }
+      if (key === "size" && currentLevel().membraneDemoMode && currentLevel().demoStage === "waterBalance") {
+        return (value <= 20 || value >= 86) ? "var(--bad)" : (value <= 35 || value >= 70) ? "var(--warn)" : "var(--good)";
+      }
+      if (key === "toxinsInside") {
+        return value >= 20 ? "var(--bad)" : value >= 12 ? "var(--warn)" : "var(--good)";
+      }
+      if (key === "waste" || key === "size") {
+        return value > 70 ? "var(--bad)" : value > 45 ? "var(--warn)" : "var(--good)";
+      }
+      if (key === "water") {
+        return value > 85 ? "var(--bad)" : value > 75 ? "var(--warn)" : value < 20 ? "var(--bad)" : value < 35 ? "var(--warn)" : "var(--good)";
+      }
+      if (key === "membraneHealth") {
+        return value <= 24 ? "var(--bad)" : value <= 49 ? "var(--warn)" : value < 100 ? "var(--good)" : "linear-gradient(90deg, var(--good), var(--cyan))";
+      }
+      return value < 25 ? "var(--bad)" : value < 50 ? "var(--warn)" : "linear-gradient(90deg, var(--blue), var(--cyan))";
+    }
+
+    function isWaterDragLevel(level = currentLevel()) {
+      return !!(level && level.membraneDemoMode && level.demoStage === "transport" && level.waterDragChallenge);
+    }
+
+    function isGlucoseDragLevel(level = currentLevel()) {
+      return !!(level && level.membraneDemoMode && level.demoStage === "transport" && level.glucoseDragChallenge);
+    }
+
+    function isWasteVesicleLevel(level = currentLevel()) {
+      return !!(level && level.membraneDemoMode && level.demoStage === "transport" && level.wasteVesicleChallenge);
+    }
+
+    function isCombinedTransportLevel(level = currentLevel()) {
+      return !!(level && level.membraneDemoMode && level.demoStage === "transport" && level.combinedTransportChallenge);
+    }
+
+    function simpleMoleculeDragKind(level = currentLevel()) {
+      if (!level || !level.membraneDemoMode || level.demoStage !== "transport") return null;
+      if (level.oxygenDragChallenge) return "oxygen";
+      if (level.largeMoleculeDragChallenge) return "largeMolecule";
+      return null;
+    }
+
+    function isSimpleMoleculeDragLevel(level = currentLevel()) {
+      return !!simpleMoleculeDragKind(level);
+    }
+
+    function simpleMoleculeDragGoal(level = currentLevel()) {
+      const kind = simpleMoleculeDragKind(level);
+      const config = kind === "oxygen" ? level?.oxygenDragChallenge : level?.largeMoleculeDragChallenge;
+      return Math.max(1, Number(config?.goal) || 5);
+    }
+
+    function waterDragGoal(level = currentLevel()) {
+      return Math.max(1, Number(level?.waterDragChallenge?.goal) || 5);
+    }
+
+    function glucoseDragGoal(level = currentLevel()) {
+      return Math.max(1, Number(level?.glucoseDragChallenge?.goal) || 5);
+    }
+
+    function wasteVesicleGoal(level = currentLevel()) {
+      return Math.max(WASTE_VESICLE_CAPACITY, Number(level?.wasteVesicleChallenge?.goal) || 6);
+    }
+
+    function waterDragDirection(level = currentLevel()) {
+      return level?.waterDragChallenge?.direction === "out" ? "out" : "in";
+    }
+
+    function waterDragStartSide(level = currentLevel()) {
+      return waterDragDirection(level) === "out" ? "inside" : "outside";
+    }
+
+    function waterDragTargetSide(level = currentLevel()) {
+      return waterDragDirection(level) === "out" ? "outside" : "inside";
+    }
+
+    function renderStats(delta = {}) {
+      const box = document.getElementById("stats");
+      const level = currentLevel();
+      if (!box) {
+        updateMembraneDemoVisuals();
+        return;
+      }
+      if (isCombinedTransportLevel(level)) {
+        const progressItems = [
+          ["Water through channel", state.waterDragTransported || 0, waterDragGoal(level), ""],
+          ["Glucose through door", state.glucoseDragTransported || 0, glucoseDragGoal(level), " glucose-progress"],
+          ["Waste by vesicles", state.wasteVesicleExported || 0, wasteVesicleGoal(level), " waste-progress"]
+        ];
+        box.innerHTML = progressItems.map(([label, value, goal, progressClass]) => {
+          const transported = Math.min(goal, value);
+          const pct = Math.round((transported / goal) * 100);
+          return `
+            <div class="water-transport-progress combo-progress${progressClass}">
+              <div class="stat-top"><span class="stat-name">${label}</span><span class="stat-value">${transported}/${goal}</span></div>
+              <div class="bar"><span style="width:${pct}%;"></span></div>
+            </div>
+          `;
+        }).join("");
+        const scoreBadge = document.getElementById("scoreBadge");
+        const aiBadge = document.getElementById("aiBadge");
+        if (scoreBadge) scoreBadge.textContent = `Score ${state.score}`;
+        if (aiBadge) aiBadge.textContent = `AI checks ${state.aiChecks}`;
+        updateMembraneDemoVisuals();
+        return;
+      }
+      if (isSimpleMoleculeDragLevel(level) || isWaterDragLevel(level) || isGlucoseDragLevel(level) || isWasteVesicleLevel(level)) {
+        const simpleMode = isSimpleMoleculeDragLevel(level);
+        const simpleKind = simpleMoleculeDragKind(level);
+        const glucoseMode = isGlucoseDragLevel(level);
+        const wasteMode = isWasteVesicleLevel(level);
+        const goal = simpleMode ? simpleMoleculeDragGoal(level) : wasteMode ? wasteVesicleGoal(level) : glucoseMode ? glucoseDragGoal(level) : waterDragGoal(level);
+        const transported = Math.min(goal, simpleMode ? (state.simpleMoleculeDragCompleted || 0) : wasteMode ? (state.wasteVesicleExported || 0) : glucoseMode ? (state.glucoseDragTransported || 0) : (state.waterDragTransported || 0));
+        const pct = Math.round((transported / goal) * 100);
+        const oxygenProgressLabel = state.simpleMoleculeDragPhase === "out" ? "Oxygen moved outside" : "Oxygen moved inside";
+        const label = simpleMode ? (simpleKind === "oxygen" ? oxygenProgressLabel : "Large molecules bounced") : wasteMode ? "Waste exported by vesicles" : glucoseMode ? "Glucose transported through" : "Water transported through";
+        const progressClass = simpleMode ? (simpleKind === "oxygen" ? " oxygen-progress" : " large-progress") : wasteMode ? " waste-progress" : glucoseMode ? " glucose-progress" : "";
+        box.innerHTML = `
+          <div class="water-transport-progress${progressClass}">
+            <div class="stat-top"><span class="stat-name">${label}</span><span class="stat-value">${transported}/${goal}</span></div>
+            <div class="bar"><span style="width:${pct}%;"></span></div>
+          </div>
+        `;
+        const scoreBadge = document.getElementById("scoreBadge");
+        const aiBadge = document.getElementById("aiBadge");
+        if (scoreBadge) scoreBadge.textContent = `Score ${state.score}`;
+        if (aiBadge) aiBadge.textContent = `AI checks ${state.aiChecks}`;
+        updateMembraneDemoVisuals();
+        return;
+      }
+      const visibleKeys = level.relevantStats || statMeta.map(([key]) => key);
+      box.innerHTML = "";
+      statMeta.forEach(([key, label]) => {
+        if (!visibleKeys.includes(key)) return;
+        const value = key === "sunlight" && state.cellType === "animal" ? 0 : (state.stats[key] ?? (key === "membraneHealth" ? 100 : 0));
+        const stat = document.createElement("div");
+        const status = statStatus(key, value);
+        stat.className = "stat focused" + (key in delta ? " resource-flash" : "") + (status ? ` ${status}` : "");
+        const color = statColor(key, value);
+        const barWidth = key === "toxinsInside" ? Math.min(100, (value / 20) * 100) : value;
+        stat.innerHTML = `
+          <div class="stat-top"><span class="stat-name">${label}</span><span class="stat-value">${value}</span></div>
+          <div class="bar"><span style="width:${barWidth}%; background:${color};"></span></div>
+        `;
+        box.appendChild(stat);
+      });
+      const scoreBadge = document.getElementById("scoreBadge");
+      const aiBadge = document.getElementById("aiBadge");
+      if (scoreBadge) scoreBadge.textContent = `Score ${state.score}`;
+      if (aiBadge) aiBadge.textContent = `AI checks ${state.aiChecks}`;
+      updateMembraneDemoVisuals();
+    }
+
+    function levelChatId(index = state.levelIndex) {
+      const level = levels[index];
+      return level ? (level.id || `level-${index}`) : `level-${index}`;
+    }
+
+    function levelIndexById(id) {
+      return levels.findIndex((level, index) => (level.id || `level-${index}`) === id);
+    }
+
+    function chatLabel(id) {
+      const index = levelIndexById(id);
+      return index >= 0 ? levels[index].title : "Previous level";
+    }
+
+    function ensureChatThread(id) {
+      if (!state.chatThreads[id]) {
+        state.chatThreads[id] = [];
+        state.chatThreadOrder.push(id);
+      }
+      return state.chatThreads[id];
+    }
+
+    function currentChatThread() {
+      const id = state.activeChatLevelId || levelChatId();
+      state.activeChatLevelId = id;
+      return ensureChatThread(id);
+    }
+
+    function buildMessageNode(entry) {
+      const node = document.createElement("div");
+      node.className = `msg ${entry.type}`;
+      const text = document.createElement("div");
+      text.textContent = entry.text;
+      node.appendChild(text);
+
+      if (entry.actions === "osmosisOffer") {
+        const actions = document.createElement("div");
+        actions.className = "chat-actions";
+
+        const tryButton = document.createElement("button");
+        tryButton.className = "primary";
+        tryButton.textContent = "Try Osmosis Challenge";
+        tryButton.disabled = state.osmosisSideQuestChoiceMade;
+        tryButton.addEventListener("click", startOsmosisSideQuest);
+
+        const continueButton = document.createElement("button");
+        continueButton.className = "ghost";
+        continueButton.textContent = "Keep Going";
+        continueButton.disabled = state.osmosisSideQuestChoiceMade;
+        continueButton.addEventListener("click", declineOsmosisSideQuest);
+
+        actions.appendChild(tryButton);
+        actions.appendChild(continueButton);
+        node.appendChild(actions);
+      }
+
+      return node;
+    }
+
+    function renderChat() {
+      if (!messages) return;
+      messages.innerHTML = "";
+      const activeId = state.activeChatLevelId || levelChatId();
+      const archivedIds = state.chatThreadOrder.filter(id => id !== activeId && (state.chatThreads[id] || []).length);
+
+      archivedIds.forEach(id => {
+        const archive = document.createElement("details");
+        archive.className = "chat-archive";
+        const summary = document.createElement("summary");
+        summary.textContent = `${chatLabel(id)} chat (${state.chatThreads[id].length})`;
+        archive.appendChild(summary);
+
+        const archiveMessages = document.createElement("div");
+        archiveMessages.className = "chat-archive-messages";
+        state.chatThreads[id].forEach(entry => archiveMessages.appendChild(buildMessageNode({ ...entry, actions: null })));
+        archive.appendChild(archiveMessages);
+        messages.appendChild(archive);
+      });
+
+      const activeMessages = document.createElement("div");
+      activeMessages.className = "active-chat";
+      activeMessages.id = "activeChatMessages";
+      ensureChatThread(activeId).forEach(entry => activeMessages.appendChild(buildMessageNode(entry)));
+      messages.appendChild(activeMessages);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function addMessage(type, text, options = {}) {
+      currentChatThread().push({ type, text, actions: options.actions || null });
+      renderChat();
+    }
+
+    function bot(text, options = {}) { addMessage("bot", text, options); }
+    function user(text) { addMessage("user", text); }
+    function sys(text) { addMessage("system", text); }
+
+    function currentLevel() { return levels[state.levelIndex]; }
+
+    function loadLevel(index) {
+      stopMembraneDemo();
+      closeLevelHintPopup();
+      state.levelIndex = (index + levels.length) % levels.length;
+      const level = currentLevel();
+      const chatId = levelChatId(state.levelIndex);
+      const isNewChatThread = !state.chatThreads[chatId];
+      state.activeChatLevelId = chatId;
+      ensureChatThread(chatId);
+      state.cellType = level.cellType;
+      state.completedActions = new Set();
+      state.completedLevel = false;
+      state.levelLost = false;
+      state.lossReason = null;
+      state.transportPreludeIndex = level.transportPreludeIndex ?? 0;
+      state.transportPreludeActive = false;
+      state.transportPreludePopupOpen = false;
+      state.transportPreludeFinished = false;
+      state.simpleMoleculeDragChallengeActive = false;
+      state.simpleMoleculeDragSprites = [];
+      state.simpleMoleculeDragCompleted = 0;
+      state.simpleMoleculeDragPhase = "in";
+      state.simpleMoleculeDragReviewQueued = false;
+      state.waterDragChallengeActive = false;
+      state.waterDragSprites = [];
+      state.waterDragTransported = 0;
+      state.waterDragReviewQueued = false;
+      state.glucoseDragChallengeActive = false;
+      state.glucoseDragSprites = [];
+      state.glucoseDragTransported = 0;
+      state.glucoseDragReviewQueued = false;
+      state.glucoseLeverState = "up";
+      state.glucoseLeverReadyAt = 0;
+      state.glucoseInPocket = null;
+      state.glucoseAirlockOverlay = null;
+      state.glucoseLeverOverlay = null;
+      state.wasteVesicleChallengeActive = false;
+      state.wasteDragSprites = [];
+      state.wasteVesicles = [];
+      state.wasteVesicleExported = 0;
+      state.wasteVesicleReviewQueued = false;
+      state.combinedTransportReviewQueued = false;
+      state.osmosisRecapShown = false;
+      state.gameRecapShown = false;
+      state.actionHistory = [];
+      state.statHistory = [];
+      state.instructionsReady = false;
+      state.selected = null;
+      state.warnedKeys = new Set();
+      state.stats = { membraneHealth: 100, ...level.initial };
+      recordStatSnapshot("Level started", null);
+      const levelTitle = document.getElementById("levelTitle");
+      const levelGoal = document.getElementById("levelGoal");
+      const cellTypeBadge = document.getElementById("cellTypeBadge");
+      if (levelTitle) levelTitle.textContent = level.title;
+      if (levelGoal) levelGoal.textContent = level.goal;
+      if (cellTypeBadge) cellTypeBadge.textContent = state.cellType === "plant" ? "Plant cell" : "Animal cell";
+      svg.setAttribute("viewBox", level.viewBox || "0 0 900 560");
+      updateCellTypeVisuals();
+      setMembraneDemoMode(!!level.membraneDemoMode);
+      renderStats();
+      renderDetails();
+      clearAlerts();
+      setScenarioAlerts();
+      toast.textContent = level.scenario;
+      renderChat();
+      if (isNewChatThread) {
+        sys(level.scenario);
+        bot(level.membraneDemoMode ? (level.demoStage === "waterBalance" ? "Manage the outside environment. Water will move automatically through the channel based on saltiness." : level.demoStage === "transport" ? (level.oxygenDragChallenge ? "Start with the popup. Move 5 oxygen molecules inside, read the membrane checkpoint, then move those same 5 back outside." : "Start with the popup. This membrane lesson teaches one crossing rule, then pauses for review.") : level.demoStage === "transportReview" ? "Now combine the prelude ideas. Click each membrane action and compare how each material crosses." : "Read the preview, then watch the membrane demo. Use the animation as evidence and choose the right command.") : "Welcome to this scenario. Ask me for advice, but remember: use the cell data and visuals to fact-check me.");
+      }
+      if (level.membraneDemoMode) startMembraneDemo(level.demoStage);
+    }
+
+    function loseLevel(reason) {
+      if (state.levelLost) return true;
+      const losingLevel = currentLevel();
+      const losingSize = state.stats?.size ?? 50;
+      const osmosisDeathKind = losingLevel.membraneDemoMode && losingLevel.demoStage === "waterBalance"
+        ? (losingSize >= 70 ? "swellExplosion" : losingSize <= 35 ? "shrinkPop" : null)
+        : null;
+      state.levelLost = true;
+      state.lossReason = reason;
+      state.completedLevel = false;
+      stopMembraneDemo();
+      restoreOsmosisCellBody();
+      if (osmosisDeathKind) triggerOsmosisDeathAnimation(osmosisDeathKind);
+      const message = `Cell failed: ${reason} Click Reset to retry this level.`;
+      toast.textContent = message;
+      const feedback = document.getElementById("demoFeedback");
+      if (feedback) feedback.textContent = message;
+      const goal = document.getElementById("levelGoal");
+      if (goal) goal.textContent = "Cell failed. Click Reset to retry this level.";
+      sys(message);
+      renderDetails();
+      renderStats();
+      if (losingLevel.membraneDemoMode && losingLevel.demoStage === "waterBalance") {
+        showOsmosisRecapPopup("loss");
+      } else {
+        showGameRecapPopup("loss");
+      }
+      return true;
+    }
+
+    function evaluateLossConditions() {
+      if (state.levelLost || !state.stats) return state.levelLost;
+      const s = state.stats;
+      const level = currentLevel();
+
+      if ((s.membraneHealth ?? 100) <= 0) {
+        return loseLevel("Membrane Health reached 0, so the cell can no longer control what enters or exits.");
+      }
+
+      // In the water-balance mini-game, do not use the older global Water 0/100 failure.
+      // The whole point of this level is to give the player time to react to swelling/shrinking.
+      // Failure is based on cell size plus a short danger grace period instead.
+      if (level.membraneDemoMode && level.demoStage === "waterBalance") {
+        const sizeDangerTime = state.osmosisDangerTicks || 0;
+        if ((s.size ?? 50) <= 6 || ((s.size ?? 50) <= 18 && sizeDangerTime >= 4)) {
+          return loseLevel("The cell shrank too much because the outside stayed too salty and water kept leaving.");
+        }
+        if ((s.size ?? 50) >= 97 || ((s.size ?? 50) >= 90 && sizeDangerTime >= 4)) {
+          return loseLevel("The cell swelled too much because the outside stayed too watery and water kept entering.");
+        }
+      } else {
+        if ((s.water ?? 50) >= 100) {
+          return loseLevel("Water reached 100. Too much water entered, so the cell burst from water imbalance.");
+        }
+        if ((s.water ?? 50) <= 0) {
+          return loseLevel("Water reached 0. The cell dried out and could not keep its shape or chemistry working.");
+        }
+      }
+      const toxinsInside = s.toxinsInside ?? 0;
+      if (level.membraneDemoMode && ["sneaky", "mixed"].includes(level.demoStage)) {
+        if (toxinsInside >= 20) {
+          return loseLevel("Toxins Inside reached 20. Too many sneaky toxins built up in the cytoplasm before Cleaner could handle them.");
+        }
+        if (!state.cleanupWaveActive && toxinsInside >= 10 && (s.atp ?? 0) < 5) {
+          return loseLevel("Toxins Inside is high and ATP is below 5, so the cell does not have enough energy to send Cleaner.");
+        }
+      }
+      if ((s.waste ?? 0) >= 100) {
+        return loseLevel("Waste reached 100. Toxic buildup overwhelmed the cell before it could clean up and export waste.");
+      }
+      if ((s.transport ?? 50) <= 0) {
+        return loseLevel("Transport reached 0. Materials can no longer move through the cell factory.");
+      }
+      return false;
+    }
+
+    function updateCellTypeVisuals() {
+      const isPlant = state.cellType === "plant";
+      document.getElementById("plantWall").classList.toggle("hidden-svg", !isPlant);
+      document.getElementById("cellwallHit").classList.toggle("hidden-svg", !isPlant);
+      document.getElementById("cellWallLabel").classList.toggle("hidden-svg", !isPlant);
+      document.getElementById("cellWallSubLabel").classList.toggle("hidden-svg", !isPlant);
+      document.getElementById("chloroplast").classList.toggle("hidden-svg", !isPlant);
+      const plantButton = document.getElementById("plantBtn");
+      const animalButton = document.getElementById("animalBtn");
+      const cellTypeBadge = document.getElementById("cellTypeBadge");
+      if (plantButton) plantButton.className = isPlant ? "success" : "ghost";
+      if (animalButton) animalButton.className = isPlant ? "ghost" : "success";
+      if (cellTypeBadge) cellTypeBadge.textContent = isPlant ? "Plant cell" : "Animal cell";
+      if (!isPlant) setStats({ sunlight: 0, wall: 0 });
+    }
+
+    function setCellType(type) {
+      if (state.levelLost) {
+        toast.textContent = "This attempt failed. Click Reset to retry the level.";
+        return;
+      }
+      state.cellType = type;
+      if (type === "plant") {
+        setStats({ sunlight: Math.max(state.stats.sunlight || 0, 55), wall: Math.max(state.stats.wall || 0, 80), water: Math.max(state.stats.water || 0, 55) });
+        toast.textContent = "Plant mode: cell wall and chloroplasts are active. The large vacuole is important for water balance.";
+        bot("Plant cell mode enabled. Remember: chloroplasts make glucose, but mitochondria still make ATP.");
+      } else {
+        setStats({ sunlight: 0, wall: 0 });
+        toast.textContent = "Animal mode: no cell wall and no chloroplasts. The cell membrane is the main outer boundary.";
+        bot("Animal cell mode enabled. Animal cells have no cell wall or chloroplasts.");
+      }
+      updateCellTypeVisuals();
+      renderDetails();
+    }
+
+    function clearAlerts() {
+      document.querySelectorAll(".organelle-shape").forEach(el => el.classList.remove("alert"));
+    }
+
+    function setScenarioAlerts() {
+      if (currentLevel().membraneDemoMode) return;
+      const i = state.levelIndex;
+      const alertByLevel = {
+        11: ["mitochondria", "ribosomes"],
+        12: ["nucleus", "ribosomes", "membrane"],
+        13: ["er", "golgi", "ribosomes"],
+        14: ["vacuole", "membrane"],
+        15: ["chloroplast", "mitochondria"],
+        16: ["sizeSystem", "cytoplasm", "membrane"],
+        17: ["cellwallHit", "chloroplast"]
+      }[i] || [];
+      alertByLevel.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("alert");
+      });
+    }
+
+    function selectOrganelle(key) {
+      if (key === "cellwall" && state.cellType !== "plant") {
+        toast.textContent = "Animal cells do not have cell walls. Switch to plant mode to inspect it.";
+        bot("Good plant-vs-animal check: animal cells do not have cell walls.");
+        return;
+      }
+      if (key === "chloroplast" && state.cellType !== "plant") {
+        toast.textContent = "Animal cells do not have chloroplasts. Chloroplasts are plant-cell structures.";
+        bot("Animal cells do not have chloroplasts. Plant cells use chloroplasts to make glucose from sunlight.");
+        return;
+      }
+      state.selected = key;
+      document.querySelectorAll(".organelle-shape").forEach(el => el.classList.remove("selected"));
+      const node = document.getElementById(key === "cellwall" ? "cellwallHit" : key === "size" ? "sizeSystem" : key);
+      if (node) node.classList.add("selected");
+      renderDetails();
+      const o = ORG[key];
+      toast.textContent = `${o.name}: ${o.role}. ${o.evidence}`;
+    }
+
+    function renderDetails() {
+      if (!details) return;
+      const level = currentLevel();
+      if (state.levelLost) {
+        document.getElementById("selectedTitle").textContent = "Cell failed";
+        document.getElementById("selectedSubtitle").textContent = "Reset this level to retry.";
+        details.innerHTML = `
+          <div class="mini-card">
+            <h4>Lose scenario</h4>
+            <p class="bad-text">${state.lossReason || "The cell could not stay balanced."}</p>
+          </div>
+          <div class="mini-card">
+            <h4>What now?</h4>
+            <p>Click <b>Reset</b> to retry this level. The cell cannot keep working after a failure state.</p>
+          </div>
+        `;
+        return;
+      }
+      if (level.membraneDemoMode) {
+        const currentPrelude = level.demoStage === "transport" ? TRANSPORT_PRELUDES[level.transportPreludeIndex ?? 0] : null;
+        const combinedChallenge = isCombinedTransportLevel(level);
+        const transportIsDragChallenge = combinedChallenge || isSimpleMoleculeDragLevel(level) || isWaterDragLevel(level) || isGlucoseDragLevel(level) || isWasteVesicleLevel(level);
+        const noticeItems = level.demoStage === "transport" && currentPrelude ? `
+                <li><b>${currentPrelude.material}:</b> ${currentPrelude.simple}</li>
+                <li><b>Path:</b> ${currentPrelude.path}</li>
+                <li><b>${transportIsDragChallenge ? "Do" : "Watch for"}:</b> ${currentPrelude.simText}</li>
+                <li>${transportIsDragChallenge ? "Complete 5 drag-and-drop tries, then use the review popup to replay or move on." : "Use the review popup to replay or move to the next membrane lesson."}</li>
+              ` : level.demoStage === "transportReview" ? `
+                <li>White oxygen slips through the membrane by itself.</li>
+                <li>Yellow glucose uses the Glucose Door.</li>
+                <li>Blue water uses the Water Channel and can move both ways.</li>
+                <li>Gray waste leaves through the Waste Exit.</li>
+              ` : level.demoStage === "waterBalance" ? `
+                <li>Outside Salt Level 50 is balanced.</li>
+                <li>Too salty outside: water automatically leaves and the cell shrinks.</li>
+                <li>Too watery outside: water automatically enters and the cell swells.</li>
+                <li>The buttons change the outside environment, not the water directly.</li>
+                <li>Keep the cell healthy for 20 seconds.</li>
+              ` : `
+                <li>Purple toxin: bounces off.</li>
+                <li>Orange toxin: wiggles through, then raises Toxins Inside while it roams in the cytoplasm.</li>
+                <li>If Toxins Inside reaches 20, the cell fails and must reset.</li>
+                <li>Cleaner Protein uses ATP to break sneaky toxins into waste. Garbage Man Protein also uses ATP to move floating waste to the Waste Exit.</li>
+                <li>Waste exits automatically through the Waste Exit.</li>
+                <li>Red spiky toxin: cracks the membrane and needs Repair Membrane.</li>
+              `;
+        document.getElementById("selectedTitle").textContent = "Nucleus Command Center";
+        document.getElementById("selectedSubtitle").textContent = level.demoStage === "transport"
+          ? "Use the ? hint button for level instructions."
+          : "Send commands for this membrane demo.";
+        const membraneActionCard = level.demoStage === "transport" ? "" : `
+          <div class="mini-card">
+            <h4>Controls</h4>
+            <div class="actions">
+              ${membraneDemoActionButtons(level.demoStage)}
+            </div>
+          </div>`;
+        const teacherNote = level.demoStage === "transport"
+          ? "Each prelude is now its own level. Students can use the top Next Level and Back buttons, or use Replay in the review popup."
+          : level.demoStage === "waterBalance"
+            ? "Water moves automatically based on outside saltiness. The player changes the outside environment so the cell returns to a healthy size."
+            : "Cleaner Protein handles sneaky toxins inside the cell. Garbage Man Protein spends ATP to line floating waste up for the Waste Exit. Repair Membrane handles membrane cracks.";
+        details.innerHTML = level.demoStage === "transport" ? "" : `${membraneActionCard}`;
+        return;
+      }
+      const key = state.selected;
+      if (!key) {
+        document.getElementById("selectedTitle").textContent = "Nucleus Command Center";
+        document.getElementById("selectedSubtitle").textContent = "Click a cell part, then choose a command.";
+        details.innerHTML = `
+          <div class="mini-card">
+            <h4>How to play</h4>
+            <p>Click an organelle in the simulation area. Its action buttons will appear here.</p>
+          </div>
+        `;
+        return;
+      }
+      const o = ORG[key];
+      document.getElementById("selectedTitle").textContent = "Nucleus Command Center";
+      document.getElementById("selectedSubtitle").textContent = `Commanding ${o.name}: ${o.role}`;
+      const disabledPlant = (key === "cellwall" || key === "chloroplast") && state.cellType !== "plant";
+      details.innerHTML = `
+        <div class="mini-card">
+          <h4>Actions</h4>
+          <div class="actions">
+            ${o.actions.map(([label, action]) => `<button ${disabledPlant ? "disabled" : ""} onclick="runAction('${action}')">${label}</button>`).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    const SNEAKY_ROAM_ZONE = { xMin: MEMBRANE_ROAM_INSIDE_MIN_X, xMax: 830, yMin: 118, yMax: 442 };
+    const HELPER_SPAWN_ZONE = { entryX: 858, exitX: 894, yMin: 124, yMax: 432 };
+    const WASTE_EXIT_POINT = { x: 450, y: 375 };
+    const WASTE_OUTSIDE_POINT = { x: 44, y: 383 };
+    // OSMOSIS_CENTER / OSMOSIS_CHANNELS moved to sims/osmosis.js.
+
+    const TRANSPORT_PRELUDES = [
+      {
+        id: "oxygen",
+        action: "demoOxygenPass",
+        title: "Membrane Lesson 1: Oxygen Slips Through",
+        material: "Oxygen",
+        pathName: "Cell Membrane",
+        color: "#f8fafc",
+        spriteMarkup: `<circle cx="23" cy="23" r="8" fill="#f8fafc" stroke="#bfdbfe" stroke-width="2"/>`,
+        doorMarkup: `<path d="M0,-96 C-18,-44 18,6 0,58 C-16,106 18,138 0,184" fill="none" stroke="#34d399" stroke-width="30" stroke-linecap="round"/>`,
+        simple: "Oxygen is tiny. It can slip through the cell membrane by itself.",
+        previewTitle: "The Cell Membrane Is a Smart Border",
+        previewLabel: "Membrane job",
+        previewRule: "The cell membrane surrounds the cell and controls what can enter or leave. Very small things can pass through it, like oxygen.",
+        previewTask: "",
+        job: "Oxygen helps the cell make energy.",
+        path: "No special door is needed. Tiny oxygen can cross the phospholipid membrane in either direction by simple diffusion.",
+        simText: "Move 5 oxygen molecules inside, then move the same 5 back outside."
+      },
+      {
+        id: "largeMolecule",
+        action: "demoLargeMoleculeBlock",
+        title: "Membrane Lesson 2: Large Molecules Bounce Off",
+        material: "Large Molecules",
+        pathName: "Cell Membrane",
+        color: "#a78bfa",
+        spriteMarkup: `<circle cx="23" cy="23" r="16" fill="#7c3aed" stroke="#ddd6fe" stroke-width="4"/><circle cx="17" cy="17" r="4" fill="rgba(255,255,255,.32)"/>`,
+        doorMarkup: `<path d="M0,-96 C-18,-44 18,6 0,58 C-16,106 18,138 0,184" fill="none" stroke="#34d399" stroke-width="30" stroke-linecap="round"/>`,
+        simple: "Large molecules are too big to slip through this membrane spot.",
+        previewRule: "Large molecules are too big to slip through the membrane.",
+        previewTask: "Move 5 to the membrane and watch what happens.",
+        job: "Some large molecules may be useful or harmful, but they need the right path to cross.",
+        path: "Large molecules bounce off when they do not fit through the membrane.",
+        simText: "Drag large molecules toward the membrane and watch them bounce off."
+      },
+      {
+        id: "water",
+        action: "demoWaterGate",
+        title: "Membrane Lesson 3",
+        subtitle: "Water uses a Channel to get through the membrane",
+        material: "Water",
+        pathName: "Water Channel",
+        color: "#38bdf8",
+        spriteMarkup: `<path d="M23,5 C31,15 35,24 35,31 C35,40 30,44 23,44 C16,44 11,40 11,31 C11,24 15,15 23,5 Z" fill="#38bdf8" stroke="#bae6fd" stroke-width="4"/>`,
+        doorMarkup: `
+          <g transform="rotate(90)">
+            <path d="M-22,-43 C-32,-47 -43,-43 -47,-29 C-50,-18 -49,-7 -47,0 C-49,7 -50,18 -47,29 C-43,43 -32,47 -22,43 C-26,32 -28,18 -28,0 C-28,-18 -26,-32 -22,-43 Z"
+              fill="#38bdf8"
+              stroke="#7dd3fc"
+              stroke-width="3.5"
+              stroke-linejoin="round"
+              filter="drop-shadow(0 0 7px rgba(56,189,248,.5))"/>
+            <rect x="-23" y="-44" width="46" height="88" rx="13"
+              fill="#0f3b53"
+              stroke="#155e75"
+              stroke-width="2.6"
+              opacity=".96"/>
+            <path d="M22,-43 C32,-47 43,-43 47,-29 C50,-18 49,-7 47,0 C49,7 50,18 47,29 C43,43 32,47 22,43 C26,32 28,18 28,0 C28,-18 26,-32 22,-43 Z"
+              fill="#38bdf8"
+              stroke="#7dd3fc"
+              stroke-width="3.5"
+              stroke-linejoin="round"
+              filter="drop-shadow(0 0 7px rgba(56,189,248,.5))"/>
+            <path d="M-34,-29 C-36,-22 -36,-7 -34,0 C-36,7 -36,22 -34,29" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M34,-29 C36,-22 36,-7 34,0 C36,7 36,22 34,29" fill="none" stroke="rgba(224,242,254,.72)" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          <text x="0" y="-72" class="demo-hotspot-label">Water Channel</text>
+        `,
+        simple: "Water is small, but the cell still controls it with aquaporin-like water channels.",
+        previewTitle: "The Membrane Controls What Crosses",
+        previewLabel: "Membrane job",
+        previewRule: "The membrane has channels that let certain things cross. Water uses a water channel.",
+        previewTask: "Move 5 water drops through the channel.",
+        job: "Water helps the cell stay the right size.",
+        path: "Water can go in or out through the Water Channel when it lines up with the channel lane.",
+        simText: "Drag and Drop water and get 5 through the membrane!"
+      },
+      {
+        id: "glucose",
+        action: "demoGlucoseDoor",
+        title: "Membrane Lesson 4: Glucose Uses a Door",
+        material: "Glucose",
+        pathName: "Glucose Door",
+        color: "#fde047",
+        spriteMarkup: `<polygon points="23,6 38,14 38,32 23,41 8,32 8,14" fill="#fde047" stroke="#fff7ad" stroke-width="4"/>`,
+        doorMarkup: `<rect x="-42" y="-25" width="84" height="50" rx="16" fill="#fde047" stroke="#fff7ad" stroke-width="4"/><rect class="prelude-glucose-outer-gate" x="-41" y="-20" width="14" height="40" rx="6" fill="#facc15" stroke="#fff7ad" stroke-width="2"/><rect class="prelude-glucose-inner-gate" x="27" y="-20" width="14" height="40" rx="6" fill="#facc15" stroke="#fff7ad" stroke-width="2"/><rect class="prelude-glucose-window" x="-16" y="-17" width="32" height="34" rx="10" fill="rgba(2,6,23,.18)" stroke="#fff7ad" stroke-width="2" stroke-dasharray="5 4"/><text x="0" y="-39" class="demo-hotspot-label">Glucose Door</text>`,
+        simple: "Glucose is sugar food for the cell. It is too important to let in randomly.",
+        previewTitle: "The Membrane Controls What Crosses",
+        previewLabel: "Membrane job",
+        previewRule: "The membrane has special doors that let certain things cross. Glucose uses a glucose door.",
+        previewTask: "Use the lever to move glucose through the door.",
+        job: "Glucose can become usable energy for the cell.",
+        path: "Glucose uses a special Glucose Door to enter safely.",
+        simText: "Use the lever and drag glucose through the two-door Glucose Door."
+      },
+      {
+        id: "waste",
+        action: "demoWasteExit",
+        title: "Membrane Lesson 5: Waste Uses an Exit",
+        material: "Waste",
+        pathName: "Waste Exit",
+        color: "#94a3b8",
+        spriteMarkup: `<rect x="9" y="9" width="28" height="28" rx="7" fill="#94a3b8" stroke="#e2e8f0" stroke-width="4"/>`,
+        doorMarkup: `<rect x="-42" y="-25" width="84" height="50" rx="16" fill="#94a3b8" stroke="#e2e8f0" stroke-width="4"/><path d="M18,0 L-18,0 M-8,-10 L-18,0 L-8,10" stroke="#f8fafc" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="0" y="-39" class="demo-hotspot-label">Waste Exit</text>`,
+        simple: "Waste is stuff the cell does not need anymore.",
+        previewRule: "The cell packs waste into bubbles and sends it through an exit.",
+        previewTask: "Pack the waste and move it outside.",
+        job: "If waste stays inside, the cell can get crowded or unhealthy.",
+        path: "Waste uses a Waste Exit to leave the cell.",
+        simText: "Pack gray Waste into vesicle bubbles, then watch full vesicles dock and export waste."
+      }
+    ];
+
+
+
+    const SMART_BORDER_PREVIEWS = {
+      blocked: {
+        step: "Smart Border Level",
+        title: "1G Preview: Blocking Harmful Things",
+        simple: "The cell membrane is like a smart border. Some harmful things cannot get through.",
+        watch: "Watch the purple toxin bounce away from the membrane.",
+        why: "Bounce means blocked. The harmful thing stayed outside, so the cell stays safe.",
+        icons: [
+          ["🟣", "Blocked toxin"],
+          ["🟢", "Membrane"],
+          ["⚪", "Background oxygen"]
+        ]
+      },
+      sneaky: {
+        step: "Smart Border Level",
+        title: "1H Preview: Sneaky Toxins",
+        simple: "The membrane blocks many things, but not everything. Some toxins can still slip inside.",
+        watch: "Watch orange toxins wiggle in, then send Cleaner Protein out before too many build up.",
+        why: "Cleaner Protein turns toxins into waste. Garbage Man Protein moves the waste out.",
+        icons: [
+          ["🟠", "Sneaky toxin"],
+          ["🧹", "Cleaner Protein"],
+          ["🧑‍🚮", "Garbage Man Protein"]
+        ]
+      },
+      damaging: {
+        step: "Smart Border Level",
+        title: "1I Preview: Membrane Damage",
+        simple: "Some toxins do not just enter. They can hurt the membrane and make cracks.",
+        watch: "Watch the red toxin hit the membrane. Repair the membrane when health drops.",
+        why: "A damaged membrane cannot protect the cell as well. Repairing it uses ATP.",
+        icons: [
+          ["🔴", "Damaging toxin"],
+          ["⚡", "ATP cost"],
+          ["🩹", "Repair membrane"]
+        ]
+      },
+      mixed: {
+        step: "Smart Border Challenge",
+        title: "1J Preview: Mixed Membrane Problems",
+        simple: "Now the membrane faces different problems at the same time.",
+        watch: "Match the problem to the right command: Cleaner Protein, Garbage Man Protein, or Repair Membrane.",
+        why: "Good cell helpers do different jobs. Watch the animation, then choose the best command.",
+        icons: [
+          ["🟣", "Bounce"],
+          ["🟠", "Clean"],
+          ["🔴", "Repair"]
+        ]
+      }
+    };
+
+    function gameRecapLocalSummary(outcome) {
+      const level = currentLevel();
+      if (outcome === "win") {
+        return `You completed the goal for ${level.title}. The strongest evidence was: ${level.evidence}`;
+      }
+      if (level.demoStage === "sneaky") {
+        return "Sneaky toxins built up faster than the helpers removed them. Cleaner Protein handles roaming toxins first, then Garbage Man Protein moves the waste out.";
+      }
+      if (level.demoStage === "mixed") {
+        return "The mixed challenge needs triage: Cleaner for orange toxins, Garbage Man for floating waste, and Repair Membrane for cracks.";
+      }
+      if (level.demoStage === "damaging") {
+        return "Membrane damage stayed too low for too long. Repair Membrane costs ATP, so ATP matters before the cracks become critical.";
+      }
+      return state.lossReason || "The final stats moved outside the safe range for this level.";
+    }
+
+    function buildActionHistoryHtml() {
+      if (!state.actionHistory.length) {
+        return `<li>No button actions were logged before this recap.</li>`;
+      }
+      return state.actionHistory.slice(-8).map((entry, index) => {
+        const after = entry.after || entry.before || {};
+        const statText = Object.entries(after).slice(0, 5).map(([key, value]) => `${key}: ${value}`).join(", ");
+        return `<li>${index + 1}. ${escapeHtml(entry.label)} <span class="muted-text">(${escapeHtml(statText)})</span></li>`;
+      }).join("");
+    }
+
+    function showGameRecapPopup(outcome = "loss") {
+      if (state.gameRecapShown) return false;
+      const level = currentLevel();
+      if (!isInteractiveGameLevel(level) || level.demoStage === "waterBalance") return false;
+
+      const popup = document.getElementById("transportLearningPopup");
+      if (!popup) return false;
+      state.gameRecapShown = true;
+      const won = outcome === "win";
+      const reviewId = `gameRecapReview-${Date.now()}`;
+      const finalStats = snapshotStats();
+      const finalStatsHtml = Object.entries(finalStats).map(([key, value]) => `<li>${escapeHtml(key)}: ${escapeHtml(value)}</li>`).join("");
+
+      popup.innerHTML = `
+        <div class="learning-card">
+          <div class="learning-step">${won ? "Level Complete" : "Level Recap"}</div>
+          <h3>${escapeHtml(level.title)} ${won ? "Win" : "Review"}</h3>
+          <div class="learning-grid">
+            <div class="learning-sim-preview">
+              <div class="learning-point-bubble">
+                <p><b>${won ? "What worked" : "What happened"}:</b> ${escapeHtml(won ? level.why : (state.lossReason || "The cell could not stay stable."))}</p>
+                <p><b>Goal:</b> ${escapeHtml(level.goal)}</p>
+              </div>
+            </div>
+            <div class="learning-copy-column">
+              <div class="learning-point-bubble big-panel">
+                <p><b>Button history:</b></p>
+                <ul>${buildActionHistoryHtml()}</ul>
+                <p><b>Final stats:</b></p>
+                <ul>${finalStatsHtml}</ul>
+                <p id="${reviewId}"><b>CytoBot review:</b> Reviewing the action history...</p>
+              </div>
+            </div>
+          </div>
+          <div class="learning-actions">
+            ${won ? "" : `<button class="warning" onclick="loadLevel(state.levelIndex)">Retry Level</button>`}
+            <button class="ghost" onclick="closeLearningPopup()">Close Recap</button>
+          </div>
+        </div>
+      `;
+      popup.classList.add("visible");
+      if (won) {
+        const reviewNode = document.getElementById(reviewId);
+        if (reviewNode) reviewNode.innerHTML = `<b>CytoBot review:</b> ${escapeHtml(gameRecapLocalSummary(outcome))}`;
+      } else {
+        requestGameRecapReview(outcome, reviewId);
+      }
+      return true;
+    }
+
+    async function requestGameRecapReview(outcome, reviewId) {
+      const reviewNode = document.getElementById(reviewId);
+      const localSummary = gameRecapLocalSummary(outcome);
+      if (!reviewNode) return;
+      try {
+        const reply = await askCytoBotGemini(
+          outcome === "win"
+            ? "Review this completed game attempt. Explain what the student did well using the button history and final stats. Keep it to 2 short sentences."
+            : "Review this failed game attempt. Explain where the student went wrong using the button history, stat history, and final stats. Give one next-step fix. Keep it to 2 short sentences.",
+          {
+            recapContext: {
+              outcome,
+              lossReason: state.lossReason,
+              actionHistory: state.actionHistory.slice(-12),
+              statHistory: state.statHistory.slice(-16),
+              finalStats: snapshotStats()
+            }
+          }
+        );
+        reviewNode.innerHTML = `<b>CytoBot review:</b> ${escapeHtml(reply)}`;
+      } catch (err) {
+        console.warn("Game recap AI review unavailable:", err);
+        reviewNode.innerHTML = `<b>CytoBot review:</b> ${escapeHtml(localSummary)}`;
+      }
+    }
+
+    function closeLearningPopup() {
+      const popup = document.getElementById("transportLearningPopup");
+      if (popup) {
+        popup.classList.remove("visible");
+        popup.innerHTML = "";
+      }
+      state.transportPreludePopupOpen = false;
+    }
+
+    function particle(color, from, to, count = 8, duration = 900, radius = 6) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+          c.setAttribute("class", "particle");
+          c.setAttribute("cx", from[0]);
+          c.setAttribute("cy", from[1]);
+          c.setAttribute("r", radius);
+          c.setAttribute("fill", color);
+          svg.appendChild(c);
+          const dx = to[0] - from[0] + (Math.random() * 36 - 18);
+          const dy = to[1] - from[1] + (Math.random() * 36 - 18);
+          c.animate([
+            { transform: "translate(0px, 0px)", opacity: .15 },
+            { transform: `translate(${dx}px, ${dy}px)`, opacity: 1 },
+            { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+          ], { duration: duration + Math.random() * 450, easing: "ease-in-out" });
+          setTimeout(() => c.remove(), duration + 650);
+        }, i * 70);
+      }
+    }
+
+    function burst(text, orgKey, color = "#93c5fd") {
+      const centers = {
+        membrane: [115, 170], cytoplasm: [460, 280], cellwall: [730, 88], nucleus: [330, 218], ribosomes: [556, 154],
+        er: [510, 300], golgi: [710, 285], vacuole: [623, 420], mitochondria: [279, 379], chloroplast: [182, 286], size: [767, 467]
+      };
+      const p = centers[orgKey || state.selected || "cytoplasm"] || [450, 280];
+      for (let i = 0; i < 14; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 30 + Math.random() * 50;
+        particle(color, p, [p[0] + Math.cos(angle) * dist, p[1] + Math.sin(angle) * dist], 1, 650, 4);
+      }
+      toast.textContent = text;
+    }
+
+    function showSizeComparison() {
+      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      group.setAttribute("id", "sizeCompareOverlay");
+      group.innerHTML = `
+        <rect x="165" y="90" width="570" height="330" rx="24" fill="rgba(2,6,23,.92)" stroke="rgba(255,255,255,.18)" />
+        <text x="300" y="132" class="label">Small cell</text>
+        <text x="600" y="132" class="label">Large cell</text>
+        <circle cx="300" cy="260" r="78" fill="rgba(34,211,238,.14)" stroke="#22d3ee" stroke-width="4" />
+        <circle cx="600" cy="260" r="132" fill="rgba(251,113,133,.11)" stroke="#fb7185" stroke-width="4" />
+        <text x="300" y="363" class="sub-label">short travel distance</text>
+        <text x="600" y="410" class="sub-label">long travel distance</text>
+        <text x="300" y="390" class="sub-label">fast transport</text>
+        <text x="600" y="436" class="sub-label">waste builds up</text>
+      `;
+      svg.appendChild(group);
+      particle("#22d3ee", [233, 260], [350, 260], 10, 950, 5);
+      particle("#fb7185", [485, 260], [705, 260], 10, 1900, 5);
+      setTimeout(() => group.remove(), 3300);
+    }
+
+    function markAction(action) {
+      const level = currentLevel();
+      const quietDemoAction = level.membraneDemoMode && action.startsWith("demo");
+      if (level.correct.includes(action)) {
+        const wasNew = !state.completedActions.has(action);
+        state.completedActions.add(action);
+        if (wasNew && !quietDemoAction) state.score += 10;
+        if (!quietDemoAction) {
+          sys(`Progress: ${state.completedActions.size}/${level.needed}`);
+        }
+        if (!state.completedLevel && state.completedActions.size >= level.needed) {
+          state.completedLevel = true;
+          if (!quietDemoAction) {
+            state.score += 25;
+            sys("Level complete. You used evidence to solve the problem.");
+            bot("Nice work. Biology lesson: " + level.why + "\n\nAI literacy lesson: Ask for reasons, check evidence, and challenge weak advice.");
+            if (isInteractiveGameLevel(level)) {
+              setTimeout(() => showGameRecapPopup("win"), 700);
+            }
+          }
+        }
+      }
+      renderStats();
+    }
+
+    function runAction(action) {
+      if (state.levelLost) {
+        const message = "This attempt failed. Click Reset to retry the level.";
+        toast.textContent = message;
+        const feedback = document.getElementById("demoFeedback");
+        if (feedback) feedback.textContent = message;
+        return;
+      }
+      const actionLogEntry = beginActionLog(action);
+      setTimeout(() => finishActionLog(actionLogEntry), 0);
+      const s = state.stats;
+      if (currentLevel().membraneDemoMode && currentLevel().demoStage === "transport") {
+        const preludeIndexByAction = {
+          demoOxygenPass: 0,
+          demoLargeMoleculeBlock: 1,
+          demoWaterGate: 2,
+          demoGlucoseDoor: 3,
+          demoWasteExit: 4
+        };
+        if (Object.prototype.hasOwnProperty.call(preludeIndexByAction, action)) {
+          startTransportPreludeDemo(Number.isInteger(currentLevel().transportPreludeIndex) ? currentTransportPreludeIndex() : preludeIndexByAction[action]);
+          checkWarnings();
+          return;
+        }
+      }
+      switch (action) {
+        case "demoOxygenPass":
+          if (currentLevel().membraneDemoMode && currentLevel().demoStage === "transport") {
+            startTransportPreludeDemo(currentTransportPreludeIndex());
+          } else if (currentLevel().membraneDemoMode && currentLevel().demoStage === "transportReview") {
+            demoOxygenPassReview();
+            markAction("demoOxygenPass");
+            checkWarnings();
+          }
+          return;
+        case "demoGlucoseDoor":
+          demoGlucoseDoor();
+          markAction("demoGlucoseDoor");
+          checkWarnings();
+          return;
+        case "demoWaterGate":
+          demoWaterGate();
+          markAction("demoWaterGate");
+          checkWarnings();
+          return;
+        case "demoWasteExit":
+          if (currentLevel().membraneDemoMode && ["sneaky", "mixed"].includes(currentLevel().demoStage)) {
+            runTrashTaker();
+          } else {
+            demoWasteExit();
+            markAction("demoWasteExit");
+          }
+          checkWarnings();
+          return;
+        case "addSaltOutside":
+          adjustOutsideSalt(+15, "You added salt outside. The outside condition became saltier.");
+          checkWarnings();
+          return;
+        case "addWaterOutside":
+          adjustOutsideSalt(-15, "You added water outside. The outside condition became less salty.");
+          checkWarnings();
+          return;
+        case "balanceOutside": {
+          const salt = state.stats.outsideSalt ?? 50;
+          const delta = Math.abs(50 - salt) <= 12 ? (50 - salt) : Math.sign(50 - salt) * 12;
+          adjustOutsideSalt(delta, "You balanced the outside environment toward 50.");
+          checkWarnings();
+          return;
+        }
+        case "cleaner":
+          runCleaner();
+          checkWarnings();
+          return;
+        case "trashTaker":
+          runTrashTaker();
+          checkWarnings();
+          return;
+        case "cleanupCrew":
+          runCleaner();
+          checkWarnings();
+          return;
+        case "importGlucose":
+          adjustStats({ glucose: +16, atp: +10, transport: +2 });
+          particle("#fde047", [45, 160], [240, 230], 10, 900);
+          burst("Glucose entered as usable fuel. Simple version: this glucose gave the cell +10 ATP.", "membrane", "#fde047");
+          break;
+        case "importOxygen":
+          adjustStats({ oxygen: +16, transport: +2 });
+          particle("#f87171", [55, 220], [275, 360], 10, 900);
+          burst("Oxygen entered the cell and can be used by mitochondria.", "membrane", "#f87171");
+          break;
+        case "importWater":
+          adjustStats({ water: +15 });
+          particle("#38bdf8", [55, 300], [620, 420], 10, 1200);
+          burst("Water entered and moved toward storage in the vacuole.", "membrane", "#38bdf8");
+          break;
+        case "exportWaste":
+          adjustStats({ waste: -18, atp: -4, transport: +1 });
+          particle("#94a3b8", [630, 420], [815, 330], 10, 900);
+          burst("Waste moved out through the cell membrane.", "membrane", "#94a3b8");
+          break;
+        case "upgradeMembrane":
+          adjustStats({ transport: +12, atp: -8 });
+          burst("Membrane channels upgraded. Entry and exit are more efficient.", "membrane", "#60a5fa");
+          break;
+        case "blockToxin":
+          adjustStats({ waste: -4, transport: +1 });
+          particle("#a78bfa", [850, 190], [760, 190], 6, 600, 7);
+          burst("The membrane blocked harmful particles before they entered.", "membrane", "#a78bfa");
+          break;
+        case "viewFlow":
+          particle("#22d3ee", [180, 260], [700, 310], 16, 1400);
+          particle("#fde047", [300, 200], [620, 420], 8, 1200);
+          burst("Material flow shown. Crowded cytoplasm or large size slows these paths.", "cytoplasm", "#22d3ee");
+          break;
+        case "clearCytoplasm":
+          adjustStats({ transport: +14, waste: -6, atp: -5 });
+          particle("#22d3ee", [450, 280], [700, 300], 16, 900);
+          burst("Cytoplasm blockage cleared. Materials move faster.", "cytoplasm", "#22d3ee");
+          break;
+        case "improveFlow":
+          adjustStats({ transport: +9, delivery: +8, atp: -6 });
+          particle("#22d3ee", [210, 300], [690, 250], 14, 1100);
+          burst("Cytoplasm flow improved. Transport efficiency rose.", "cytoplasm", "#22d3ee");
+          break;
+        case "repairWall":
+          if (state.cellType !== "plant") return bot("Animal cells do not have cell walls to repair.");
+          adjustStats({ wall: +16, atp: -4 });
+          burst("Cell wall repaired. Plant support improved.", "cellwall", "#84cc16");
+          break;
+        case "strengthenWall":
+          if (state.cellType !== "plant") return bot("Only plant cells have a cell wall.");
+          adjustStats({ wall: +12, water: -3, atp: -5 });
+          burst("Cell wall strengthened. The plant cell can hold its shape better.", "cellwall", "#84cc16");
+          break;
+        case "compareAnimal":
+          state.score += 5;
+          sys("Comparison: plant cells have cell walls and chloroplasts; animal cells do not.");
+          bot("Both plant and animal cells have membrane, cytoplasm, nucleus, ribosomes, ER, Golgi, mitochondria, and vacuoles. Plant cells add cell wall, chloroplasts, and usually a large central vacuole.");
+          burst("Plant vs. animal comparison shown in chat.", "cellwall", "#84cc16");
+          markAction("compareAnimal");
+          return;
+        case "sendRepairInstructions":
+        case "sendTransportInstructions":
+        case "sendEnzymeInstructions":
+          state.instructionsReady = true;
+          adjustStats({ atp: -3 });
+          particle("#f0abfc", [330, 218], [556, 154], 10, 1000, 5);
+          burst("DNA instructions moved from the nucleus to ribosomes.", "nucleus", "#f0abfc");
+          break;
+        case "synthesizeProtein":
+          if (!state.instructionsReady) bot("You can synthesize basic proteins, but sending nucleus instructions first makes this more accurate.");
+          adjustStats({ protein: +22, atp: -10 });
+          particle("#f472b6", [556, 154], [500, 290], 12, 900, 5);
+          burst("Ribosomes linked amino acids into proteins. ATP was used.", "ribosomes", "#f472b6");
+          break;
+        case "buildMembraneProtein":
+          adjustStats({ protein: +14, atp: -8, delivery: +4 });
+          particle("#f472b6", [556, 154], [130, 126], 10, 1200, 5);
+          burst("A membrane protein was built and sent toward the membrane.", "ribosomes", "#f472b6");
+          break;
+        case "repairRibosomes":
+          adjustStats({ protein: +10, atp: -8 });
+          burst("Ribosome machines repaired. Protein synthesis improved.", "ribosomes", "#f472b6");
+          break;
+        case "moveProteins":
+          adjustStats({ delivery: +12, transport: +8, atp: -6 });
+          particle("#60a5fa", [520, 180], [700, 285], 12, 1100, 5);
+          burst("Proteins moved through the ER conveyor toward the Golgi.", "er", "#60a5fa");
+          break;
+        case "clearERJam":
+          adjustStats({ transport: +18, delivery: +18, waste: -4, atp: -8 });
+          particle("#60a5fa", [430, 300], [700, 285], 16, 900, 5);
+          burst("ER protein jam cleared. Delivery improved.", "er", "#60a5fa");
+          break;
+        case "upgradeER":
+          adjustStats({ transport: +12, delivery: +8, atp: -10 });
+          burst("ER transport upgraded. Internal shipping is faster.", "er", "#60a5fa");
+          break;
+        case "packageProteins":
+          adjustStats({ delivery: +12, protein: -4, atp: -5 });
+          particle("#f59e0b", [510, 300], [710, 285], 11, 900, 6);
+          burst("Golgi packaged and labeled proteins for delivery.", "golgi", "#f59e0b");
+          break;
+        case "shipMembrane":
+          adjustStats({ delivery: +14, transport: +4, protein: -4, atp: -5 });
+          particle("#f59e0b", [710, 285], [130, 126], 10, 1200, 6);
+          burst("Golgi shipped a package to the cell membrane.", "golgi", "#f59e0b");
+          break;
+        case "shipOutside":
+          adjustStats({ delivery: +10, waste: -5, atp: -6 });
+          particle("#f59e0b", [710, 285], [830, 330], 8, 900, 6);
+          burst("Golgi shipped materials outside the cell.", "golgi", "#f59e0b");
+          break;
+        case "repairGolgi":
+          adjustStats({ delivery: +18, atp: -8 });
+          burst("Golgi repaired. Packaging and delivery improved.", "golgi", "#f59e0b");
+          break;
+        case "storeWater":
+          adjustStats({ water: +8, atp: -2 });
+          particle("#38bdf8", [380, 280], [623, 420], 10, 850, 5);
+          burst("Water stored in the vacuole. Plant firmness can improve.", "vacuole", "#38bdf8");
+          break;
+        case "releaseWater":
+          adjustStats({ water: -8, transport: +2 });
+          particle("#38bdf8", [623, 420], [430, 280], 10, 850, 5);
+          burst("Water released from storage into the cytoplasm.", "vacuole", "#38bdf8");
+          break;
+        case "storeWaste":
+          adjustStats({ waste: -4, atp: -2 });
+          particle("#94a3b8", [480, 300], [623, 420], 8, 850, 5);
+          burst("Waste moved into temporary vacuole storage.", "vacuole", "#94a3b8");
+          break;
+        case "sendWasteOut":
+          adjustStats({ waste: -20, atp: -5, transport: +3 });
+          particle("#94a3b8", [623, 420], [810, 365], 12, 950, 5);
+          burst("Vacuole released waste toward the membrane for removal.", "vacuole", "#94a3b8");
+          break;
+        case "runRespiration":
+          if (s.glucose < 10 || s.oxygen < 10) {
+            bot("Cellular respiration needs both glucose and oxygen. Import more at the membrane first.");
+            return;
+          }
+          adjustStats({ glucose: -10, oxygen: -10, atp: +28, waste: +4 });
+          particle("#fde047", [180, 160], [279, 379], 8, 900, 5);
+          particle("#f87171", [130, 260], [279, 379], 8, 900, 5);
+          particle("#fef3c7", [279, 379], [410, 300], 12, 900, 5);
+          burst("Cellular respiration: glucose + oxygen → ATP. A small amount of waste increased.", "mitochondria", "#fef3c7");
+          break;
+        case "sendGlucoseMito":
+          particle("#fde047", [190, 160], [279, 379], 10, 900, 5);
+          burst("Glucose moved toward mitochondria for respiration.", "mitochondria", "#fde047");
+          break;
+        case "sendOxygenMito":
+          particle("#f87171", [115, 240], [279, 379], 10, 900, 5);
+          burst("Oxygen moved toward mitochondria for respiration.", "mitochondria", "#f87171");
+          break;
+        case "repairMito":
+          adjustStats({ atp: +12, glucose: -5, oxygen: -5 });
+          burst("Mitochondria repaired. ATP production improved.", "mitochondria", "#fb923c");
+          break;
+        case "collectSunlight":
+          if (state.cellType !== "plant") return bot("Animal cells do not have chloroplasts to collect sunlight.");
+          adjustStats({ sunlight: +10 });
+          particle("#fde047", [110, 40], [182, 286], 12, 850, 4);
+          burst("Sunlight collected by chloroplasts.", "chloroplast", "#fde047");
+          break;
+        case "makeGlucose":
+          if (state.cellType !== "plant") return bot("Only plant cells have chloroplasts.");
+          if (s.sunlight < 8 || s.water < 4) {
+            bot("Making glucose needs sunlight and water. Import water or collect sunlight first.");
+            return;
+          }
+          adjustStats({ sunlight: -8, water: -4, glucose: +24 });
+          particle("#fde047", [182, 286], [320, 300], 12, 900, 5);
+          burst("Chloroplasts used sunlight and water to make glucose.", "chloroplast", "#84cc16");
+          break;
+        case "sendGlucoseFromChloro":
+          if (state.cellType !== "plant") return bot("This action requires chloroplasts, so it is plant-cell only.");
+          particle("#fde047", [182, 286], [279, 379], 12, 1000, 5);
+          burst("Glucose moved from chloroplasts toward mitochondria.", "chloroplast", "#fde047");
+          break;
+        case "showSizeCompare":
+          showSizeComparison();
+          burst("Small cells transport faster. Large cells have longer distances and lower membrane exchange efficiency.", "size", "#38bdf8");
+          break;
+        case "upgradeTransportNetwork":
+          adjustStats({ transport: +20, delivery: +14, atp: -12, waste: -4 });
+          particle("#22d3ee", [180, 260], [700, 310], 20, 900, 5);
+          burst("Transport network upgraded. Materials move more efficiently despite size.", "size", "#22d3ee");
+          break;
+        case "divideCell":
+          adjustStats({ size: -38, transport: +24, waste: -10, atp: -10 });
+          burst("The oversized cell divided into smaller cells. Surface area to volume balance improved.", "size", "#34d399");
+          showSizeComparison();
+          break;
+        case "repairMembrane":
+          if ((s.atp ?? 0) < 10) {
+            bot("Repairing the membrane needs 10 ATP. Make more ATP first.");
+            return;
+          }
+          adjustStats({ atp: -10, membraneHealth: +30, transport: +8 });
+          animateWrenches();
+          if ((state.stats.membraneHealth ?? 100) >= 65) state.membraneCracksUnlocked = false;
+          updateMembraneDemoVisuals();
+          membraneFeedback("Repair worked: ATP fixed the membrane and cracks faded.", 3, 5200);
+          markAction("repairMembrane");
+          checkWarnings();
+          return;
+        case "challengeAI":
+          challengeAI();
+          return;
+        default:
+          bot("That action is not implemented yet.");
+          return;
+      }
+      markAction(action);
+      checkWarnings();
+    }
+
+    function checkWarnings() {
+      if (evaluateLossConditions()) return;
+      const warnings = [
+        ["atp", state.stats.atp < 15, "ATP is very low. Try mitochondria or cellular respiration."],
+        ["waste", state.stats.waste > 85, "Waste is dangerously high. Check vacuoles and membrane export."],
+        ["transport", state.stats.transport < 20, "Transport is very low. Check cytoplasm, ER/Golgi, membrane, or cell size."],
+        ["size", state.stats.size > 85, "Cell size is too large. Use the size simulation to compare small vs. large cells."],
+        ["outsideSalt", currentLevel().demoStage === "waterBalance" && ((state.stats.outsideSalt ?? 50) <= 30 || (state.stats.outsideSalt ?? 50) >= 70), "Outside Salt is far from 50. Change the outside condition so water can rebalance automatically."],
+        ["toxinsInside", (state.stats.toxinsInside ?? 0) >= 12, "Toxins Inside is building up. Send Cleaner Protein out before it reaches 20, then send Garbage Man Protein out once waste appears."],
+        ["membraneHealth", (state.stats.membraneHealth ?? 100) < 25, "The membrane is damaged. Repair it!"],
+        ["water", state.stats.water > 85, "Water balance is too full. Release or use water."],
+        ["waterDry", state.stats.water < 15, "Water balance is too dry. Import water." ]
+      ];
+      for (const [key, condition, message] of warnings) {
+        if (condition && !state.warnedKeys.has(key)) {
+          state.warnedKeys.add(key);
+          toast.textContent = "Warning: " + message;
+        }
+      }
+      leakIfMembraneDamaged();
+    }
+
+    function askAI() {
+      respondToUser("Give me a short helpful hint for this level. Do not give away the full answer.");
+    }
+
+    function askHint() {
+      respondToUser("I am stuck. Give me one short hint based on the current level.");
+    }
+
+    function askWhy() {
+      respondToUser("Explain why this level works this way in simple 6th grade words.");
+    }
+
+    function checkEvidence() {
+      respondToUser("What evidence should I check in the animation and stats?");
+    }
+
+    function explainSelected() {
+      if (!state.selected) return bot("Click an organelle first, then I can explain it.");
+      const o = ORG[state.selected];
+      respondToUser(`Explain ${o.name} in this level. Role: ${o.role}.`);
+    }
+
+    function challengeAI() {
+      state.aiChecks++;
+      state.score += 12;
+      const level = currentLevel();
+      if (level.aiWrong) {
+        bot("Good challenge. My earlier suggestion was incomplete or wrong. The stronger answer is based on the evidence:\n\n" + level.evidence + "\n\nCorrect reasoning: " + level.why);
+        sys("AI literacy point earned: You challenged AI advice using evidence.");
+      } else {
+        bot("Fair challenge. In this level my advice was mostly reliable, but checking evidence is still the right habit.");
+      }
+      markAction("challengeAI");
+      renderStats();
+    }
+
+    async function askCytoBotGemini(studentText, extraContext = {}) {
+      const payload = {
+        message: studentText,
+        levelTitle: currentLevel().title,
+        levelGoal: currentLevel().goal,
+        levelScenario: currentLevel().scenario,
+        levelHint: currentLevel().hint,
+        levelEvidence: currentLevel().evidence,
+        selectedOrganelle: state.selected ? {
+          key: state.selected,
+          name: ORG[state.selected]?.name,
+          role: ORG[state.selected]?.role,
+          functionText: ORG[state.selected]?.functionText,
+          evidence: ORG[state.selected]?.evidence
+        } : null,
+        stats: state.stats,
+        completedActions: Array.from(state.completedActions || []),
+        cellType: state.cellType,
+        membraneDemoStage: currentLevel().demoStage || null,
+        recapContext: extraContext.recapContext || null
+      };
+
+      // In SinQ the platform injects window.ScienceAI; route CytoBot through the
+      // simulation-chat bridge (-> /api/simulation-exploration/chat). Fall back to
+      // the standalone /api/cytobot server when running outside the platform.
+      if (window.ScienceAI && typeof window.ScienceAI.requestSimulationChat === "function") {
+        const reply = await window.ScienceAI.requestSimulationChat({
+          message: studentText,
+          requestKind: extraContext.recapContext ? "recap" : "chat",
+          levelContext: {
+            title: payload.levelTitle,
+            goal: payload.levelGoal,
+            scenario: payload.levelScenario,
+            hint: payload.levelHint,
+            evidence: payload.levelEvidence,
+            cellType: payload.cellType,
+            membraneDemoStage: payload.membraneDemoStage
+          },
+          selectedOrganelle: payload.selectedOrganelle,
+          stats: payload.stats,
+          completedActions: payload.completedActions,
+          recapContext: payload.recapContext
+        });
+        return reply || "CytoBot could not think of a helpful answer yet.";
+      }
+
+      const response = await fetch("/api/cytobot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`CytoBot API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.reply || "CytoBot could not think of a helpful answer yet.";
+    }
+
+    function replaceLastBotMessage(oldText, newText) {
+      const thread = currentChatThread();
+      const last = [...thread].reverse().find(entry => entry.type === "bot" && entry.text === oldText);
+      if (last) {
+        last.text = newText;
+        renderChat();
+      } else {
+        bot(newText);
+      }
+    }
+
+    async function respondToUser(text) {
+      const trimmed = text.trim();
+      if (!trimmed) return;
+
+      user(trimmed);
+      state.aiChecks++;
+      renderStats();
+
+      const thinkingText = "CytoBot is thinking...";
+      bot(thinkingText);
+
+      try {
+        const reply = await askCytoBotGemini(trimmed);
+        replaceLastBotMessage(thinkingText, reply);
+      } catch (err) {
+        console.warn(err);
+
+        const t = trimmed.toLowerCase();
+        let fallback = "CytoBot cannot reach Gemini yet. Start the backend server, then try again.";
+        if (t.includes("membrane") || t.includes("toxin") || t.includes("oxygen") || t.includes("glucose") || t.includes("water")) {
+          fallback = "CytoBot cannot reach Gemini yet. Evidence hint: watch what crosses the membrane, what bounces, and which command changes the stats.";
+        } else if (t.includes("hint") || t.includes("stuck")) {
+          fallback = "CytoBot cannot reach Gemini yet. Hint: " + currentLevel().hint;
+        } else if (t.includes("evidence")) {
+          fallback = "CytoBot cannot reach Gemini yet. Evidence to check: " + currentLevel().evidence;
+        }
+        replaceLastBotMessage(thinkingText, fallback);
+      }
+
+      renderStats();
+    }
+
+    document.querySelectorAll("[data-org]").forEach(el => {
+      el.addEventListener("click", (e) => {
+        e.stopPropagation();
+        selectOrganelle(el.getAttribute("data-org"));
+      });
+    });
+
+    function bindClick(id, handler) {
+      const node = document.getElementById(id);
+      if (node) node.addEventListener("click", handler);
+    }
+
+    if (levelHintBtn) levelHintBtn.addEventListener("click", showLevelHintPopup);
+
+    window.runAction = runAction;
+    window.addEventListener("beforeunload", stopMembraneDemo);
+
+    prepareInteractiveMembrane();
+    loadLevel(0);
+  </script>
+</body>
+</html>

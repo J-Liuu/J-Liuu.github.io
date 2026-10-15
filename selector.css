@@ -162,6 +162,18 @@ a {
   color: #131313;
 }
 
+.product-route-image {
+  position: absolute;
+  top: 4%;
+  right: -16%;
+  width: 74%;
+  height: 48%;
+  object-fit: contain;
+  opacity: 0.84;
+  transform: rotate(-8deg);
+  transition: transform 650ms cubic-bezier(0.2, 0.75, 0.2, 1), opacity 400ms ease;
+}
+
 .product-route .route-index,
 .product-route .route-description {
   color: #43433f;
@@ -267,6 +279,12 @@ a {
 .product-route:hover .frame-two,
 .product-route:focus-visible .frame-two {
   transform: translate(-8px, -10px);
+}
+
+.product-route:hover .product-route-image,
+.product-route:focus-visible .product-route-image {
+  opacity: 1;
+  transform: translate(-12px, 8px) rotate(-4deg);
 }
 
 .product-design-page {

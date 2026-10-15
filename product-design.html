@@ -3,15 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-    <title>Jacky Liu | Product Design</title>
-    <link rel="stylesheet" href="selector.css?v=1">
+    <meta name="description" content="Jacky Liu's product design case study for Science Inquiry Studio, an interactive middle-school science learning experience.">
+    <title>Science Inquiry Studio | Jacky Liu</title>
+    <link rel="stylesheet" href="product-case-study.css?v=1">
 </head>
-<body class="product-design-page">
-    <a class="blank-page-return" href="index.html" aria-label="Return to portfolio selection">
-        <span aria-hidden="true">&#8592;</span>
-        <span>All work</span>
-    </a>
-    <main class="product-design-canvas" aria-label="Product design portfolio"></main>
+<body>
+    <a class="skip-link" href="#case-study">Skip to case study</a>
+    <header class="case-header">
+        <a class="case-name" href="index.html">Jacky Liu</a>
+        <nav class="case-nav" aria-label="Case study navigation">
+            <a href="#challenge">Challenge</a>
+            <a href="#decisions">Decisions</a>
+            <a href="#prototype">Prototype</a>
+            <a href="#reflection">Reflection</a>
+        </nav>
+        <a class="case-back" href="index.html"><span aria-hidden="true">&#8592;</span> All work</a>
+    </header>
+
+    <main id="case-study">
+        <section class="case-hero" aria-labelledby="case-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Product design case study &middot; UC Irvine Digital Learning Lab</p>
+                <h1 id="case-title">Science Inquiry Studio</h1>
+                <p class="hero-statement">Turning invisible cell transport into something students can manipulate, observe, and explain.</p>
+                <div class="hero-actions">
+                    <a class="primary-action" href="#prototype">Try the prototype</a>
+                    <span class="read-time">5 minute read</span>
+                </div>
+            </div>
+            <div class="hero-visual" aria-label="Cell membrane activity preview">
+                <div class="hero-visual-label"><span>Lesson 1A</span><strong>Oxygen slips through</strong></div>
+                <img src="assets/product/cellai-demo/assets/cell-membrane.svg" alt="Detailed phospholipid cell membrane used in the interactive activity">
+                <div class="hero-particle particle-one">O<sub>2</sub></div>
+                <div class="hero-particle particle-two">O<sub>2</sub></div>
+                <div class="hero-particle particle-three">O<sub>2</sub></div>
+                <div class="hero-side hero-outside">Outside cell</div>
+                <div class="hero-side hero-inside">Inside cell</div>
+            </div>
+        </section>
+
+        <section class="project-facts" aria-label="Project overview">
+            <div><span>Role</span><strong>Research Fellow &amp; Lead Game Designer</strong></div>
+            <div><span>Audience</span><strong>Middle school students and science educators</strong></div>
+            <div><span>Scope</span><strong>Research, UX/UI, interaction design, prototyping</strong></div>
+            <div><span>Timeline</span><strong>June&ndash;August 2026</strong></div>
+        </section>
+
+        <section class="case-band challenge-band" id="challenge">
+            <div class="section-number">01</div>
+            <div class="section-heading">
+                <p class="eyebrow">The challenge</p>
+                <h2>Make a complex system visible without making the interface overwhelming.</h2>
+            </div>
+            <div class="challenge-copy">
+                <p>Cell transport is dynamic, microscopic, and difficult to understand through diagrams alone. An interactive simulation can make the system tangible, but only if students understand what to do, where to look, and why the outcome matters.</p>
+                <p>Our product challenge was to balance scientific meaning, playful interaction, and classroom clarity for grades 6&ndash;8.</p>
+            </div>
+        </section>
+
+        <section class="case-band research-band" aria-labelledby="research-title">
+            <div class="section-number">02</div>
+            <div class="section-heading">
+                <p class="eyebrow">Research and discovery</p>
+                <h2 id="research-title">Classroom voices shaped the product requirements.</h2>
+            </div>
+            <div class="research-intro">
+                <p>I helped co-lead weekly conversations with teachers from multiple school districts and helped organize student think-aloud testing. The research was qualitative: we listened for confusion, hesitation, and places where the interface competed with the learning goal.</p>
+            </div>
+            <div class="evidence-table" role="table" aria-label="Research translated into product responses">
+                <div class="evidence-row evidence-header" role="row">
+                    <span role="columnheader">Research signal</span><span role="columnheader">Product response</span><span role="columnheader">Visible in the prototype</span>
+                </div>
+                <div class="evidence-row" role="row">
+                    <span role="cell">Too much information can obscure the task.</span><span role="cell">Introduce one transport rule at a time.</span><span role="cell">Six focused lessons followed by one combined review.</span>
+                </div>
+                <div class="evidence-row" role="row">
+                    <span role="cell">Students need clearer instructions before acting.</span><span role="cell">Separate concept preview from interaction guidance.</span><span role="cell">A two-step preview explains the rule, then the gesture.</span>
+                </div>
+                <div class="evidence-row" role="row">
+                    <span role="cell">Guidance should live inside the activity.</span><span role="cell">Pair actions with feedback, hints, and evidence.</span><span role="cell">Contextual prompts, visible progress, and completion recaps.</span>
+                </div>
+            </div>
+            <p class="research-note">These inputs informed iteration; they are not presented as measured learning outcomes.</p>
+        </section>
+
+        <section class="case-band decisions-band" id="decisions" aria-labelledby="decisions-title">
+            <div class="section-number">03</div>
+            <div class="section-heading">
+                <p class="eyebrow">Key product decisions</p>
+                <h2 id="decisions-title">A repeatable learning loop keeps attention on cause and effect.</h2>
+            </div>
+            <div class="learning-loop" aria-label="Learning loop">
+                <div><span>1</span><strong>Preview</strong><p>Introduce one scientific rule.</p></div>
+                <div><span>2</span><strong>Practice</strong><p>Show the exact interaction.</p></div>
+                <div><span>3</span><strong>Observe</strong><p>Make the consequence visible.</p></div>
+                <div><span>4</span><strong>Reflect</strong><p>Connect evidence to the concept.</p></div>
+            </div>
+
+            <article class="decision-row">
+                <div class="decision-copy">
+                    <span class="decision-index">Decision 01</span>
+                    <h3>Progressive disclosure over a crowded control panel</h3>
+                    <p>Each lesson isolates a single membrane behavior before asking students to combine them. This lowers the number of rules and controls a student must hold in memory at once.</p>
+                </div>
+                <ol class="lesson-sequence" aria-label="Membrane lesson sequence">
+                    <li><span>1A</span> Oxygen passes through</li>
+                    <li><span>1B</span> Large molecules bounce</li>
+                    <li><span>1C</span> Water uses a channel</li>
+                    <li><span>1D</span> Glucose uses a door</li>
+                    <li><span>1E</span> Waste exits in vesicles</li>
+                    <li class="lesson-review"><span>1F</span> Combine all three paths</li>
+                </ol>
+            </article>
+
+            <article class="decision-row interaction-decision">
+                <div class="decision-copy">
+                    <span class="decision-index">Decision 02</span>
+                    <h3>Use interaction behavior as the explanation</h3>
+                    <p>Instead of relying on text alone, the simulation makes each rule behave differently. A correct path crosses the membrane; an incorrect path visibly resists the student's action.</p>
+                </div>
+                <div class="interaction-map" aria-label="Transport interaction examples">
+                    <div class="transport-object oxygen-object">O<sub>2</sub><span>passes</span></div>
+                    <div class="transport-path membrane-line"><span>Membrane</span></div>
+                    <div class="transport-object water-object">H<sub>2</sub>O<span>channel</span></div>
+                    <div class="transport-object glucose-object">G<span>door</span></div>
+                    <div class="transport-object waste-object">W<span>vesicle</span></div>
+                </div>
+            </article>
+
+            <article class="decision-row feedback-decision">
+                <div class="decision-copy">
+                    <span class="decision-index">Decision 03</span>
+                    <h3>Turn feedback into instructional evidence</h3>
+                    <p>Progress counts answer &ldquo;Did it work?&rdquo; while animation and recap text answer &ldquo;Why?&rdquo; Hints repeat the goal, scenario, interaction, and evidence without requiring a separate assistant.</p>
+                </div>
+                <div class="feedback-stack">
+                    <div><span>Action</span><strong>Drag water toward the membrane</strong></div>
+                    <div><span>System response</span><strong>It crosses only at the blue channel</strong></div>
+                    <div><span>Meaning</span><strong>The membrane is selectively permeable</strong></div>
+                </div>
+            </article>
+
+            <article class="decision-row ai-decision">
+                <div class="decision-copy">
+                    <span class="decision-index">Decision 04</span>
+                    <h3>Keep AI support optional, not foundational</h3>
+                    <p>The build includes an experimental CytoBot path with local fallback guidance. Core instructions, evidence, and recaps remain available without an API connection, so the learning flow does not depend on AI access.</p>
+                </div>
+                <div class="principle-block"><span>Design principle</span><strong>Students should be able to learn from the system itself.</strong></div>
+            </article>
+        </section>
+
+        <section class="prototype-section" id="prototype" aria-labelledby="prototype-title">
+            <div class="prototype-heading">
+                <div><p class="eyebrow">Final experience</p><h2 id="prototype-title">Try the membrane lesson</h2></div>
+                <a class="secondary-action" href="assets/product/cellai-demo/index.html" target="_blank" rel="noreferrer">Open full prototype <span aria-hidden="true">&#8599;</span></a>
+            </div>
+            <p class="prototype-note">This is the verified six-lesson activity from the provided build. The optional AI endpoint is not required for the core experience.</p>
+            <div class="prototype-browser">
+                <div class="prototype-bar" aria-hidden="true"><span></span><span></span><span></span><div>CellAI Factory &middot; Membrane Lessons</div></div>
+                <iframe src="assets/product/cellai-demo/index.html" title="Interactive CellAI Factory membrane lesson" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section class="case-band outcome-band">
+            <div class="section-number">04</div>
+            <div class="section-heading"><p class="eyebrow">Outcome</p><h2>A testable learning experience, not a claim of proven impact.</h2></div>
+            <div class="outcome-columns">
+                <div><span>What we built</span><p>A browser-based sequence of six membrane transport lessons with onboarding, direct manipulation, contextual hints, visible progress, and concept recaps.</p></div>
+                <div><span>What I contributed</span><p>Interaction and UI design, translating science requirements into mechanics, iterative prototyping, educator sessions, and student usability-test planning.</p></div>
+                <div><span>What remains open</span><p>The materials document a qualitative research process, not measured learning gains, adoption, or effectiveness. Those require further classroom validation.</p></div>
+            </div>
+        </section>
+
+        <section class="reflection-section" id="reflection" aria-labelledby="reflection-title">
+            <div><p class="eyebrow">Reflection</p><h2 id="reflection-title">Design the guidance as carefully as the interaction.</h2></div>
+            <div class="reflection-copy">
+                <p>This project reinforced that educational products cannot treat instructions as a layer added after the experience. The preview, gesture, feedback, and recap are all part of the same interaction model.</p>
+                <h3>What I would test next</h3>
+                <ul>
+                    <li>Whether students can state the objective before beginning each lesson.</li>
+                    <li>Which feedback states students notice without prompting.</li>
+                    <li>How keyboard, motion, and contrast options affect access.</li>
+                    <li>What teachers need to fit the activity into a real lesson plan.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="case-footer">
+        <div><span>Science Inquiry Studio</span><strong>UC Irvine Digital Learning Lab &middot; 2026</strong></div>
+        <a href="index.html"><span aria-hidden="true">&#8592;</span> Back to all work</a>
+    </footer>
 </body>
 </html>
