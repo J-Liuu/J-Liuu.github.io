@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jacky Liu's product design case study for Science Inquiry Studio, an interactive middle-school science learning experience.">
     <title>Science Inquiry Studio | Jacky Liu</title>
-    <link rel="stylesheet" href="product-case-study.css?v=1">
+    <link rel="stylesheet" href="product-case-study.css?v=2">
 </head>
 <body>
     <a class="skip-link" href="#case-study">Skip to case study</a>
@@ -32,11 +32,8 @@
                 </div>
             </div>
             <div class="hero-visual" aria-label="Cell membrane activity preview">
-                <div class="hero-visual-label"><span>Lesson 1A</span><strong>Oxygen slips through</strong></div>
+                <div class="hero-visual-label"><span>Actual activity asset</span><strong>Cell membrane model</strong></div>
                 <img src="assets/product/cellai-demo/assets/cell-membrane.svg" alt="Detailed phospholipid cell membrane used in the interactive activity">
-                <div class="hero-particle particle-one">O<sub>2</sub></div>
-                <div class="hero-particle particle-two">O<sub>2</sub></div>
-                <div class="hero-particle particle-three">O<sub>2</sub></div>
                 <div class="hero-side hero-outside">Outside cell</div>
                 <div class="hero-side hero-inside">Inside cell</div>
             </div>
@@ -122,12 +119,15 @@
                     <h3>Use interaction behavior as the explanation</h3>
                     <p>Instead of relying on text alone, the simulation makes each rule behave differently. A correct path crosses the membrane; an incorrect path visibly resists the student's action.</p>
                 </div>
-                <div class="interaction-map" aria-label="Transport interaction examples">
-                    <div class="transport-object oxygen-object">O<sub>2</sub><span>passes</span></div>
-                    <div class="transport-path membrane-line"><span>Membrane</span></div>
-                    <div class="transport-object water-object">H<sub>2</sub>O<span>channel</span></div>
-                    <div class="transport-object glucose-object">G<span>door</span></div>
-                    <div class="transport-object waste-object">W<span>vesicle</span></div>
+                <div class="activity-assets" aria-label="Actual membrane and vesicle assets from the activity">
+                    <figure class="activity-asset activity-asset-membrane">
+                        <img src="assets/product/cellai-demo/assets/cell-membrane.svg" alt="Straight phospholipid membrane from the activity">
+                        <figcaption><span>Direct transport</span><strong>Membrane boundary</strong></figcaption>
+                    </figure>
+                    <figure class="activity-asset activity-asset-vesicle">
+                        <img src="assets/product/cellai-demo/assets/cell-membrane-vesicle.svg" alt="Phospholipid vesicle from the waste transport activity">
+                        <figcaption><span>Bulk transport</span><strong>Waste vesicle</strong></figcaption>
+                    </figure>
                 </div>
             </article>
 
@@ -156,14 +156,23 @@
 
         <section class="prototype-section" id="prototype" aria-labelledby="prototype-title">
             <div class="prototype-heading">
-                <div><p class="eyebrow">Final experience</p><h2 id="prototype-title">Try the membrane lesson</h2></div>
-                <a class="secondary-action" href="assets/product/cellai-demo/index.html" target="_blank" rel="noreferrer">Open full prototype <span aria-hidden="true">&#8599;</span></a>
+                <div><p class="eyebrow">Final experience</p><h2 id="prototype-title">Launch the membrane lesson</h2></div>
             </div>
-            <p class="prototype-note">This is the verified six-lesson activity from the provided build. The optional AI endpoint is not required for the core experience.</p>
-            <div class="prototype-browser">
+            <p class="prototype-note">The activity opens at full size so dragging, animation, and lesson controls work as designed. The optional AI endpoint is not required for the six core lessons.</p>
+            <a class="prototype-launch" href="assets/product/cellai-demo/index.html" target="_blank" rel="noreferrer" aria-label="Launch the interactive CellAI Factory prototype in a new tab">
                 <div class="prototype-bar" aria-hidden="true"><span></span><span></span><span></span><div>CellAI Factory &middot; Membrane Lessons</div></div>
-                <iframe src="assets/product/cellai-demo/index.html" title="Interactive CellAI Factory membrane lesson" loading="lazy"></iframe>
-            </div>
+                <div class="prototype-launch-content">
+                    <div class="prototype-art" aria-hidden="true">
+                        <img class="prototype-membrane" src="assets/product/cellai-demo/assets/cell-membrane.svg" alt="">
+                        <img class="prototype-vesicle" src="assets/product/cellai-demo/assets/cell-membrane-vesicle.svg" alt="">
+                    </div>
+                    <div class="prototype-launch-copy">
+                        <span class="prototype-kicker">Interactive build</span>
+                        <strong>Explore six membrane transport lessons</strong>
+                        <span class="prototype-cta">Launch full prototype <b aria-hidden="true">&#8599;</b></span>
+                    </div>
+                </div>
+            </a>
         </section>
 
         <section class="case-band outcome-band">
